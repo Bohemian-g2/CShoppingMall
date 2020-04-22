@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wsfzsc.mapper.IndentDetailMapper">
+  <resultMap id="BaseResultMap" type="com.wsfzsc.pojo.IndentDetail">
+    <id column="indent_id" jdbcType="INTEGER" property="indentId" />
+    <id column="indent_goods_id" jdbcType="INTEGER" property="indentGoodsId" />
+    <result column="indent_goods_num" jdbcType="INTEGER" property="indentGoodsNum" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    indent_id, indent_goods_id, indent_goods_num
+  </sql>
+  <select id="selectByExample" parameterType="com.wsfzsc.pojo.IndentDetailExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from indent_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.wsfzsc.pojo.IndentDetailKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from indent_detail
+    where indent_id = #{indentId,jdbcType=INTEGER}
+      and indent_goods_id = #{indentGoodsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.wsfzsc.pojo.IndentDetailKey">
+    delete from indent_detail
+    where indent_id = #{indentId,jdbcType=INTEGER}
+      and indent_goods_id = #{indentGoodsId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wsfzsc.pojo.IndentDetailExample">
+    delete from indent_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wsfzsc.pojo.IndentDetail">
+    insert into indent_detail (indent_id, indent_goods_id, indent_goods_num
+      )
+    values (#{indentId,jdbcType=INTEGER}, #{indentGoodsId,jdbcType=INTEGER}, #{indentGoodsNum,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wsfzsc.pojo.IndentDetail">
+    insert into indent_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="indentId != null">
+        indent_id,
+      </if>
+      <if test="indentGoodsId != null">
+        indent_goods_id,
+      </if>
+      <if test="indentGoodsNum != null">
+        indent_goods_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="indentId != null">
+        #{indentId,jdbcType=INTEGER},
+      </if>
+      <if test="indentGoodsId != null">
+        #{indentGoodsId,jdbcType=INTEGER},
+      </if>
+      <if test="indentGoodsNum != null">
+        #{indentGoodsNum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wsfzsc.pojo.IndentDetailExample" resultType="java.lang.Long">
+    select count(*) from indent_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update indent_detail
+    <set>
+      <if test="record.indentId != null">
+        indent_id = #{record.indentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.indentGoodsId != null">
+        indent_goods_id = #{record.indentGoodsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.indentGoodsNum != null">
+        indent_goods_num = #{record.indentGoodsNum,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update indent_detail
+    set indent_id = #{record.indentId,jdbcType=INTEGER},
+      indent_goods_id = #{record.indentGoodsId,jdbcType=INTEGER},
+      indent_goods_num = #{record.indentGoodsNum,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wsfzsc.pojo.IndentDetail">
+    update indent_detail
+    <set>
+      <if test="indentGoodsNum != null">
+        indent_goods_num = #{indentGoodsNum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where indent_id = #{indentId,jdbcType=INTEGER}
+      and indent_goods_id = #{indentGoodsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wsfzsc.pojo.IndentDetail">
+    update indent_detail
+    set indent_goods_num = #{indentGoodsNum,jdbcType=INTEGER}
+    where indent_id = #{indentId,jdbcType=INTEGER}
+      and indent_goods_id = #{indentGoodsId,jdbcType=INTEGER}
+  </update>
+</mapper>

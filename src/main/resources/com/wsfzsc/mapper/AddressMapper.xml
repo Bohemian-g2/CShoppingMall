@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wsfzsc.mapper.AddressMapper">
+  <resultMap id="BaseResultMap" type="com.wsfzsc.pojo.Address">
+    <id column="address_id" jdbcType="INTEGER" property="addressId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="address_name" jdbcType="VARCHAR" property="addressName" />
+    <result column="address_phone" jdbcType="INTEGER" property="addressPhone" />
+    <result column="address_province" jdbcType="VARCHAR" property="addressProvince" />
+    <result column="address_city" jdbcType="VARCHAR" property="addressCity" />
+    <result column="address_district" jdbcType="VARCHAR" property="addressDistrict" />
+    <result column="address_postcode" jdbcType="INTEGER" property="addressPostcode" />
+    <result column="detailed_address" jdbcType="VARCHAR" property="detailedAddress" />
+  </resultMap>
+  <!-- 带用户信息 -->
+  <resultMap id="WithUserBaseResultMap" type="com.wsfzsc.pojo.Address">
+    <id column="address_id" jdbcType="INTEGER" property="addressId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="address_name" jdbcType="VARCHAR" property="addressName" />
+    <result column="address_phone" jdbcType="INTEGER" property="addressPhone" />
+    <result column="address_province" jdbcType="VARCHAR" property="addressProvince" />
+    <result column="address_city" jdbcType="VARCHAR" property="addressCity" />
+    <result column="address_district" jdbcType="VARCHAR" property="addressDistrict" />
+    <result column="address_postcode" jdbcType="INTEGER" property="addressPostcode" />
+    <result column="detailed_address" jdbcType="VARCHAR" property="detailedAddress" />
+    <association property="userInf" javaType="com.wsfzsc.pojo.UserInf">
+      <id column="user_id" jdbcType="INTEGER" property="userId" />
+      <result column="login_name" jdbcType="VARCHAR" property="loginName" />
+      <result column="password" jdbcType="VARCHAR" property="password" />
+      <result column="user_name" jdbcType="VARCHAR" property="userName" />
+      <result column="identity_type" jdbcType="INTEGER" property="identityType" />
+      <result column="identity_number" jdbcType="VARCHAR" property="identityNumber" />
+      <result column="user_email" jdbcType="VARCHAR" property="userEmail" />
+      <result column="user_phone" jdbcType="INTEGER" property="userPhone" />
+      <result column="sex" jdbcType="INTEGER" property="sex" />
+      <result column="user_title" jdbcType="VARCHAR" property="userTitle" />
+    </association>
+  </resultMap>
+  <!-- ========= -->
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    address_id, user_id, address_name, address_phone, address_province, address_city, 
+    address_district, address_postcode, detailed_address
+  </sql>
+  <!-- 带用户信息 -->
+  <sql id="WithUser_Base_Column_List">
+    a.address_id, a.user_id, a.address_name, a.address_phone, a.address_province, a.address_city,
+    a.address_district, a.address_postcode, a.detailed_address, u.user_id, u.login_name, u.password,
+    u.user_name, u.identity_type, u.identity_number, u.user_email, u.user_phone, u.sex, u.user_title
+  </sql>
+  <!-- ========= -->
+  <select id="selectByExample" parameterType="com.wsfzsc.pojo.AddressExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from address
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from address
+    where address_id = #{addressId,jdbcType=INTEGER}
+  </select>
+  <!-- 带用户信息 -->
+  <select id="selectByExampleWithUser" parameterType="com.wsfzsc.pojo.AddressExample" resultMap="WithUserBaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="WithUser_Base_Column_List" />
+    from address a
+    LEFT JOIN userinf u ON a.user_id = u.user_id
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKeyWithUser" parameterType="java.lang.Integer" resultMap="WithUserBaseResultMap">
+    select
+    <include refid="WithUser_Base_Column_List" />
+    from address a
+    LEFT JOIN userinf u ON a.user_id = u.user_id
+    where address_id = #{addressId,jdbcType=INTEGER}
+  </select>
+  <!-- ========== -->
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from address
+    where address_id = #{addressId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wsfzsc.pojo.AddressExample">
+    delete from address
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wsfzsc.pojo.Address">
+    insert into address (address_id, user_id, address_name, 
+      address_phone, address_province, address_city, 
+      address_district, address_postcode, detailed_address
+      )
+    values (#{addressId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{addressName,jdbcType=VARCHAR}, 
+      #{addressPhone,jdbcType=INTEGER}, #{addressProvince,jdbcType=VARCHAR}, #{addressCity,jdbcType=VARCHAR}, 
+      #{addressDistrict,jdbcType=VARCHAR}, #{addressPostcode,jdbcType=INTEGER}, #{detailedAddress,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wsfzsc.pojo.Address">
+    insert into address
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="addressId != null">
+        address_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="addressName != null">
+        address_name,
+      </if>
+      <if test="addressPhone != null">
+        address_phone,
+      </if>
+      <if test="addressProvince != null">
+        address_province,
+      </if>
+      <if test="addressCity != null">
+        address_city,
+      </if>
+      <if test="addressDistrict != null">
+        address_district,
+      </if>
+      <if test="addressPostcode != null">
+        address_postcode,
+      </if>
+      <if test="detailedAddress != null">
+        detailed_address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="addressId != null">
+        #{addressId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="addressName != null">
+        #{addressName,jdbcType=VARCHAR},
+      </if>
+      <if test="addressPhone != null">
+        #{addressPhone,jdbcType=INTEGER},
+      </if>
+      <if test="addressProvince != null">
+        #{addressProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="addressCity != null">
+        #{addressCity,jdbcType=VARCHAR},
+      </if>
+      <if test="addressDistrict != null">
+        #{addressDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="addressPostcode != null">
+        #{addressPostcode,jdbcType=INTEGER},
+      </if>
+      <if test="detailedAddress != null">
+        #{detailedAddress,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wsfzsc.pojo.AddressExample" resultType="java.lang.Long">
+    select count(*) from address
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update address
+    <set>
+      <if test="record.addressId != null">
+        address_id = #{record.addressId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.addressName != null">
+        address_name = #{record.addressName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addressPhone != null">
+        address_phone = #{record.addressPhone,jdbcType=INTEGER},
+      </if>
+      <if test="record.addressProvince != null">
+        address_province = #{record.addressProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addressCity != null">
+        address_city = #{record.addressCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addressDistrict != null">
+        address_district = #{record.addressDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addressPostcode != null">
+        address_postcode = #{record.addressPostcode,jdbcType=INTEGER},
+      </if>
+      <if test="record.detailedAddress != null">
+        detailed_address = #{record.detailedAddress,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update address
+    set address_id = #{record.addressId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      address_name = #{record.addressName,jdbcType=VARCHAR},
+      address_phone = #{record.addressPhone,jdbcType=INTEGER},
+      address_province = #{record.addressProvince,jdbcType=VARCHAR},
+      address_city = #{record.addressCity,jdbcType=VARCHAR},
+      address_district = #{record.addressDistrict,jdbcType=VARCHAR},
+      address_postcode = #{record.addressPostcode,jdbcType=INTEGER},
+      detailed_address = #{record.detailedAddress,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wsfzsc.pojo.Address">
+    update address
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="addressName != null">
+        address_name = #{addressName,jdbcType=VARCHAR},
+      </if>
+      <if test="addressPhone != null">
+        address_phone = #{addressPhone,jdbcType=INTEGER},
+      </if>
+      <if test="addressProvince != null">
+        address_province = #{addressProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="addressCity != null">
+        address_city = #{addressCity,jdbcType=VARCHAR},
+      </if>
+      <if test="addressDistrict != null">
+        address_district = #{addressDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="addressPostcode != null">
+        address_postcode = #{addressPostcode,jdbcType=INTEGER},
+      </if>
+      <if test="detailedAddress != null">
+        detailed_address = #{detailedAddress,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where address_id = #{addressId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wsfzsc.pojo.Address">
+    update address
+    set user_id = #{userId,jdbcType=INTEGER},
+      address_name = #{addressName,jdbcType=VARCHAR},
+      address_phone = #{addressPhone,jdbcType=INTEGER},
+      address_province = #{addressProvince,jdbcType=VARCHAR},
+      address_city = #{addressCity,jdbcType=VARCHAR},
+      address_district = #{addressDistrict,jdbcType=VARCHAR},
+      address_postcode = #{addressPostcode,jdbcType=INTEGER},
+      detailed_address = #{detailedAddress,jdbcType=VARCHAR}
+    where address_id = #{addressId,jdbcType=INTEGER}
+  </update>
+</mapper>

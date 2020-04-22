@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wsfzsc.mapper.CDetailMapper">
+  <resultMap id="BaseResultMap" type="com.wsfzsc.pojo.CDetail">
+    <id column="cart_id" jdbcType="INTEGER" property="cartId" />
+    <id column="cart_commodity_id" jdbcType="INTEGER" property="cartCommodityId" />
+    <result column="cart_commodity_numbe" jdbcType="INTEGER" property="cartCommodityNumbe" />
+    <result column="cart_commodity_money" jdbcType="REAL" property="cartCommodityMoney" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    cart_id, cart_commodity_id, cart_commodity_numbe, cart_commodity_money
+  </sql>
+  <select id="selectByExample" parameterType="com.wsfzsc.pojo.CDetailExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cart_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.wsfzsc.pojo.CDetailKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cart_detail
+    where cart_id = #{cartId,jdbcType=INTEGER}
+      and cart_commodity_id = #{cartCommodityId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.wsfzsc.pojo.CDetailKey">
+    delete from cart_detail
+    where cart_id = #{cartId,jdbcType=INTEGER}
+      and cart_commodity_id = #{cartCommodityId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wsfzsc.pojo.CDetailExample">
+    delete from cart_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wsfzsc.pojo.CDetail">
+    insert into cart_detail (cart_id, cart_commodity_id, cart_commodity_numbe, 
+      cart_commodity_money)
+    values (#{cartId,jdbcType=INTEGER}, #{cartCommodityId,jdbcType=INTEGER}, #{cartCommodityNumbe,jdbcType=INTEGER}, 
+      #{cartCommodityMoney,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wsfzsc.pojo.CDetail">
+    insert into cart_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cartId != null">
+        cart_id,
+      </if>
+      <if test="cartCommodityId != null">
+        cart_commodity_id,
+      </if>
+      <if test="cartCommodityNumbe != null">
+        cart_commodity_numbe,
+      </if>
+      <if test="cartCommodityMoney != null">
+        cart_commodity_money,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cartId != null">
+        #{cartId,jdbcType=INTEGER},
+      </if>
+      <if test="cartCommodityId != null">
+        #{cartCommodityId,jdbcType=INTEGER},
+      </if>
+      <if test="cartCommodityNumbe != null">
+        #{cartCommodityNumbe,jdbcType=INTEGER},
+      </if>
+      <if test="cartCommodityMoney != null">
+        #{cartCommodityMoney,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wsfzsc.pojo.CDetailExample" resultType="java.lang.Long">
+    select count(*) from cart_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update cart_detail
+    <set>
+      <if test="record.cartId != null">
+        cart_id = #{record.cartId,jdbcType=INTEGER},
+      </if>
+      <if test="record.cartCommodityId != null">
+        cart_commodity_id = #{record.cartCommodityId,jdbcType=INTEGER},
+      </if>
+      <if test="record.cartCommodityNumbe != null">
+        cart_commodity_numbe = #{record.cartCommodityNumbe,jdbcType=INTEGER},
+      </if>
+      <if test="record.cartCommodityMoney != null">
+        cart_commodity_money = #{record.cartCommodityMoney,jdbcType=REAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update cart_detail
+    set cart_id = #{record.cartId,jdbcType=INTEGER},
+      cart_commodity_id = #{record.cartCommodityId,jdbcType=INTEGER},
+      cart_commodity_numbe = #{record.cartCommodityNumbe,jdbcType=INTEGER},
+      cart_commodity_money = #{record.cartCommodityMoney,jdbcType=REAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wsfzsc.pojo.CDetail">
+    update cart_detail
+    <set>
+      <if test="cartCommodityNumbe != null">
+        cart_commodity_numbe = #{cartCommodityNumbe,jdbcType=INTEGER},
+      </if>
+      <if test="cartCommodityMoney != null">
+        cart_commodity_money = #{cartCommodityMoney,jdbcType=REAL},
+      </if>
+    </set>
+    where cart_id = #{cartId,jdbcType=INTEGER}
+      and cart_commodity_id = #{cartCommodityId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wsfzsc.pojo.CDetail">
+    update cart_detail
+    set cart_commodity_numbe = #{cartCommodityNumbe,jdbcType=INTEGER},
+      cart_commodity_money = #{cartCommodityMoney,jdbcType=REAL}
+    where cart_id = #{cartId,jdbcType=INTEGER}
+      and cart_commodity_id = #{cartCommodityId,jdbcType=INTEGER}
+  </update>
+</mapper>

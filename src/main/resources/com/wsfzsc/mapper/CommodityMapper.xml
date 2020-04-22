@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wsfzsc.mapper.CommodityMapper">
+  <resultMap id="BaseResultMap" type="com.wsfzsc.pojo.Commodity">
+    <id column="commodity_id" jdbcType="INTEGER" property="commodityId" />
+    <result column="commodity_kind" jdbcType="INTEGER" property="commodityKind" />
+    <result column="commodity_name" jdbcType="VARCHAR" property="commodityName" />
+    <result column="commodity_status" jdbcType="INTEGER" property="commodityStatus" />
+    <result column="commodity_money" jdbcType="REAL" property="commodityMoney" />
+    <result column="commodity_stock" jdbcType="INTEGER" property="commodityStock" />
+    <result column="commodity_size" jdbcType="VARCHAR" property="commoditySize" />
+    <result column="commodity_sex" jdbcType="INTEGER" property="commoditySex" />
+    <result column="commodity_picture" jdbcType="VARCHAR" property="commodityPicture" />
+    <result column="commodity_descript" jdbcType="VARCHAR" property="commodityDescript" />
+    <result column="commodity_color" jdbcType="VARCHAR" property="commodityColor" />
+    <result column="commodity_style" jdbcType="VARCHAR" property="commodityStyle" />
+    <result column="commodity_source" jdbcType="VARCHAR" property="commoditySource" />
+    <result column="commodity_date" jdbcType="TIMESTAMP" property="commodityDate" />
+  </resultMap>
+  <!-- 带商品类别信息 -->
+  <resultMap id="WithKindBaseResultMap" type="com.wsfzsc.pojo.Commodity">
+    <id column="commodity_id" jdbcType="INTEGER" property="commodityId" />
+    <result column="commodity_kind" jdbcType="INTEGER" property="commodityKind" />
+    <result column="commodity_name" jdbcType="VARCHAR" property="commodityName" />
+    <result column="commodity_status" jdbcType="INTEGER" property="commodityStatus" />
+    <result column="commodity_money" jdbcType="REAL" property="commodityMoney" />
+    <result column="commodity_stock" jdbcType="INTEGER" property="commodityStock" />
+    <result column="commodity_size" jdbcType="VARCHAR" property="commoditySize" />
+    <result column="commodity_sex" jdbcType="INTEGER" property="commoditySex" />
+    <result column="commodity_picture" jdbcType="VARCHAR" property="commodityPicture" />
+    <result column="commodity_descript" jdbcType="VARCHAR" property="commodityDescript" />
+    <result column="commodity_color" jdbcType="VARCHAR" property="commodityColor" />
+    <result column="commodity_style" jdbcType="VARCHAR" property="commodityStyle" />
+    <result column="commodity_source" jdbcType="VARCHAR" property="commoditySource" />
+    <result column="commodity_date" jdbcType="TIMESTAMP" property="commodityDate" />
+    <association property="kindBase" javaType="com.wsfzsc.pojo.KindBase">
+      <id column="kind_id" property="kindId"></id>
+      <result column="kind_name" property="kindName"></result>
+    </association>
+  </resultMap>
+  <!-- ============  -->
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    commodity_id, commodity_kind, commodity_name, commodity_status, commodity_money,
+    commodity_stock, commodity_size, commodity_sex, commodity_picture, commodity_descript,
+    commodity_color, commodity_style, commodity_source, commodity_date
+  </sql>
+  <!-- 带商品类别信息 -->
+  <sql id="WithKind_Base_Column_List">
+    c.commodity_id, c.commodity_kind, c.commodity_name, c.commodity_status, c.commodity_money,
+    c.commodity_stock, c.commodity_size, c.commodity_sex, c.commodity_picture, c.commodity_descript,
+    c.commodity_color, c.commodity_style, c.commodity_source, c.commodity_date , k.kind_id , k.kind_name
+  </sql>
+  <!-- ============  -->
+  <select id="selectByExample" parameterType="com.wsfzsc.pojo.CommodityExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from commodity
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from commodity
+    where commodity_id = #{commodityId,jdbcType=INTEGER}
+  </select>
+  <!-- 带商品类别信息 -->
+  <select id="selectByExampleWithKind" parameterType="com.wsfzsc.pojo.CommodityExample" resultMap="WithKindBaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="WithKind_Base_Column_List" />
+    from commodity c
+    LEFT JOIN kind_base k ON c.commodity_kind = k.kind_id
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKeyWithKind" parameterType="java.lang.Integer" resultMap="WithKindBaseResultMap">
+    select
+    <include refid="WithKind_Base_Column_List" />
+    from commodity c
+    LEFT JOIN kind_base k ON c.commodity_kind = k.kind_id
+    where commodity_id = #{commodityId,jdbcType=INTEGER}
+  </select>
+  <!--  ============   -->
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from commodity
+    where commodity_id = #{commodityId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wsfzsc.pojo.CommodityExample">
+    delete from commodity
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wsfzsc.pojo.Commodity">
+    insert into commodity (commodity_id, commodity_kind, commodity_name, 
+      commodity_status, commodity_money, commodity_stock, 
+      commodity_size, commodity_sex, commodity_picture, 
+      commodity_descript, commodity_color, commodity_style, 
+      commodity_source, commodity_date)
+    values (#{commodityId,jdbcType=INTEGER}, #{commodityKind,jdbcType=INTEGER}, #{commodityName,jdbcType=VARCHAR}, 
+      #{commodityStatus,jdbcType=INTEGER}, #{commodityMoney,jdbcType=REAL}, #{commodityStock,jdbcType=INTEGER}, 
+      #{commoditySize,jdbcType=VARCHAR}, #{commoditySex,jdbcType=INTEGER}, #{commodityPicture,jdbcType=VARCHAR}, 
+      #{commodityDescript,jdbcType=VARCHAR}, #{commodityColor,jdbcType=VARCHAR}, #{commodityStyle,jdbcType=VARCHAR}, 
+      #{commoditySource,jdbcType=VARCHAR}, #{commodityDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wsfzsc.pojo.Commodity">
+    insert into commodity
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="commodityId != null">
+        commodity_id,
+      </if>
+      <if test="commodityKind != null">
+        commodity_kind,
+      </if>
+      <if test="commodityName != null">
+        commodity_name,
+      </if>
+      <if test="commodityStatus != null">
+        commodity_status,
+      </if>
+      <if test="commodityMoney != null">
+        commodity_money,
+      </if>
+      <if test="commodityStock != null">
+        commodity_stock,
+      </if>
+      <if test="commoditySize != null">
+        commodity_size,
+      </if>
+      <if test="commoditySex != null">
+        commodity_sex,
+      </if>
+      <if test="commodityPicture != null">
+        commodity_picture,
+      </if>
+      <if test="commodityDescript != null">
+        commodity_descript,
+      </if>
+      <if test="commodityColor != null">
+        commodity_color,
+      </if>
+      <if test="commodityStyle != null">
+        commodity_style,
+      </if>
+      <if test="commoditySource != null">
+        commodity_source,
+      </if>
+      <if test="commodityDate != null">
+        commodity_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="commodityId != null">
+        #{commodityId,jdbcType=INTEGER},
+      </if>
+      <if test="commodityKind != null">
+        #{commodityKind,jdbcType=INTEGER},
+      </if>
+      <if test="commodityName != null">
+        #{commodityName,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityStatus != null">
+        #{commodityStatus,jdbcType=INTEGER},
+      </if>
+      <if test="commodityMoney != null">
+        #{commodityMoney,jdbcType=REAL},
+      </if>
+      <if test="commodityStock != null">
+        #{commodityStock,jdbcType=INTEGER},
+      </if>
+      <if test="commoditySize != null">
+        #{commoditySize,jdbcType=VARCHAR},
+      </if>
+      <if test="commoditySex != null">
+        #{commoditySex,jdbcType=INTEGER},
+      </if>
+      <if test="commodityPicture != null">
+        #{commodityPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityDescript != null">
+        #{commodityDescript,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityColor != null">
+        #{commodityColor,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityStyle != null">
+        #{commodityStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="commoditySource != null">
+        #{commoditySource,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityDate != null">
+        #{commodityDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wsfzsc.pojo.CommodityExample" resultType="java.lang.Long">
+    select count(*) from commodity
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update commodity
+    <set>
+      <if test="record.commodityId != null">
+        commodity_id = #{record.commodityId,jdbcType=INTEGER},
+      </if>
+      <if test="record.commodityKind != null">
+        commodity_kind = #{record.commodityKind,jdbcType=INTEGER},
+      </if>
+      <if test="record.commodityName != null">
+        commodity_name = #{record.commodityName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commodityStatus != null">
+        commodity_status = #{record.commodityStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.commodityMoney != null">
+        commodity_money = #{record.commodityMoney,jdbcType=REAL},
+      </if>
+      <if test="record.commodityStock != null">
+        commodity_stock = #{record.commodityStock,jdbcType=INTEGER},
+      </if>
+      <if test="record.commoditySize != null">
+        commodity_size = #{record.commoditySize,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commoditySex != null">
+        commodity_sex = #{record.commoditySex,jdbcType=INTEGER},
+      </if>
+      <if test="record.commodityPicture != null">
+        commodity_picture = #{record.commodityPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commodityDescript != null">
+        commodity_descript = #{record.commodityDescript,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commodityColor != null">
+        commodity_color = #{record.commodityColor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commodityStyle != null">
+        commodity_style = #{record.commodityStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commoditySource != null">
+        commodity_source = #{record.commoditySource,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commodityDate != null">
+        commodity_date = #{record.commodityDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update commodity
+    set commodity_id = #{record.commodityId,jdbcType=INTEGER},
+      commodity_kind = #{record.commodityKind,jdbcType=INTEGER},
+      commodity_name = #{record.commodityName,jdbcType=VARCHAR},
+      commodity_status = #{record.commodityStatus,jdbcType=INTEGER},
+      commodity_money = #{record.commodityMoney,jdbcType=REAL},
+      commodity_stock = #{record.commodityStock,jdbcType=INTEGER},
+      commodity_size = #{record.commoditySize,jdbcType=VARCHAR},
+      commodity_sex = #{record.commoditySex,jdbcType=INTEGER},
+      commodity_picture = #{record.commodityPicture,jdbcType=VARCHAR},
+      commodity_descript = #{record.commodityDescript,jdbcType=VARCHAR},
+      commodity_color = #{record.commodityColor,jdbcType=VARCHAR},
+      commodity_style = #{record.commodityStyle,jdbcType=VARCHAR},
+      commodity_source = #{record.commoditySource,jdbcType=VARCHAR},
+      commodity_date = #{record.commodityDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wsfzsc.pojo.Commodity">
+    update commodity
+    <set>
+      <if test="commodityKind != null">
+        commodity_kind = #{commodityKind,jdbcType=INTEGER},
+      </if>
+      <if test="commodityName != null">
+        commodity_name = #{commodityName,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityStatus != null">
+        commodity_status = #{commodityStatus,jdbcType=INTEGER},
+      </if>
+      <if test="commodityMoney != null">
+        commodity_money = #{commodityMoney,jdbcType=REAL},
+      </if>
+      <if test="commodityStock != null">
+        commodity_stock = #{commodityStock,jdbcType=INTEGER},
+      </if>
+      <if test="commoditySize != null">
+        commodity_size = #{commoditySize,jdbcType=VARCHAR},
+      </if>
+      <if test="commoditySex != null">
+        commodity_sex = #{commoditySex,jdbcType=INTEGER},
+      </if>
+      <if test="commodityPicture != null">
+        commodity_picture = #{commodityPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityDescript != null">
+        commodity_descript = #{commodityDescript,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityColor != null">
+        commodity_color = #{commodityColor,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityStyle != null">
+        commodity_style = #{commodityStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="commoditySource != null">
+        commodity_source = #{commoditySource,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityDate != null">
+        commodity_date = #{commodityDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where commodity_id = #{commodityId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wsfzsc.pojo.Commodity">
+    update commodity
+    set commodity_kind = #{commodityKind,jdbcType=INTEGER},
+      commodity_name = #{commodityName,jdbcType=VARCHAR},
+      commodity_status = #{commodityStatus,jdbcType=INTEGER},
+      commodity_money = #{commodityMoney,jdbcType=REAL},
+      commodity_stock = #{commodityStock,jdbcType=INTEGER},
+      commodity_size = #{commoditySize,jdbcType=VARCHAR},
+      commodity_sex = #{commoditySex,jdbcType=INTEGER},
+      commodity_picture = #{commodityPicture,jdbcType=VARCHAR},
+      commodity_descript = #{commodityDescript,jdbcType=VARCHAR},
+      commodity_color = #{commodityColor,jdbcType=VARCHAR},
+      commodity_style = #{commodityStyle,jdbcType=VARCHAR},
+      commodity_source = #{commoditySource,jdbcType=VARCHAR},
+      commodity_date = #{commodityDate,jdbcType=TIMESTAMP}
+    where commodity_id = #{commodityId,jdbcType=INTEGER}
+  </update>
+</mapper>

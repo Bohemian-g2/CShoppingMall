@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wsfzsc.mapper.SuperAdminMapper">
+  <resultMap id="BaseResultMap" type="com.wsfzsc.pojo.SuperAdmin">
+    <id column="superadmin_id" jdbcType="INTEGER" property="superadminId" />
+    <result column="superadmin_username" jdbcType="VARCHAR" property="superadminUsername" />
+    <result column="superadmin_password" jdbcType="VARCHAR" property="superadminPassword" />
+    <result column="superadmin_name" jdbcType="VARCHAR" property="superadminName" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    superadmin_id, superadmin_username, superadmin_password, superadmin_name
+  </sql>
+  <select id="selectByExample" parameterType="com.wsfzsc.pojo.SuperAdminExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from superadmin
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from superadmin
+    where superadmin_id = #{superadminId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from superadmin
+    where superadmin_id = #{superadminId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wsfzsc.pojo.SuperAdminExample">
+    delete from superadmin
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wsfzsc.pojo.SuperAdmin">
+    insert into superadmin (superadmin_id, superadmin_username, 
+      superadmin_password, superadmin_name)
+    values (#{superadminId,jdbcType=INTEGER}, #{superadminUsername,jdbcType=VARCHAR}, 
+      #{superadminPassword,jdbcType=VARCHAR}, #{superadminName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wsfzsc.pojo.SuperAdmin">
+    insert into superadmin
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="superadminId != null">
+        superadmin_id,
+      </if>
+      <if test="superadminUsername != null">
+        superadmin_username,
+      </if>
+      <if test="superadminPassword != null">
+        superadmin_password,
+      </if>
+      <if test="superadminName != null">
+        superadmin_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="superadminId != null">
+        #{superadminId,jdbcType=INTEGER},
+      </if>
+      <if test="superadminUsername != null">
+        #{superadminUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="superadminPassword != null">
+        #{superadminPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="superadminName != null">
+        #{superadminName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wsfzsc.pojo.SuperAdminExample" resultType="java.lang.Long">
+    select count(*) from superadmin
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update superadmin
+    <set>
+      <if test="record.superadminId != null">
+        superadmin_id = #{record.superadminId,jdbcType=INTEGER},
+      </if>
+      <if test="record.superadminUsername != null">
+        superadmin_username = #{record.superadminUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.superadminPassword != null">
+        superadmin_password = #{record.superadminPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.superadminName != null">
+        superadmin_name = #{record.superadminName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update superadmin
+    set superadmin_id = #{record.superadminId,jdbcType=INTEGER},
+      superadmin_username = #{record.superadminUsername,jdbcType=VARCHAR},
+      superadmin_password = #{record.superadminPassword,jdbcType=VARCHAR},
+      superadmin_name = #{record.superadminName,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wsfzsc.pojo.SuperAdmin">
+    update superadmin
+    <set>
+      <if test="superadminUsername != null">
+        superadmin_username = #{superadminUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="superadminPassword != null">
+        superadmin_password = #{superadminPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="superadminName != null">
+        superadmin_name = #{superadminName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where superadmin_id = #{superadminId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wsfzsc.pojo.SuperAdmin">
+    update superadmin
+    set superadmin_username = #{superadminUsername,jdbcType=VARCHAR},
+      superadmin_password = #{superadminPassword,jdbcType=VARCHAR},
+      superadmin_name = #{superadminName,jdbcType=VARCHAR}
+    where superadmin_id = #{superadminId,jdbcType=INTEGER}
+  </update>
+</mapper>

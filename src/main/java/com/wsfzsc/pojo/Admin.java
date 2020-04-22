@@ -1,31 +1,77 @@
 package com.wsfzsc.pojo;
 
 public class Admin {
-    private Integer adminId;//用户id
-    private String adminUsername;//用户账号
-    private String adminPassword;//用户密码
-    private String AdminName;//用户姓名
-    private Integer adminPhone;//用户电话
+    private Integer adminId;
 
-    public Integer getAdminId() { return adminId;}
+    private String adminUsername;
 
-    public void setAdminId(Integer adminId) {this.adminId = adminId;}
+    private String adminPassword;
 
-    public String getAdminUsername() {return adminUsername;}
+    private String adminName;
 
-    public void setAdminUsername(String adminUsername) {this.adminUsername = adminUsername;}
+    private String adminPhone;
 
-    public String getAdminPassword() {return adminPassword;}
+    private String adminRegisterDate;
 
-    public void setAdminPassword(String adminPassword) {this.adminPassword = adminPassword;}
+    public Integer getAdminId() {
+        return adminId;
+    }
 
-    public String getAdminName() {return AdminName;}
+    public void setAdminId(Integer adminId) {
+        this.adminId = adminId;
+    }
 
-    public void setAdminName(String adminName) {AdminName = adminName;}
+    public String getAdminUsername() {
+        return adminUsername;
+    }
 
-    public Integer getAdminPhone() {return adminPhone;}
+    public void setAdminUsername(String adminUsername) {
+        this.adminUsername = adminUsername == null ? null : adminUsername.trim();
+    }
 
-    public void setAdminPhone(Integer adminPhone) {this.adminPhone = adminPhone; }
+    public String getAdminPassword() {
+        return adminPassword;
+    }
+
+    public void setAdminPassword(String adminPassword) {
+        this.adminPassword = adminPassword == null ? null : adminPassword.trim();
+    }
+
+    public String getAdminName() {
+        return adminName;
+    }
+
+    public void setAdminName(String adminName) {
+        this.adminName = adminName == null ? null : adminName.trim();
+    }
+
+    public String getAdminPhone() {
+        return adminPhone;
+    }
+
+    public void setAdminPhone(String adminPhone) {
+        this.adminPhone = adminPhone == null ? null : adminPhone.trim();
+    }
+
+    public String getAdminRegisterDate() {
+        return adminRegisterDate;
+    }
+
+    public void setAdminRegisterDate(String adminRegisterDate) {
+        this.adminRegisterDate = adminRegisterDate == null ? null : adminRegisterDate.trim();
+    }
+
+    public Admin() {
+    }
+
+    public Admin(Integer adminId, String adminUsername, String adminPassword, String adminName, String adminPhone, String adminRegisterDate) {
+        this.adminId = adminId;
+        this.adminUsername = adminUsername;
+        this.adminPassword = adminPassword;
+        this.adminName = adminName;
+        this.adminPhone = adminPhone;
+        this.adminRegisterDate = adminRegisterDate;
+    }
 
     @Override
     public String toString() {
@@ -33,8 +79,9 @@ public class Admin {
                 "adminId=" + adminId +
                 ", adminUsername='" + adminUsername + '\'' +
                 ", adminPassword='" + adminPassword + '\'' +
-                ", AdminName='" + AdminName + '\'' +
-                ", adminPhone=" + adminPhone +
+                ", adminName='" + adminName + '\'' +
+                ", adminPhone='" + adminPhone + '\'' +
+                ", adminRegisterDate='" + adminRegisterDate + '\'' +
                 '}';
     }
 }

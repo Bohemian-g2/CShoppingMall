@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wsfzsc.mapper.IndentMapper">
+  <resultMap id="BaseResultMap" type="com.wsfzsc.pojo.Indent">
+    <id column="indent_id" jdbcType="INTEGER" property="indentId" />
+    <result column="indent_user_id" jdbcType="INTEGER" property="indentUserId" />
+    <result column="indent_rec_id" jdbcType="INTEGER" property="indentRecId" />
+    <result column="indent_status" jdbcType="INTEGER" property="indentStatus" />
+    <result column="indent_delete_status" jdbcType="INTEGER" property="indentDeleteStatus" />
+    <result column="indent_total" jdbcType="REAL" property="indentTotal" />
+    <result column="indent_carriage" jdbcType="REAL" property="indentCarriage" />
+    <result column="indent_create_time" jdbcType="TIMESTAMP" property="indentCreateTime" />
+    <result column="indent_way" jdbcType="INTEGER" property="indentWay" />
+    <result column="indent_paid_time" jdbcType="TIMESTAMP" property="indentPaidTime" />
+    <result column="indent_end_time" jdbcType="TIMESTAMP" property="indentEndTime" />
+    <result column="indent_drawback_time" jdbcType="TIMESTAMP" property="indentDrawbackTime" />
+    <result column="indent_drawback_money_time" jdbcType="TIMESTAMP" property="indentDrawbackMoneyTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    indent_id, indent_user_id, indent_rec_id, indent_status, indent_delete_status, indent_total, 
+    indent_carriage, indent_create_time, indent_way, indent_paid_time, indent_end_time, 
+    indent_drawback_time, indent_drawback_money_time
+  </sql>
+  <select id="selectByExample" parameterType="com.wsfzsc.pojo.IndentExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from indent
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from indent
+    where indent_id = #{indentId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from indent
+    where indent_id = #{indentId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wsfzsc.pojo.IndentExample">
+    delete from indent
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wsfzsc.pojo.Indent">
+    insert into indent (indent_id, indent_user_id, indent_rec_id, 
+      indent_status, indent_delete_status, indent_total, 
+      indent_carriage, indent_create_time, indent_way, 
+      indent_paid_time, indent_end_time, indent_drawback_time, 
+      indent_drawback_money_time)
+    values (#{indentId,jdbcType=INTEGER}, #{indentUserId,jdbcType=INTEGER}, #{indentRecId,jdbcType=INTEGER}, 
+      #{indentStatus,jdbcType=INTEGER}, #{indentDeleteStatus,jdbcType=INTEGER}, #{indentTotal,jdbcType=REAL}, 
+      #{indentCarriage,jdbcType=REAL}, #{indentCreateTime,jdbcType=TIMESTAMP}, #{indentWay,jdbcType=INTEGER}, 
+      #{indentPaidTime,jdbcType=TIMESTAMP}, #{indentEndTime,jdbcType=TIMESTAMP}, #{indentDrawbackTime,jdbcType=TIMESTAMP}, 
+      #{indentDrawbackMoneyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wsfzsc.pojo.Indent">
+    insert into indent
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="indentId != null">
+        indent_id,
+      </if>
+      <if test="indentUserId != null">
+        indent_user_id,
+      </if>
+      <if test="indentRecId != null">
+        indent_rec_id,
+      </if>
+      <if test="indentStatus != null">
+        indent_status,
+      </if>
+      <if test="indentDeleteStatus != null">
+        indent_delete_status,
+      </if>
+      <if test="indentTotal != null">
+        indent_total,
+      </if>
+      <if test="indentCarriage != null">
+        indent_carriage,
+      </if>
+      <if test="indentCreateTime != null">
+        indent_create_time,
+      </if>
+      <if test="indentWay != null">
+        indent_way,
+      </if>
+      <if test="indentPaidTime != null">
+        indent_paid_time,
+      </if>
+      <if test="indentEndTime != null">
+        indent_end_time,
+      </if>
+      <if test="indentDrawbackTime != null">
+        indent_drawback_time,
+      </if>
+      <if test="indentDrawbackMoneyTime != null">
+        indent_drawback_money_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="indentId != null">
+        #{indentId,jdbcType=INTEGER},
+      </if>
+      <if test="indentUserId != null">
+        #{indentUserId,jdbcType=INTEGER},
+      </if>
+      <if test="indentRecId != null">
+        #{indentRecId,jdbcType=INTEGER},
+      </if>
+      <if test="indentStatus != null">
+        #{indentStatus,jdbcType=INTEGER},
+      </if>
+      <if test="indentDeleteStatus != null">
+        #{indentDeleteStatus,jdbcType=INTEGER},
+      </if>
+      <if test="indentTotal != null">
+        #{indentTotal,jdbcType=REAL},
+      </if>
+      <if test="indentCarriage != null">
+        #{indentCarriage,jdbcType=REAL},
+      </if>
+      <if test="indentCreateTime != null">
+        #{indentCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="indentWay != null">
+        #{indentWay,jdbcType=INTEGER},
+      </if>
+      <if test="indentPaidTime != null">
+        #{indentPaidTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="indentEndTime != null">
+        #{indentEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="indentDrawbackTime != null">
+        #{indentDrawbackTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="indentDrawbackMoneyTime != null">
+        #{indentDrawbackMoneyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wsfzsc.pojo.IndentExample" resultType="java.lang.Long">
+    select count(*) from indent
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update indent
+    <set>
+      <if test="record.indentId != null">
+        indent_id = #{record.indentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.indentUserId != null">
+        indent_user_id = #{record.indentUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.indentRecId != null">
+        indent_rec_id = #{record.indentRecId,jdbcType=INTEGER},
+      </if>
+      <if test="record.indentStatus != null">
+        indent_status = #{record.indentStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.indentDeleteStatus != null">
+        indent_delete_status = #{record.indentDeleteStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.indentTotal != null">
+        indent_total = #{record.indentTotal,jdbcType=REAL},
+      </if>
+      <if test="record.indentCarriage != null">
+        indent_carriage = #{record.indentCarriage,jdbcType=REAL},
+      </if>
+      <if test="record.indentCreateTime != null">
+        indent_create_time = #{record.indentCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.indentWay != null">
+        indent_way = #{record.indentWay,jdbcType=INTEGER},
+      </if>
+      <if test="record.indentPaidTime != null">
+        indent_paid_time = #{record.indentPaidTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.indentEndTime != null">
+        indent_end_time = #{record.indentEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.indentDrawbackTime != null">
+        indent_drawback_time = #{record.indentDrawbackTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.indentDrawbackMoneyTime != null">
+        indent_drawback_money_time = #{record.indentDrawbackMoneyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update indent
+    set indent_id = #{record.indentId,jdbcType=INTEGER},
+      indent_user_id = #{record.indentUserId,jdbcType=INTEGER},
+      indent_rec_id = #{record.indentRecId,jdbcType=INTEGER},
+      indent_status = #{record.indentStatus,jdbcType=INTEGER},
+      indent_delete_status = #{record.indentDeleteStatus,jdbcType=INTEGER},
+      indent_total = #{record.indentTotal,jdbcType=REAL},
+      indent_carriage = #{record.indentCarriage,jdbcType=REAL},
+      indent_create_time = #{record.indentCreateTime,jdbcType=TIMESTAMP},
+      indent_way = #{record.indentWay,jdbcType=INTEGER},
+      indent_paid_time = #{record.indentPaidTime,jdbcType=TIMESTAMP},
+      indent_end_time = #{record.indentEndTime,jdbcType=TIMESTAMP},
+      indent_drawback_time = #{record.indentDrawbackTime,jdbcType=TIMESTAMP},
+      indent_drawback_money_time = #{record.indentDrawbackMoneyTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wsfzsc.pojo.Indent">
+    update indent
+    <set>
+      <if test="indentUserId != null">
+        indent_user_id = #{indentUserId,jdbcType=INTEGER},
+      </if>
+      <if test="indentRecId != null">
+        indent_rec_id = #{indentRecId,jdbcType=INTEGER},
+      </if>
+      <if test="indentStatus != null">
+        indent_status = #{indentStatus,jdbcType=INTEGER},
+      </if>
+      <if test="indentDeleteStatus != null">
+        indent_delete_status = #{indentDeleteStatus,jdbcType=INTEGER},
+      </if>
+      <if test="indentTotal != null">
+        indent_total = #{indentTotal,jdbcType=REAL},
+      </if>
+      <if test="indentCarriage != null">
+        indent_carriage = #{indentCarriage,jdbcType=REAL},
+      </if>
+      <if test="indentCreateTime != null">
+        indent_create_time = #{indentCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="indentWay != null">
+        indent_way = #{indentWay,jdbcType=INTEGER},
+      </if>
+      <if test="indentPaidTime != null">
+        indent_paid_time = #{indentPaidTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="indentEndTime != null">
+        indent_end_time = #{indentEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="indentDrawbackTime != null">
+        indent_drawback_time = #{indentDrawbackTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="indentDrawbackMoneyTime != null">
+        indent_drawback_money_time = #{indentDrawbackMoneyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where indent_id = #{indentId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wsfzsc.pojo.Indent">
+    update indent
+    set indent_user_id = #{indentUserId,jdbcType=INTEGER},
+      indent_rec_id = #{indentRecId,jdbcType=INTEGER},
+      indent_status = #{indentStatus,jdbcType=INTEGER},
+      indent_delete_status = #{indentDeleteStatus,jdbcType=INTEGER},
+      indent_total = #{indentTotal,jdbcType=REAL},
+      indent_carriage = #{indentCarriage,jdbcType=REAL},
+      indent_create_time = #{indentCreateTime,jdbcType=TIMESTAMP},
+      indent_way = #{indentWay,jdbcType=INTEGER},
+      indent_paid_time = #{indentPaidTime,jdbcType=TIMESTAMP},
+      indent_end_time = #{indentEndTime,jdbcType=TIMESTAMP},
+      indent_drawback_time = #{indentDrawbackTime,jdbcType=TIMESTAMP},
+      indent_drawback_money_time = #{indentDrawbackMoneyTime,jdbcType=TIMESTAMP}
+    where indent_id = #{indentId,jdbcType=INTEGER}
+  </update>
+</mapper>

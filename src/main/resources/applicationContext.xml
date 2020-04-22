@@ -15,32 +15,39 @@
 			    http://www.springframework.org/schema/tx/spring-tx.xsd
 			    http://www.springframework.org/schema/mvc
 			    http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+  <context:component-scan base-package="com.wsfzsc.mapper"></context:component-scan>
   <!--mapper层配置开始-->
+  <!-- 配置jdbc.properties配置文件-->
+  <context:property-placeholder location="classpath:jdbc.properties"></context:property-placeholder>
   <!--配置连接池,阿里 druid数据库连接池 -->
   <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
-    <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-    <property name="url" value="jdbc:mysql:///CShoppingMall"></property>
-    <property name="username" value="root"></property>
-    <property name="password" value=""></property>
+    <property name="driverClassName" value="${jdbc.driver}"></property>
+    <property name="url" value="${jdbc.url}"></property>
+    <property name="username" value="${jdbc.username}"></property>
+    <property name="password" value="${jdbc.password}"></property>
   </bean>
 
- <!--配置生产SqlSession的工厂-->
+  <!--配置生产SqlSession的工厂-->
   <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
     <property name="dataSource" ref="dataSource"></property>
+    <property name="configLocation" value="classpath:mybatis-config.xml"></property>
+    <property name="mapperLocations" value="classpath:com/wsfzsc/mapper/*.xml"></property>
     <!--配置别名-->
-    <property name="typeAliasesPackage" value="com..wsfzsc.pojo" ></property>
+    <property name="typeAliasesPackage" value="com.wsfzsc.pojo" ></property>
   </bean>
 
-<!--扫描接口包路径，生成包下所有接口的代理对象-->
+  <!--扫描接口包路径，生成包下所有接口的代理对象-->
   <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
     <property name="basePackage" value="com.wsfzsc.mapper"></property>
   </bean>
-<!--mapper层配置结束-->
+  <!--mapper层配置结束-->
 
 
   <!--service层配置开始-->
   <!--组件扫描配置-->
   <context:component-scan base-package="com.wsfzsc.service.Impl"></context:component-scan>
+
 
   <!--配置事务管理器-->
   <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

@@ -1,28 +1,63 @@
 package com.wsfzsc.pojo;
 
 public class SuperAdmin {
-    private Integer superadminId;//超级管理员id
-    private String superadminUsername;//超级管理员账号
-    private Integer superadminPassword;//超级管理员密码
+    private Integer superadminId;
 
-    public Integer getSuperadminId() {return superadminId;}
+    private String superadminUsername;
 
-    public void setSuperadminId(Integer superadminId) {this.superadminId = superadminId;}
+    private String superadminPassword;
 
-    public String getSuperadminUsername() {return superadminUsername;}
+    private String superadminName;
 
-    public void setSuperadminUsername(String superadminUsername) {this.superadminUsername = superadminUsername;}
+    public Integer getSuperadminId() {
+        return superadminId;
+    }
 
-    public Integer getSuperadminPassword() {return superadminPassword;}
+    public void setSuperadminId(Integer superadminId) {
+        this.superadminId = superadminId;
+    }
 
-    public void setSuperadminPassword(Integer superadminPassword) {this.superadminPassword = superadminPassword;}
+    public String getSuperadminUsername() {
+        return superadminUsername;
+    }
+
+    public void setSuperadminUsername(String superadminUsername) {
+        this.superadminUsername = superadminUsername == null ? null : superadminUsername.trim();
+    }
+
+    public String getSuperadminPassword() {
+        return superadminPassword;
+    }
+
+    public void setSuperadminPassword(String superadminPassword) {
+        this.superadminPassword = superadminPassword == null ? null : superadminPassword.trim();
+    }
+
+    public String getSuperadminName() {
+        return superadminName;
+    }
+
+    public void setSuperadminName(String superadminName) {
+        this.superadminName = superadminName == null ? null : superadminName.trim();
+    }
+
+    public SuperAdmin() {
+    }
+
+    public SuperAdmin(Integer superadminId, String superadminUsername, String superadminPassword, String superadminName) {
+        this.superadminId = superadminId;
+        this.superadminUsername = superadminUsername;
+        this.superadminPassword = superadminPassword;
+        this.superadminName = superadminName;
+    }
 
     @Override
     public String toString() {
         return "SuperAdmin{" +
                 "superadminId=" + superadminId +
                 ", superadminUsername='" + superadminUsername + '\'' +
-                ", superadminPassword=" + superadminPassword +
+                ", superadminPassword='" + superadminPassword + '\'' +
+                ", superadminName='" + superadminName + '\'' +
                 '}';
     }
 }
