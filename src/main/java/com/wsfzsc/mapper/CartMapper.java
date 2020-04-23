@@ -2,9 +2,8 @@ package com.wsfzsc.mapper;
 
 import com.wsfzsc.pojo.Cart;
 import com.wsfzsc.pojo.CartExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface CartMapper {
     long countByExample(CartExample example);
@@ -28,7 +27,4 @@ public interface CartMapper {
     int updateByPrimaryKeySelective(Cart record);
 
     int updateByPrimaryKey(Cart record);
-
-    //查询用户的购物车
-    List<Cart> selectByExampleWithUser(CartExample example);
 }

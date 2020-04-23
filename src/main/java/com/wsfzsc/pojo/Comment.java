@@ -13,8 +13,6 @@ public class Comment {
 
     private String content;
 
-
-
     public Integer getCommentId() {
         return commentId;
     }
@@ -53,27 +51,5 @@ public class Comment {
 
     public void setContent(String content) {
         this.content = content == null ? null : content.trim();
-    }
-
-    public Comment() {
-    }
-
-    public Comment(Integer commentId, Integer userId, Integer indentId, Date commentTime, String content) {
-        this.commentId = commentId;
-        this.userId = userId;
-        this.indentId = indentId;
-        this.commentTime = commentTime;
-        this.content = content;
-    }
-
-    @Override
-    public String toString() {
-        return "Comment{" +
-                "commentId=" + commentId +
-                ", userId=" + userId +
-                ", indentId=" + indentId +
-                ", commentTime=" + commentTime +
-                ", content='" + content + '\'' +
-                '}';
     }
 }

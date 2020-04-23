@@ -12,31 +12,6 @@
     <result column="address_postcode" jdbcType="INTEGER" property="addressPostcode" />
     <result column="detailed_address" jdbcType="VARCHAR" property="detailedAddress" />
   </resultMap>
-  <!-- 带用户信息 -->
-  <resultMap id="WithUserBaseResultMap" type="com.wsfzsc.pojo.Address">
-    <id column="address_id" jdbcType="INTEGER" property="addressId" />
-    <result column="user_id" jdbcType="INTEGER" property="userId" />
-    <result column="address_name" jdbcType="VARCHAR" property="addressName" />
-    <result column="address_phone" jdbcType="INTEGER" property="addressPhone" />
-    <result column="address_province" jdbcType="VARCHAR" property="addressProvince" />
-    <result column="address_city" jdbcType="VARCHAR" property="addressCity" />
-    <result column="address_district" jdbcType="VARCHAR" property="addressDistrict" />
-    <result column="address_postcode" jdbcType="INTEGER" property="addressPostcode" />
-    <result column="detailed_address" jdbcType="VARCHAR" property="detailedAddress" />
-    <association property="userInf" javaType="com.wsfzsc.pojo.UserInf">
-      <id column="user_id" jdbcType="INTEGER" property="userId" />
-      <result column="login_name" jdbcType="VARCHAR" property="loginName" />
-      <result column="password" jdbcType="VARCHAR" property="password" />
-      <result column="user_name" jdbcType="VARCHAR" property="userName" />
-      <result column="identity_type" jdbcType="INTEGER" property="identityType" />
-      <result column="identity_number" jdbcType="VARCHAR" property="identityNumber" />
-      <result column="user_email" jdbcType="VARCHAR" property="userEmail" />
-      <result column="user_phone" jdbcType="INTEGER" property="userPhone" />
-      <result column="sex" jdbcType="INTEGER" property="sex" />
-      <result column="user_title" jdbcType="VARCHAR" property="userTitle" />
-    </association>
-  </resultMap>
-  <!-- ========= -->
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -99,13 +74,6 @@
     address_id, user_id, address_name, address_phone, address_province, address_city, 
     address_district, address_postcode, detailed_address
   </sql>
-  <!-- 带用户信息 -->
-  <sql id="WithUser_Base_Column_List">
-    a.address_id, a.user_id, a.address_name, a.address_phone, a.address_province, a.address_city,
-    a.address_district, a.address_postcode, a.detailed_address, u.user_id, u.login_name, u.password,
-    u.user_name, u.identity_type, u.identity_number, u.user_email, u.user_phone, u.sex, u.user_title
-  </sql>
-  <!-- ========= -->
   <select id="selectByExample" parameterType="com.wsfzsc.pojo.AddressExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -126,30 +94,6 @@
     from address
     where address_id = #{addressId,jdbcType=INTEGER}
   </select>
-  <!-- 带用户信息 -->
-  <select id="selectByExampleWithUser" parameterType="com.wsfzsc.pojo.AddressExample" resultMap="WithUserBaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="WithUser_Base_Column_List" />
-    from address a
-    LEFT JOIN userinf u ON a.user_id = u.user_id
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKeyWithUser" parameterType="java.lang.Integer" resultMap="WithUserBaseResultMap">
-    select
-    <include refid="WithUser_Base_Column_List" />
-    from address a
-    LEFT JOIN userinf u ON a.user_id = u.user_id
-    where address_id = #{addressId,jdbcType=INTEGER}
-  </select>
-  <!-- ========== -->
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from address
     where address_id = #{addressId,jdbcType=INTEGER}

@@ -2,9 +2,8 @@ package com.wsfzsc.mapper;
 
 import com.wsfzsc.pojo.UserInf;
 import com.wsfzsc.pojo.UserInfExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface UserInfMapper {
     long countByExample(UserInfExample example);

@@ -100,36 +100,4 @@ public class UserInf {
     public void setUserTitle(String userTitle) {
         this.userTitle = userTitle == null ? null : userTitle.trim();
     }
-
-    public UserInf() {
-    }
-
-    public UserInf(Integer userId, String loginName, String password, String userName, Integer identityType, String identityNumber, String userEmail, Integer userPhone, Integer sex, String userTitle) {
-        this.userId = userId;
-        this.loginName = loginName;
-        this.password = password;
-        this.userName = userName;
-        this.identityType = identityType;
-        this.identityNumber = identityNumber;
-        this.userEmail = userEmail;
-        this.userPhone = userPhone;
-        this.sex = sex;
-        this.userTitle = userTitle;
-    }
-
-    @Override
-    public String toString() {
-        return "UserInf{" +
-                "userId=" + userId +
-                ", loginName='" + loginName + '\'' +
-                ", password='" + password + '\'' +
-                ", userName='" + userName + '\'' +
-                ", identityType=" + identityType +
-                ", identityNumber='" + identityNumber + '\'' +
-                ", userEmail='" + userEmail + '\'' +
-                ", userPhone=" + userPhone +
-                ", sex=" + sex +
-                ", userTitle='" + userTitle + '\'' +
-                '}';
-    }
 }

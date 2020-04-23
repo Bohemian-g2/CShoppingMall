@@ -3,9 +3,8 @@ package com.wsfzsc.mapper;
 import com.wsfzsc.pojo.CDetail;
 import com.wsfzsc.pojo.CDetailExample;
 import com.wsfzsc.pojo.CDetailKey;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface CDetailMapper {
     long countByExample(CDetailExample example);

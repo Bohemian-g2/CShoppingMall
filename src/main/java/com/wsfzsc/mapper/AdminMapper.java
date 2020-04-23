@@ -2,9 +2,8 @@ package com.wsfzsc.mapper;
 
 import com.wsfzsc.pojo.Admin;
 import com.wsfzsc.pojo.AdminExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface AdminMapper {
     long countByExample(AdminExample example);

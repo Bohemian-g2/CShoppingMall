@@ -20,21 +20,4 @@ public class CDetail extends CDetailKey {
     public void setCartCommodityMoney(Float cartCommodityMoney) {
         this.cartCommodityMoney = cartCommodityMoney;
     }
-
-    public CDetail() {
-    }
-
-    public CDetail(Integer cartCommodityNumbe, Float cartCommodityMoney) {
-        this.cartCommodityNumbe = cartCommodityNumbe;
-        this.cartCommodityMoney = cartCommodityMoney;
-    }
-
-
-    @Override
-    public String toString() {
-        return "CDetail{" +
-                "cartCommodityNumbe=" + cartCommodityNumbe +
-                ", cartCommodityMoney=" + cartCommodityMoney +
-                '}';
-    }
 }

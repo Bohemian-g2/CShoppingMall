@@ -31,9 +31,6 @@ public class Commodity {
 
     private Date commodityDate;
 
-    //商品类别信息
-    private KindBase kindBase;
-
     public Integer getCommodityId() {
         return commodityId;
     }
@@ -144,53 +141,5 @@ public class Commodity {
 
     public void setCommodityDate(Date commodityDate) {
         this.commodityDate = commodityDate;
-    }
-
-    public KindBase getKindBase() {
-        return kindBase;
-    }
-
-    public void setKindBase(KindBase kindBase) {
-        this.kindBase = kindBase;
-    }
-
-    public Commodity() {
-    }
-
-    public Commodity(Integer commodityId, Integer commodityKind, String commodityName, Integer commodityStatus, Float commodityMoney, Integer commodityStock, String commoditySize, Integer commoditySex, String commodityPicture, String commodityDescript, String commodityColor, String commodityStyle, String commoditySource, Date commodityDate) {
-        this.commodityId = commodityId;
-        this.commodityKind = commodityKind;
-        this.commodityName = commodityName;
-        this.commodityStatus = commodityStatus;
-        this.commodityMoney = commodityMoney;
-        this.commodityStock = commodityStock;
-        this.commoditySize = commoditySize;
-        this.commoditySex = commoditySex;
-        this.commodityPicture = commodityPicture;
-        this.commodityDescript = commodityDescript;
-        this.commodityColor = commodityColor;
-        this.commodityStyle = commodityStyle;
-        this.commoditySource = commoditySource;
-        this.commodityDate = commodityDate;
-    }
-
-    @Override
-    public String toString() {
-        return "Commodity{" +
-                "commodityId=" + commodityId +
-                ", commodityKind=" + commodityKind +
-                ", commodityName='" + commodityName + '\'' +
-                ", commodityStatus=" + commodityStatus +
-                ", commodityMoney=" + commodityMoney +
-                ", commodityStock=" + commodityStock +
-                ", commoditySize='" + commoditySize + '\'' +
-                ", commoditySex=" + commoditySex +
-                ", commodityPicture='" + commodityPicture + '\'' +
-                ", commodityDescript='" + commodityDescript + '\'' +
-                ", commodityColor='" + commodityColor + '\'' +
-                ", commodityStyle='" + commodityStyle + '\'' +
-                ", commoditySource='" + commoditySource + '\'' +
-                ", commodityDate=" + commodityDate +
-                '}';
     }
 }

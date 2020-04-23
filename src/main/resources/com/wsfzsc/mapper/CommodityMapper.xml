@@ -17,28 +17,6 @@
     <result column="commodity_source" jdbcType="VARCHAR" property="commoditySource" />
     <result column="commodity_date" jdbcType="TIMESTAMP" property="commodityDate" />
   </resultMap>
-  <!-- 带商品类别信息 -->
-  <resultMap id="WithKindBaseResultMap" type="com.wsfzsc.pojo.Commodity">
-    <id column="commodity_id" jdbcType="INTEGER" property="commodityId" />
-    <result column="commodity_kind" jdbcType="INTEGER" property="commodityKind" />
-    <result column="commodity_name" jdbcType="VARCHAR" property="commodityName" />
-    <result column="commodity_status" jdbcType="INTEGER" property="commodityStatus" />
-    <result column="commodity_money" jdbcType="REAL" property="commodityMoney" />
-    <result column="commodity_stock" jdbcType="INTEGER" property="commodityStock" />
-    <result column="commodity_size" jdbcType="VARCHAR" property="commoditySize" />
-    <result column="commodity_sex" jdbcType="INTEGER" property="commoditySex" />
-    <result column="commodity_picture" jdbcType="VARCHAR" property="commodityPicture" />
-    <result column="commodity_descript" jdbcType="VARCHAR" property="commodityDescript" />
-    <result column="commodity_color" jdbcType="VARCHAR" property="commodityColor" />
-    <result column="commodity_style" jdbcType="VARCHAR" property="commodityStyle" />
-    <result column="commodity_source" jdbcType="VARCHAR" property="commoditySource" />
-    <result column="commodity_date" jdbcType="TIMESTAMP" property="commodityDate" />
-    <association property="kindBase" javaType="com.wsfzsc.pojo.KindBase">
-      <id column="kind_id" property="kindId"></id>
-      <result column="kind_name" property="kindName"></result>
-    </association>
-  </resultMap>
-  <!-- ============  -->
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -98,17 +76,10 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    commodity_id, commodity_kind, commodity_name, commodity_status, commodity_money,
-    commodity_stock, commodity_size, commodity_sex, commodity_picture, commodity_descript,
+    commodity_id, commodity_kind, commodity_name, commodity_status, commodity_money, 
+    commodity_stock, commodity_size, commodity_sex, commodity_picture, commodity_descript, 
     commodity_color, commodity_style, commodity_source, commodity_date
   </sql>
-  <!-- 带商品类别信息 -->
-  <sql id="WithKind_Base_Column_List">
-    c.commodity_id, c.commodity_kind, c.commodity_name, c.commodity_status, c.commodity_money,
-    c.commodity_stock, c.commodity_size, c.commodity_sex, c.commodity_picture, c.commodity_descript,
-    c.commodity_color, c.commodity_style, c.commodity_source, c.commodity_date , k.kind_id , k.kind_name
-  </sql>
-  <!-- ============  -->
   <select id="selectByExample" parameterType="com.wsfzsc.pojo.CommodityExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -129,30 +100,6 @@
     from commodity
     where commodity_id = #{commodityId,jdbcType=INTEGER}
   </select>
-  <!-- 带商品类别信息 -->
-  <select id="selectByExampleWithKind" parameterType="com.wsfzsc.pojo.CommodityExample" resultMap="WithKindBaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="WithKind_Base_Column_List" />
-    from commodity c
-    LEFT JOIN kind_base k ON c.commodity_kind = k.kind_id
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKeyWithKind" parameterType="java.lang.Integer" resultMap="WithKindBaseResultMap">
-    select
-    <include refid="WithKind_Base_Column_List" />
-    from commodity c
-    LEFT JOIN kind_base k ON c.commodity_kind = k.kind_id
-    where commodity_id = #{commodityId,jdbcType=INTEGER}
-  </select>
-  <!--  ============   -->
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from commodity
     where commodity_id = #{commodityId,jdbcType=INTEGER}

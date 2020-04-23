@@ -7,30 +7,6 @@
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="answer" jdbcType="VARCHAR" property="answer" />
   </resultMap>
-  <!-- 用户 问题 回答 -->
-  <resultMap id="WithUserQuestionBaseResultMap" type="com.wsfzsc.pojo.Answer">
-    <id column="answer_id" jdbcType="INTEGER" property="answerId" />
-    <result column="question_id" jdbcType="INTEGER" property="questionId" />
-    <result column="user_id" jdbcType="INTEGER" property="userId" />
-    <result column="answer" jdbcType="VARCHAR" property="answer" />
-    <association property="question" javaType="com.wsfzsc.pojo.Question">
-      <id column="question_id" jdbcType="INTEGER" property="questionId" />
-      <result column="question" jdbcType="VARCHAR" property="question" />
-    </association>
-    <association property="userInf" javaType="com.wsfzsc.pojo.UserInf">
-      <id column="user_id" jdbcType="INTEGER" property="userId" />
-      <result column="login_name" jdbcType="VARCHAR" property="loginName" />
-      <result column="password" jdbcType="VARCHAR" property="password" />
-      <result column="user_name" jdbcType="VARCHAR" property="userName" />
-      <result column="identity_type" jdbcType="INTEGER" property="identityType" />
-      <result column="identity_number" jdbcType="VARCHAR" property="identityNumber" />
-      <result column="user_email" jdbcType="VARCHAR" property="userEmail" />
-      <result column="user_phone" jdbcType="INTEGER" property="userPhone" />
-      <result column="sex" jdbcType="INTEGER" property="sex" />
-      <result column="user_title" jdbcType="VARCHAR" property="userTitle" />
-    </association>
-  </resultMap>
-  <!-- ============= -->
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -60,39 +36,6 @@
       </foreach>
     </where>
   </sql>
-  <!-- 用户 问题 回答 -->
-  <sql id="WithUserCommodity_Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-      AND a.question_id = q.question_id
-      AND a.user_id = u.user_id
-    </where>
-  </sql>
-  <!-- ============= -->
   <sql id="Update_By_Example_Where_Clause">
     <where>
       <foreach collection="example.oredCriteria" item="criteria" separator="or">
@@ -125,14 +68,6 @@
   <sql id="Base_Column_List">
     answer_id, question_id, user_id, answer
   </sql>
-  <!-- 用户 问题 回答 -->
-  <sql id="WithUserCommodity_Base_Column_List">
-    a.answer_id, a.question_id, a.user_id, a.answer,
-    q.question_id, q.question,
-    u.user_id, u.login_name, u.password, u.user_name, u.identity_type, u.identity_number, u.user_email,
-    u.user_phone, u.sex, u.user_title
-  </sql>
-  <!-- ============= -->
   <select id="selectByExample" parameterType="com.wsfzsc.pojo.AnswerExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -147,22 +82,6 @@
       order by ${orderByClause}
     </if>
   </select>
-  <!-- 用户 问题 回答信息 -->
-  <select id="selectByExampleWithUserQuestion" parameterType="com.wsfzsc.pojo.AnswerExample" resultMap="WithUserCommodityBaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="WithUserCommodity_Base_Column_List" />
-    from answer a,question q,user_inf u
-    <if test="_parameter != null">
-      <include refid="WithUserCommodity_Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <!-- =============== -->
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

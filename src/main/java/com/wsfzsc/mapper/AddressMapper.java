@@ -2,9 +2,8 @@ package com.wsfzsc.mapper;
 
 import com.wsfzsc.pojo.Address;
 import com.wsfzsc.pojo.AddressExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface AddressMapper {
     long countByExample(AddressExample example);
@@ -28,11 +27,4 @@ public interface AddressMapper {
     int updateByPrimaryKeySelective(Address record);
 
     int updateByPrimaryKey(Address record);
-
-    /**
-     * 带用户信息
-     */
-    List<Address> selectByExampleWithUser(AddressExample example);
-
-    Address selectByPrimaryKeyWithUser(Integer addressId);
 }

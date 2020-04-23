@@ -6,25 +6,6 @@
     <result column="cart_user_id" jdbcType="INTEGER" property="cartUserId" />
     <result column="cart_capacity" jdbcType="INTEGER" property="cartCapacity" />
   </resultMap>
-  <!-- 带用户信息 -->
-  <resultMap id="WithUserBaseResultMap" type="com.wsfzsc.pojo.Cart">
-    <id column="cart_id" jdbcType="INTEGER" property="cartId" />
-    <result column="cart_user_id" jdbcType="INTEGER" property="cartUserId" />
-    <result column="cart_capacity" jdbcType="INTEGER" property="cartCapacity" />
-    <association property="userInf" javaType="com.wsfzsc.pojo.UserInf">
-      <id column="user_id" jdbcType="INTEGER" property="userId" />
-      <result column="login_name" jdbcType="VARCHAR" property="loginName" />
-      <result column="password" jdbcType="VARCHAR" property="password" />
-      <result column="user_name" jdbcType="VARCHAR" property="userName" />
-      <result column="identity_type" jdbcType="INTEGER" property="identityType" />
-      <result column="identity_number" jdbcType="VARCHAR" property="identityNumber" />
-      <result column="user_email" jdbcType="VARCHAR" property="userEmail" />
-      <result column="user_phone" jdbcType="INTEGER" property="userPhone" />
-      <result column="sex" jdbcType="INTEGER" property="sex" />
-      <result column="user_title" jdbcType="VARCHAR" property="userTitle" />
-    </association>
-  </resultMap>
-  <!-- ======== -->
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -86,13 +67,6 @@
   <sql id="Base_Column_List">
     cart_id, cart_user_id, cart_capacity
   </sql>
-  <!-- 带用户信息 -->
-  <sql id="WithUser_Base_Column_List">
-    c.cart_id, c.cart_user_id, c.cart_capacity,
-    u.user_id, u.login_name, u.password, u.user_name, u.identity_type, u.identity_number, u.user_email,
-    u.user_phone, u.sex, u.user_title
-  </sql>
-  <!-- ========== -->
   <select id="selectByExample" parameterType="com.wsfzsc.pojo.CartExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -100,21 +74,6 @@
     </if>
     <include refid="Base_Column_List" />
     from cart
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByExampleWithUser" parameterType="com.wsfzsc.pojo.CartExample" resultMap="WithUserBaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="WithUserBase_Column_List" />
-    from cart c
-    Left join user_inf u on c.cart_user_id = u.user_id
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>

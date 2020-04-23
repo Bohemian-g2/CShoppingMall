@@ -2,9 +2,8 @@ package com.wsfzsc.mapper;
 
 import com.wsfzsc.pojo.Collect;
 import com.wsfzsc.pojo.CollectExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface CollectMapper {
     long countByExample(CollectExample example);
@@ -28,9 +27,4 @@ public interface CollectMapper {
     int updateByPrimaryKeySelective(Collect record);
 
     int updateByPrimaryKey(Collect record);
-
-    /**
-     * 根据用户id 查询评论表，用户，商品信息 不提供根据评论表主键查询方法
-     */
-    List<Collect> selectByExampleWithUserCommodity(CollectExample example);
 }

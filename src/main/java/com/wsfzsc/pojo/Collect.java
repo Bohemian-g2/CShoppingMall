@@ -11,31 +11,6 @@ public class Collect {
 
     private Date collectTime;
 
-    /**
-     * 外键 商品和用户
-     * @return
-     */
-
-    private Commodity commodity;
-
-    private UserInf userInf;
-
-    public Commodity getCommodity() {
-        return commodity;
-    }
-
-    public void setCommodity(Commodity commodity) {
-        this.commodity = commodity;
-    }
-
-    public UserInf getUserInf() {
-        return userInf;
-    }
-
-    public void setUserInf(UserInf userInf) {
-        this.userInf = userInf;
-    }
-
     public Integer getCollectId() {
         return collectId;
     }
@@ -66,25 +41,5 @@ public class Collect {
 
     public void setCollectTime(Date collectTime) {
         this.collectTime = collectTime;
-    }
-
-    public Collect() {
-    }
-
-    public Collect(Integer collectId, Integer collectCommodityId, Integer collectUserId, Date collectTime) {
-        this.collectId = collectId;
-        this.collectCommodityId = collectCommodityId;
-        this.collectUserId = collectUserId;
-        this.collectTime = collectTime;
-    }
-
-    @Override
-    public String toString() {
-        return "Collect{" +
-                "collectId=" + collectId +
-                ", collectCommodityId=" + collectCommodityId +
-                ", collectUserId=" + collectUserId +
-                ", collectTime=" + collectTime +
-                '}';
     }
 }

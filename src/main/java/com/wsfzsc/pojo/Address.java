@@ -19,17 +19,6 @@ public class Address {
 
     private String detailedAddress;
 
-    //用户信息
-    private UserInf userInf;
-
-    public UserInf getUserinf() {
-        return userInf;
-    }
-
-    public void setUserinf(UserInf userinf) {
-        this.userInf = userinf;
-    }
-
     public Integer getAddressId() {
         return addressId;
     }
@@ -100,35 +89,5 @@ public class Address {
 
     public void setDetailedAddress(String detailedAddress) {
         this.detailedAddress = detailedAddress == null ? null : detailedAddress.trim();
-    }
-
-    public Address() {
-    }
-
-    public Address(Integer addressId, Integer userId, String addressName, Integer addressPhone, String addressProvince, String addressCity, String addressDistrict, Integer addressPostcode, String detailedAddress) {
-        this.addressId = addressId;
-        this.userId = userId;
-        this.addressName = addressName;
-        this.addressPhone = addressPhone;
-        this.addressProvince = addressProvince;
-        this.addressCity = addressCity;
-        this.addressDistrict = addressDistrict;
-        this.addressPostcode = addressPostcode;
-        this.detailedAddress = detailedAddress;
-    }
-
-    @Override
-    public String toString() {
-        return "Address{" +
-                "addressId=" + addressId +
-                ", userId=" + userId +
-                ", addressName='" + addressName + '\'' +
-                ", addressPhone=" + addressPhone +
-                ", addressProvince='" + addressProvince + '\'' +
-                ", addressCity='" + addressCity + '\'' +
-                ", addressDistrict='" + addressDistrict + '\'' +
-                ", addressPostcode=" + addressPostcode +
-                ", detailedAddress='" + detailedAddress + '\'' +
-                '}';
     }
 }

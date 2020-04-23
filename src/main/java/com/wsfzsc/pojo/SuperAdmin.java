@@ -40,24 +40,4 @@ public class SuperAdmin {
     public void setSuperadminName(String superadminName) {
         this.superadminName = superadminName == null ? null : superadminName.trim();
     }
-
-    public SuperAdmin() {
-    }
-
-    public SuperAdmin(Integer superadminId, String superadminUsername, String superadminPassword, String superadminName) {
-        this.superadminId = superadminId;
-        this.superadminUsername = superadminUsername;
-        this.superadminPassword = superadminPassword;
-        this.superadminName = superadminName;
-    }
-
-    @Override
-    public String toString() {
-        return "SuperAdmin{" +
-                "superadminId=" + superadminId +
-                ", superadminUsername='" + superadminUsername + '\'' +
-                ", superadminPassword='" + superadminPassword + '\'' +
-                ", superadminName='" + superadminName + '\'' +
-                '}';
-    }
 }

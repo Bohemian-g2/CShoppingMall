@@ -2,9 +2,8 @@ package com.wsfzsc.mapper;
 
 import com.wsfzsc.pojo.Commodity;
 import com.wsfzsc.pojo.CommodityExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface CommodityMapper {
     long countByExample(CommodityExample example);
@@ -28,12 +27,4 @@ public interface CommodityMapper {
     int updateByPrimaryKeySelective(Commodity record);
 
     int updateByPrimaryKey(Commodity record);
-
-    /**
-     * 带商品类别
-     */
-    List<Commodity> selectByExampleWithKind(CommodityExample example);
-
-    Commodity selectByPrimaryKeyWithKind(Integer commodityId);
-
 }
