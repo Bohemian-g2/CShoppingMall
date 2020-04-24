@@ -29,7 +29,6 @@ public class AdminController {
     @RequestMapping("LoginCheck")
     @ResponseBody
     public String LoginCheck(@RequestBody Map<String,String> map){
-        System.out.println("======"+map.get("logname"));
         String result=superAdminService.CheckSuperNameAndPwd(map.get("logname"),map.get("logpass"));
         return result;
     }

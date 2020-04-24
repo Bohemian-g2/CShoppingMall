@@ -15,7 +15,6 @@ public class SuperAdminServiceImpl implements SuperAdminService {
     @Override
     public String CheckSuperNameAndPwd(String adminUsername, String logpass) {
         SuperAdmin superAdmin=superAdminMapper.selectByUsername(adminUsername);
-        System.out.println("======"+adminUsername);
         System.out.println(superAdmin);
         if(superAdmin==null){
             return "nameError";//用户名不存在

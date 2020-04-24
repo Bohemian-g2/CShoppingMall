@@ -2,7 +2,6 @@ function loginCheck(url){
     var name = $("#logname").val();    //用户名
     var pwd = $("#logpass").val();      //密码
     var datas;                  //返回来的结果
-    alert(name+pwd);
     $.ajax({
         type: "post",
         contentType:"application/json;charset=utf-8",
@@ -17,7 +16,6 @@ function loginCheck(url){
             datas=data;
         }
     });
-    alert(datas);
     if(datas == "nameError"){                 //用户名不正确
         layer.tips('用户名不存在！', '#logname', {
             tips: [2, '#FF3030'],
