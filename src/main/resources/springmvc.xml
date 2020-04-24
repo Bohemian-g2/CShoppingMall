@@ -30,4 +30,16 @@
     <!--释放静态资源(默认处理)-->
     <mvc:default-servlet-handler/>
 
+    <!--拦截器的配置-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!--拦截路径-->
+            <mvc:mapping path="/background/*"/>
+            <mvc:mapping path="/admin/SuperAdmin"/>
+            <mvc:mapping path="/admin/OrdinaryAdmin"/>
+            <!--注册拦截器对象-->
+            <bean class="com.wsfzsc.interceptor.AdminLoginInter"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
 </beans>
