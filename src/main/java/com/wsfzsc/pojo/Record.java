@@ -13,6 +13,12 @@ public class Record {
 
     private Date recordTime;
 
+    //带商品信息
+    private Commodity commodity;
+
+    //带用户信息
+    private UserInf userInf;
+
     public Integer getRecordId() {
         return recordId;
     }
@@ -51,5 +57,27 @@ public class Record {
 
     public void setRecordTime(Date recordTime) {
         this.recordTime = recordTime;
+    }
+
+    public Record() {
+    }
+
+    public Record(Integer recordId, Integer recordCommodityId, Integer recordUserId, Integer recordFrequency, Date recordTime) {
+        this.recordId = recordId;
+        this.recordCommodityId = recordCommodityId;
+        this.recordUserId = recordUserId;
+        this.recordFrequency = recordFrequency;
+        this.recordTime = recordTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Record{" +
+                "recordId=" + recordId +
+                ", recordCommodityId=" + recordCommodityId +
+                ", recordUserId=" + recordUserId +
+                ", recordFrequency=" + recordFrequency +
+                ", recordTime=" + recordTime +
+                '}';
     }
 }

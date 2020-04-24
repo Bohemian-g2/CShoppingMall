@@ -2,8 +2,9 @@ package com.wsfzsc.mapper;
 
 import com.wsfzsc.pojo.Comment;
 import com.wsfzsc.pojo.CommentExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface CommentMapper {
     long countByExample(CommentExample example);

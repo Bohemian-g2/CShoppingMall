@@ -38,7 +38,7 @@
             <div class="am-form-group">
                 <div class="zuo" style="float: left;width: 19%">管理员名称：</div>
                 <div class="you" style="float: right;width: 80%">
-                    <input type="text" class="am-input-sm" id="adminName" placeholder="${sessionScope.superadmin.superadminName}">
+                    <input type="text" class="am-input-sm" id="adminName" placeholder="${sessionScope.superAdmin.superadminName}">
                 </div>
             </div>
             <div class="am-form-group">
@@ -82,6 +82,9 @@
             <li class="kuanjie">
                 <a href="#" data-am-modal="{target: '#my-popup'}">信息修改</a>
             </li>
+            <li>
+                <a href="${pageContext.request.contextPath}/admin/Login">退出系统</a>
+            </li>
         </ul>
     </div>
 </header>
@@ -90,7 +93,7 @@
 <div class="am-cf admin-main">
     <!-- 侧面栏 -->
     <div class="nav-navicon admin-main admin-sidebar">
-        <div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;"> 欢迎超级管理员：${sessionScope.superadmin.superadminName}</div>
+        <div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;"> 欢迎超级管理员：${sessionScope.superAdmin.superadminName}</div>
 
         <!-- 菜单 -->
         <div class="sideMenu">

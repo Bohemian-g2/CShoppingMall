@@ -2,8 +2,9 @@ package com.wsfzsc.mapper;
 
 import com.wsfzsc.pojo.SuperAdmin;
 import com.wsfzsc.pojo.SuperAdminExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface SuperAdminMapper {
     long countByExample(SuperAdminExample example);
@@ -27,4 +28,6 @@ public interface SuperAdminMapper {
     int updateByPrimaryKeySelective(SuperAdmin record);
 
     int updateByPrimaryKey(SuperAdmin record);
+
+    SuperAdmin selectByUsername(@Param("userName") String userName);
 }

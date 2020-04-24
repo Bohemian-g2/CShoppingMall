@@ -87,6 +87,9 @@
             <li class="kuanjie">
                 <a href="#" data-am-modal="{target: '#my-popup'}">信息修改</a>
             </li>
+            <li>
+                <a href="${pageContext.request.contextPath}/admin/Login">退出系统</a>
+            </li>
         </ul>
     </div>
 </header>

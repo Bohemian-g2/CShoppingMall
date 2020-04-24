@@ -2,8 +2,9 @@ package com.wsfzsc.mapper;
 
 import com.wsfzsc.pojo.Collect;
 import com.wsfzsc.pojo.CollectExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface CollectMapper {
     long countByExample(CollectExample example);

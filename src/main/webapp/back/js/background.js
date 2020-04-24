@@ -10,7 +10,7 @@ function loadPage(url){
 		},
 		error:function(){
 			alert("出现错误"+url);
-
 		}
 	});
 }
+

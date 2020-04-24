@@ -2,8 +2,9 @@ package com.wsfzsc.mapper;
 
 import com.wsfzsc.pojo.Question;
 import com.wsfzsc.pojo.QuestionExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface QuestionMapper {
     long countByExample(QuestionExample example);

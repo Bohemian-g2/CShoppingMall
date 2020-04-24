@@ -2,8 +2,9 @@ package com.wsfzsc.mapper;
 
 import com.wsfzsc.pojo.KindBase;
 import com.wsfzsc.pojo.KindBaseExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface KindBaseMapper {
     long countByExample(KindBaseExample example);

@@ -60,4 +60,28 @@ public class Admin {
     public void setAdminRegisterDate(String adminRegisterDate) {
         this.adminRegisterDate = adminRegisterDate == null ? null : adminRegisterDate.trim();
     }
+
+    public Admin() {
+    }
+
+    public Admin(Integer adminId, String adminUsername, String adminPassword, String adminName, String adminPhone, String adminRegisterDate) {
+        this.adminId = adminId;
+        this.adminUsername = adminUsername;
+        this.adminPassword = adminPassword;
+        this.adminName = adminName;
+        this.adminPhone = adminPhone;
+        this.adminRegisterDate = adminRegisterDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Admin{" +
+                "adminId=" + adminId +
+                ", adminUsername='" + adminUsername + '\'' +
+                ", adminPassword='" + adminPassword + '\'' +
+                ", adminName='" + adminName + '\'' +
+                ", adminPhone='" + adminPhone + '\'' +
+                ", adminRegisterDate='" + adminRegisterDate + '\'' +
+                '}';
+    }
 }

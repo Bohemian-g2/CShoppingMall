@@ -17,9 +17,11 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/back/css/demo.css" />
     <!--必要样式-->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/back/css/component.css" />
-    <!--[if IE]>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/back/css/layer.css"/>
+
     <script src="${pageContext.request.contextPath}/back/js/html5.js"></script>
-    <![endif]-->
+
+
 </head>
 <body>
 <div class="container demo-1">
@@ -28,21 +30,24 @@
             <canvas id="demo-canvas"></canvas>
             <div class="logo_box">
                 <h3>服装商城后台系统</h3>
-                <form action="#" name="f" method="post">
+                <form action="LoginInSys" id="f" method="post">
                     <div class="input_outer">
                         <span class="u_user"></span>
-                        <input name="logname" class="text" style="color: #FFFFFF !important" type="text" placeholder="请输入账户">
+                        <input name="logname" id="logname" class="text" style="color: #FFFFFF !important" type="text" placeholder="请输入账户">
                     </div>
                     <div class="input_outer">
                         <span class="us_uer"></span>
-                        <input name="logpass" class="text" style="color: #FFFFFF !important; position:absolute; z-index:100;"value="" type="password" placeholder="请输入密码">
+                        <input name="logpass"  id="logpass" class="text" style="color: #FFFFFF !important; position:absolute; z-index:100;" value="" type="password" placeholder="请输入密码">
                     </div>
-                    <div class="mb2"><a class="act-but submit" href="javascript:;" style="color: #FFFFFF">登录</a></div>
+                    <div class="mb2"><a class="act-but submit" onclick="loginCheck('${pageContext.request.contextPath}/admin/LoginCheck');" href="#" style="color: #FFFFFF">登录</a></div>
                 </form>
             </div>
         </div>
     </div>
-</div><!-- /container -->
+</div>
+<script src="${pageContext.request.contextPath}/back/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/back/js/login.js"></script>
+<script src="${pageContext.request.contextPath}/back/js/layer.js"></script>
 <script src="${pageContext.request.contextPath}/back/js/TweenLite.min.js"></script>
 <script src="${pageContext.request.contextPath}/back/js/EasePack.min.js"></script>
 <script src="${pageContext.request.contextPath}/back/js/rAF.js"></script>

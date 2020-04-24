@@ -2,8 +2,9 @@ package com.wsfzsc.mapper;
 
 import com.wsfzsc.pojo.Commodity;
 import com.wsfzsc.pojo.CommodityExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface CommodityMapper {
     long countByExample(CommodityExample example);

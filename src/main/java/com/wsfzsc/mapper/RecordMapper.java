@@ -2,8 +2,9 @@ package com.wsfzsc.mapper;
 
 import com.wsfzsc.pojo.Record;
 import com.wsfzsc.pojo.RecordExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface RecordMapper {
     long countByExample(RecordExample example);

@@ -20,4 +20,20 @@ public class Question {
     public void setQuestion(String question) {
         this.question = question == null ? null : question.trim();
     }
+
+    public Question() {
+    }
+
+    public Question(Integer questionId, String question) {
+        this.questionId = questionId;
+        this.question = question;
+    }
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "questionId=" + questionId +
+                ", question='" + question + '\'' +
+                '}';
+    }
 }

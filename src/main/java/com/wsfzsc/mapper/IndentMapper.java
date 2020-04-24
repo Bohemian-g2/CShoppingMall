@@ -2,8 +2,9 @@ package com.wsfzsc.mapper;
 
 import com.wsfzsc.pojo.Indent;
 import com.wsfzsc.pojo.IndentExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface IndentMapper {
     long countByExample(IndentExample example);

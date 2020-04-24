@@ -2,8 +2,9 @@ package com.wsfzsc.mapper;
 
 import com.wsfzsc.pojo.Address;
 import com.wsfzsc.pojo.AddressExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface AddressMapper {
     long countByExample(AddressExample example);

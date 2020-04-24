@@ -20,4 +20,20 @@ public class KindBase {
     public void setKindName(String kindName) {
         this.kindName = kindName == null ? null : kindName.trim();
     }
+
+    public KindBase() {
+    }
+
+    public KindBase(Integer kindId, String kindName) {
+        this.kindId = kindId;
+        this.kindName = kindName;
+    }
+
+    @Override
+    public String toString() {
+        return "KindBase{" +
+                "kindId=" + kindId +
+                ", kindName='" + kindName + '\'' +
+                '}';
+    }
 }
