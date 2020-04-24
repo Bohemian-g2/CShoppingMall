@@ -1,5 +1,6 @@
 package com.wsfzsc.controller.background;
 
+import com.wsfzsc.pojo.Admin;
 import com.wsfzsc.pojo.SuperAdmin;
 import com.wsfzsc.service.AdminService;
 import com.wsfzsc.service.SuperAdminService;
@@ -29,20 +30,39 @@ public class AdminController {
     @RequestMapping("LoginCheck")
     @ResponseBody
     public String LoginCheck(@RequestBody Map<String,String> map){
-        String result=superAdminService.CheckSuperNameAndPwd(map.get("logname"),map.get("logpass"));
-        return result;
+        String result1=superAdminService.CheckSuperNameAndPwd(map.get("logname"),map.get("logpass"));
+        String result2=adminService.CheckAdminNameAndPwd(map.get("logname"),map.get("logpass"));
+        System.out.println("=========result1="+result1+"result2"+result2);
+        if(result1.equals("nameError")){
+            if(result2.equals("nameError")){
+                return "nameError";
+            }
+            if(result2.equals("passwError")){
+                return "passwError";
+            }
+            return "success";
+        }
+        if(result1.equals("passwError")){
+            return "passwError";
+        }
+        return "success";
     }
 
     /*登录进入系统*/
     @RequestMapping("LoginInSys")
     public String LoginSuccess(String logname,String logpass,HttpServletRequest request){
         SuperAdmin superAdmin=superAdminService.CheckSuperadmin(logname,logpass);
-        if(superAdmin==null){
-            return"/background/backLogin";
-        }else{
+        Admin admin=adminService.CheckAdmin(logname,logpass);
+        if(superAdmin!=null){
             request.getSession().setAttribute("superAdmin",superAdmin);
+            return "/background/back";
+        }else if(admin!=null){
+            request.getSession().setAttribute("admin",admin);
+            return "/background/back";
+        }else{
+            return"/background/backLogin";
         }
-        return "/background/back";
+
     }
 
     /*登出*/

@@ -225,4 +225,8 @@
       admin_register_date = #{adminRegisterDate,jdbcType=VARCHAR}
     where admin_id = #{adminId,jdbcType=INTEGER}
   </update>
+  <select id="selectByUsername" parameterType="String" resultType="com.wsfzsc.pojo.Admin">
+    select *from admin
+    where admin_username=#{userName}
+  </select>
 </mapper>

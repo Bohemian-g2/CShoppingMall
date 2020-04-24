@@ -30,9 +30,11 @@ public class SuperAdminServiceImpl implements SuperAdminService {
     public SuperAdmin CheckSuperadmin(String adminUsername, String logpass) {
         SuperAdmin superAdmin=superAdminMapper.selectByUsername(adminUsername);
         String passw= Encryption.Encrypt(logpass);
-        if(superAdmin.getSuperadminPassword().equals(passw)){
-            return superAdmin;
-        };
+        if(superAdmin!=null) {
+            if (superAdmin.getSuperadminPassword().equals(passw)) {
+                return superAdmin;
+            }
+        }
         return null;
     }
 }

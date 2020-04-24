@@ -2,6 +2,7 @@ package com.wsfzsc.mapper;
 
 import com.wsfzsc.pojo.Admin;
 import com.wsfzsc.pojo.AdminExample;
+import com.wsfzsc.pojo.SuperAdmin;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -28,4 +29,6 @@ public interface AdminMapper {
     int updateByPrimaryKeySelective(Admin record);
 
     int updateByPrimaryKey(Admin record);
+
+    Admin selectByUsername(@Param("userName") String userName);
 }
