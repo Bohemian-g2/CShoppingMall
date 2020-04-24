@@ -58,7 +58,7 @@ public class AdminController {
             return "/background/back";
         }else if(admin!=null){
             request.getSession().setAttribute("admin",admin);
-            return "/background/back";
+            return "/background/ordinaryback";
         }else{
             return"/background/backLogin";
         }
