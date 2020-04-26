@@ -1,19 +1,43 @@
 package com.wsfzsc.controller.background;
 
+import com.wsfzsc.pojo.Admin;
+import com.wsfzsc.service.AdminService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Map;
+
 @Controller
 @RequestMapping("background")
 public class BackManagerController {
+    @Autowired
+    private AdminService adminService;
 
+    /*业务逻辑功能*/
+    /*管理员添加*/
+    @RequestMapping("AddAdmin")
+    @ResponseBody
+    public String AddAdmin(@RequestBody Admin admin){
+        System.out.println("进入添加管理员");
+        String result=adminService.saveAdmin(admin);
+        System.out.println(result);
+        return result;
+    }
+
+
+
+
+
+
+    /*页面跳转功能*/
     /*管理员列表页面返回*/
     @RequestMapping("AdminList")
     @ResponseBody
     public ModelAndView AdminList(){
-        System.out.println("已经成功访问到AdminList");
         ModelAndView model=new ModelAndView();
         model.setViewName("background/info/AdminList");
         return model;
@@ -22,7 +46,6 @@ public class BackManagerController {
     @RequestMapping("UserList")
     @ResponseBody
     public ModelAndView UserList(){
-        System.out.println("已经成功访问到UserList");
         ModelAndView model=new ModelAndView();
         model.setViewName("background/info/UserList");
         return model;

@@ -13,7 +13,7 @@ public class SuperAdminServiceImpl implements SuperAdminService {
     private SuperAdminMapper superAdminMapper;
 
     @Override
-    public String CheckSuperNameAndPwd(String adminUsername, String logpass) {
+    public String checkSuperNameAndPwd(String adminUsername, String logpass) {
         SuperAdmin superAdmin=superAdminMapper.selectByUsername(adminUsername);
         System.out.println(superAdmin);
         if(superAdmin==null){
@@ -27,7 +27,7 @@ public class SuperAdminServiceImpl implements SuperAdminService {
     }
 
     @Override
-    public SuperAdmin CheckSuperadmin(String adminUsername, String logpass) {
+    public SuperAdmin checkSuperadmin(String adminUsername, String logpass) {
         SuperAdmin superAdmin=superAdminMapper.selectByUsername(adminUsername);
         String passw= Encryption.Encrypt(logpass);
         if(superAdmin!=null) {

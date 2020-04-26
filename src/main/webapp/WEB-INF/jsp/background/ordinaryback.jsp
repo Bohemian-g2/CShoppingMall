@@ -28,7 +28,7 @@
 </head>
 <body>
 <!-- 我的资料模态框 -->
-<div class="am-popup am-popup-inner" id="my-popup"style="height: 400px;">
+<div class="am-popup am-popup-inner" id="my-admininfo"style="height: 400px;">
     <div class="am-popup-hd">
         <h4 class="am-popup-title">普通管理员信息修改</h4>
         <span data-am-modal-close  class="am-close">&times;</span>
@@ -85,7 +85,7 @@
                 </ul>
             </li>
             <li class="kuanjie">
-                <a href="#" data-am-modal="{target: '#my-popup'}">信息修改</a>
+                <a href="#" data-am-modal="{target: '#my-admininfo'}">信息修改</a>
             </li>
             <li>
                 <a href="${pageContext.request.contextPath}/admin/Login">退出系统</a>

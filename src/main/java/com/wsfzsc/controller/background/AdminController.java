@@ -30,9 +30,8 @@ public class AdminController {
     @RequestMapping("LoginCheck")
     @ResponseBody
     public String LoginCheck(@RequestBody Map<String,String> map){
-        String result1=superAdminService.CheckSuperNameAndPwd(map.get("logname"),map.get("logpass"));
-        String result2=adminService.CheckAdminNameAndPwd(map.get("logname"),map.get("logpass"));
-        System.out.println("=========result1="+result1+"result2"+result2);
+        String result1=superAdminService.checkSuperNameAndPwd(map.get("logname"),map.get("logpass"));
+        String result2=adminService.checkAdminNameAndPwd(map.get("logname"),map.get("logpass"));
         if(result1.equals("nameError")){
             if(result2.equals("nameError")){
                 return "nameError";
@@ -51,8 +50,8 @@ public class AdminController {
     /*登录进入系统*/
     @RequestMapping("LoginInSys")
     public String LoginSuccess(String logname,String logpass,HttpServletRequest request){
-        SuperAdmin superAdmin=superAdminService.CheckSuperadmin(logname,logpass);
-        Admin admin=adminService.CheckAdmin(logname,logpass);
+        SuperAdmin superAdmin=superAdminService.checkSuperadmin(logname,logpass);
+        Admin admin=adminService.checkAdmin(logname,logpass);
         if(superAdmin!=null){
             request.getSession().setAttribute("superAdmin",superAdmin);
             return "/background/back";

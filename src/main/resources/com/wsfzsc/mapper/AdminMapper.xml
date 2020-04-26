@@ -229,4 +229,8 @@
     select *from admin
     where admin_username=#{userName}
   </select>
+
+  <select id="selectUsernames" resultType="String">
+    select admin_username from admin
+  </select>
 </mapper>

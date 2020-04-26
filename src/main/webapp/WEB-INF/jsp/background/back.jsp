@@ -19,16 +19,17 @@
     <meta http-equiv="Cache-Control" content="no-siteapp" />
     <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/back/img/favicon.png">
     <link rel="apple-touch-icon-precomposed" href="${pageContext.request.contextPath}/back/img/app-icon72x72@2x.png">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/back/css/layer.css"/>
     <meta name="apple-mobile-web-app-title" content="Amaze UI" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/back/css/amazeui.min.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/back/css/admin.css">
     <script src="${pageContext.request.contextPath}/back/js/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/back/js/app.js"></script>
-    <script src="${pageContext.request.contextPath}/back/js/background.js"></script>
 </head>
 <body>
+
 <!-- 我的资料模态框 -->
-<div class="am-popup am-popup-inner" id="my-popup"style="height: 300px;">
+<div class="am-popup am-popup-inner" id="my-superinfo"style="height: 300px;">
     <div class="am-popup-hd">
         <h4 class="am-popup-title">管理员信息修改</h4>
         <span data-am-modal-close  class="am-close">&times;</span>
@@ -65,6 +66,7 @@
 </div>
 <!-- 我的资料模态框结束 -->
 
+
 <!-- 布局导航栏 -->
 <header class="am-topbar admin-header">
     <div class="am-topbar-brand"><img src="${pageContext.request.contextPath}/back/img/logo.png"></div>
@@ -80,7 +82,7 @@
                 </ul>
             </li>
             <li class="kuanjie">
-                <a href="#" data-am-modal="{target: '#my-popup'}">信息修改</a>
+                <a href="#" data-am-modal="{target: '#my-superinfo'}">信息修改</a>
             </li>
             <li>
                 <a href="${pageContext.request.contextPath}/admin/Login">退出系统</a>
@@ -149,6 +151,8 @@
     </div>
     <!-- admin-mian页面结束 -->
     <script src="${pageContext.request.contextPath}/back/js/amazeui.min.js"></script>
+    <script src="${pageContext.request.contextPath}/back/js/layer.js"></script>
+    <script src="${pageContext.request.contextPath}/back/js/background.js"></script>
 </div>
 </body>
 </html>

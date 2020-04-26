@@ -61,7 +61,6 @@
       <tx:method name="update*" propagation="REQUIRED"/>
       <tx:method name="save*" propagation="REQUIRED"/>
       <tx:method name="delete*" propagation="REQUIRED"/>
-      <tx:method name="*" propagation="REQUIRED"/>
     </tx:attributes>
   </tx:advice>
   <!--配置aop切面-->
@@ -71,6 +70,11 @@
   </aop:config>
   <!--service层配置结束-->
 
-
+<!--工具类配置,账号自动生成-->
+  <bean id="guid" class="com.wsfzsc.util.GUID">
+    <property name="bit" value="${admin.GUID}"></property>
+    <property name="adminMapper" ref="adminMapper"></property>
+    <property name="userInfMapper" ref="userInfMapper"></property>
+  </bean>
 
 </beans>

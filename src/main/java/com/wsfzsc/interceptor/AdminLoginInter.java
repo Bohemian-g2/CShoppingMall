@@ -18,7 +18,6 @@ public class AdminLoginInter implements HandlerInterceptor {
         Admin ordinaryAdmin=(Admin)request.getSession().getAttribute("admin");
         if(superAdmin==null){
             if(ordinaryAdmin==null){
-                System.out.println("==============");
                 request.getRequestDispatcher("admin/Login").forward(request,response);
                 return false;
             }

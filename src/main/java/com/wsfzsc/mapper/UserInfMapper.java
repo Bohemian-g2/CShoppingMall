@@ -28,4 +28,7 @@ public interface UserInfMapper {
     int updateByPrimaryKeySelective(UserInf record);
 
     int updateByPrimaryKey(UserInf record);
+
+    /*得到所有账号*/
+    List<String> selectUsernames();
 }

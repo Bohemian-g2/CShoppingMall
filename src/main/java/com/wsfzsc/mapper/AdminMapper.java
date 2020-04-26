@@ -31,4 +31,7 @@ public interface AdminMapper {
     int updateByPrimaryKey(Admin record);
 
     Admin selectByUsername(@Param("userName") String userName);
+
+    /*得到所有账号*/
+    List<String> selectUsernames();
 }

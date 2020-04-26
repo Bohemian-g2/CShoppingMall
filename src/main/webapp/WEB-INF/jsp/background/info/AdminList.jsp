@@ -14,49 +14,53 @@
 <body>
     <!-- 新页面 -->
     <!-- 手动添加管理员的模态框 -->
-    <div class="am-popup am-popup-inner" id="my-popup">
+    <div class="am-popup am-popup-inner" id="my-admin">
         <div class="am-popup-hd">
             <h4 class="am-popup-title">添加普通管理员</h4>
             <span data-am-modal-close  class="am-close">&times;</span>
         </div>
-
         <div class="am-popup-bd">
-            <form class="am-form tjlanmu" style="width: 90%;margin: auto">
+            <form class="am-form tjlanmu"  id="adminform" style="width: 90%;margin: auto">
                 <div class="am-form-group">
                     <div class="zuo" style="float: left;width: 19%">管理员名称：</div>
-                    <div class="you" style="float: right;width: 80%">
-                        <input type="text" class="am-input-sm" id="adminName" placeholder="请输入管理员名称">
+                    <div class="you">
+                        <input type="text" class="am-input-sm" id="regAdminName" placeholder="请输入管理员名称">
+
                     </div>
                 </div>
                 <div class="am-form-group">
                     <div class="zuo">账号密码：</div>
                     <div class="you">
-                        <input type="password" class="am-input-sm" id="adminPassword" placeholder="请输入密码">
+                        <input type="password" class="am-input-sm" id="regAdminPassword" placeholder="请输入密码">
+
                     </div>
                 </div>
                 <div class="am-form-group">
                     <div class="zuo">确认密码：</div>
                     <div class="you">
-                        <input type="password" class="am-input-sm" id="readminPassword" placeholder="请输入密码">
+                        <input type="password" class="am-input-sm" id="reregAdminPassword" placeholder="请输入密码">
+
                     </div>
                 </div>
                 <div class="am-form-group">
                     <div class="zuo">联系方式：</div>
                     <div class="you">
-                        <input type="text" class="am-input-sm" id="adminPhone" placeholder="请输入联系方式">
+                        <input type="text" class="am-input-sm" id="regAdminPhone" placeholder="请输入联系方式">
+
                     </div>
                 </div>
                 <div class="am-form-group am-cf">
                     <div class="you">
                         <p>
-                            <button type="submit" class="am-btn am-btn-success am-radius">提交</button>
+                            <button type="button" class="am-btn am-btn-success am-radius"
+                                    onclick="saveAdmin('${pageContext.request.contextPath}/background/AddAdmin')">提交</button>
                         </p>
                     </div>
                 </div>
             </form>
         </div>
     </div>
-
+    <%--添加管理员模态框结束--%>
     <!-- 管理员列表页面 -->
     <div class="admin-biaogelist">
         <!-- 新页面内部导航栏 -->
@@ -64,7 +68,7 @@
             <ul class="am-icon-users"> 管理员管理</ul>
             <dl class="am-icon-home" style="float: right;">当前位置： 首页 > <a href="#">管理员列表</a></dl>
             <dl>
-                <button type="button" class="am-btn am-btn-danger am-round am-btn-xs am-icon-plus" data-am-modal="{target: '#my-popup'}"> 手动添加管理员</button>
+                <button type="button" class="am-btn am-btn-danger am-round am-btn-xs am-icon-plus" data-am-modal="{target: '#my-admin'}"> 手动添加管理员</button>
             </dl>
         </div>
         <!-- 管理员列表 -->
