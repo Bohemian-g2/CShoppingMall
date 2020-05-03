@@ -23,7 +23,9 @@
     <meta name="apple-mobile-web-app-title" content="Amaze UI" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/back/css/amazeui.min.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/back/css/admin.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/back/css/layui.css">
     <script src="${pageContext.request.contextPath}/back/js/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/back/js/layui.js"></script>
     <script src="${pageContext.request.contextPath}/back/js/app.js"></script>
 </head>
 <body>
@@ -39,25 +41,25 @@
             <div class="am-form-group">
                 <div class="zuo" style="float: left;width: 19%">管理员名称：</div>
                 <div class="you" style="float: right;width: 80%">
-                    <input type="text" class="am-input-sm" id="adminName" placeholder="${sessionScope.superAdmin.superadminName}">
+                    <input type="text" class="am-input-sm" id="superadminName" placeholder="${sessionScope.superAdmin.superadminName}">
                 </div>
             </div>
             <div class="am-form-group">
                 <div class="zuo">账号密码：</div>
                 <div class="you">
-                    <input type="password" class="am-input-sm" id="adminPassword" placeholder="**********">
+                    <input type="password" class="am-input-sm" id="superadminPassword" placeholder="**********">
                 </div>
             </div>
             <div class="am-form-group">
                 <div class="zuo">确认密码：</div>
                 <div class="you">
-                    <input type="password" class="am-input-sm" id="readminPassword" placeholder="请输入密码">
+                    <input type="password" class="am-input-sm" id="resuperadminPassword" placeholder="请输入密码">
                 </div>
             </div>
             <div class="am-form-group am-cf">
                 <div class="you">
                     <p>
-                        <button type="submit" class="am-btn am-btn-success am-radius">提交</button>
+                        <button type="button" class="am-btn am-btn-success am-radius" onclick="updateSuperInfo('${pageContext.request.contextPath}/admin/updateSuperAndOrdi')">提交</button>
                     </p>
                 </div>
             </div>
@@ -101,24 +103,24 @@
         <div class="sideMenu">
             <h3 class="am-icon-flag"><em></em> <a href="#">商品管理</a></h3>
             <ul>
-                <li><a onclick="loadPage('${pageContext.request.contextPath}/background/CommodityList');" href="#">商品列表</a></li>
-                <li><a onclick="loadPage('${pageContext.request.contextPath}/background/CommodityKindList');" href="#">商品分类管理</a></li>
+                <li><a onclick="loadPage('${pageContext.request.contextPath}/background/CommodityList',null);" href="#">商品列表</a></li>
+                <li><a onclick="loadPage('${pageContext.request.contextPath}/background/CommodityKindList',null);" href="#">商品分类管理</a></li>
             </ul>
             <h3 class="am-icon-cart-plus"><em></em> <a href="#"> 订单管理</a></h3>
             <ul>
-                <li><a onclick="loadPage('${pageContext.request.contextPath}/background/OrderList');" href="#">订单列表</a></li>
-                <li><a onclick="loadPage('${pageContext.request.contextPath}/background/SendOrderList');" href="#">发货单列表</a></li>
-                <li><a onclick="loadPage('${pageContext.request.contextPath}/background/ReplaceOrderList');" href="#">换货单列表</a></li>
-                <li><a onclick="loadPage('${pageContext.request.contextPath}/background/ReturnOrderList');" href="#">退货单列表</a></li>
+                <li><a onclick="loadPage('${pageContext.request.contextPath}/background/OrderList',null);" href="#">订单列表</a></li>
+                <li><a onclick="loadPage('${pageContext.request.contextPath}/background/SendOrderList',null);" href="#">发货单列表</a></li>
+                <li><a onclick="loadPage('${pageContext.request.contextPath}/background/ReplaceOrderList',null);" href="#">换货单列表</a></li>
+                <li><a onclick="loadPage('${pageContext.request.contextPath}/background/ReturnOrderList',null);" href="#">退货单列表</a></li>
             </ul>
             <h3 class="am-icon-users"><em></em> <a href="#">会员管理</a></h3>
             <ul>
-                <li><a onclick="loadPage('${pageContext.request.contextPath}/background/UserList');" href="#">用户列表</a></li>
-                <li><a onclick="loadPage('${pageContext.request.contextPath}/background/AdminList');" href="#">普通管理员列表</a></li>
+                <li><a onclick="loadPage('${pageContext.request.contextPath}/background/UserList','userList');" href="#">用户列表</a></li>
+                <li><a onclick="loadPage('${pageContext.request.contextPath}/background/AdminList','adminList');" href="#">普通管理员列表</a></li>
             </ul>
             <h3 class="am-icon-volume-up"><em></em> <a href="#">评论管理</a></h3>
             <ul>
-                <li><a onclick="loadPage('${pageContext.request.contextPath}/background/CommentList');" href="#">评论列表</a></li>
+                <li><a onclick="loadPage('${pageContext.request.contextPath}/background/CommentList','commentList');" href="#">评论列表</a></li>
             </ul>
         </div>
         <!-- 菜单结束 -->

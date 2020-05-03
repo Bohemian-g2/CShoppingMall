@@ -201,7 +201,7 @@
       <if test="adminUsername != null">
         admin_username = #{adminUsername,jdbcType=VARCHAR},
       </if>
-      <if test="adminPassword != null">
+      <if test="adminPassword != null and adminPassword != ''">
         admin_password = #{adminPassword,jdbcType=VARCHAR},
       </if>
       <if test="adminName != null">
@@ -233,4 +233,26 @@
   <select id="selectUsernames" resultType="String">
     select admin_username from admin
   </select>
+
+  <select id="selectByPageAndSelections" parameterType="com.wsfzsc.pojo.Admin" resultMap="BaseResultMap">
+    SELECT *FROM admin
+    <where>
+      <if test="adminId != null">
+        and admin_id = #{adminId},
+      </if>
+      <if test="adminUsername != null">
+        and admin_username = #{adminUsername},
+      </if>
+      <if test="adminName != null">
+        and admin_name like concat('%', #{adminName},'%')
+      </if>
+      <if test="adminPhone != null">
+        and admin_phone like concat('%', #{admin_phone},'%')
+      </if>
+      <if test="adminRegisterDate != null">
+        and admin_register_date = #{adminRegisterDate},
+      </if>
+    </where>
+    ORDER BY admin_id
+    </select>
 </mapper>

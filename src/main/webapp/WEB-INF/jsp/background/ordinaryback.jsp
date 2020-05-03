@@ -22,8 +22,11 @@
     <meta name="apple-mobile-web-app-title" content="Amaze UI" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/back/css/amazeui.min.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/back/css/admin.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/back/css/layer.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/back/css/layui.css">
     <script src="${pageContext.request.contextPath}/back/js/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/back/js/app.js"></script>
+    <script src="${pageContext.request.contextPath}/back/js/layer.js"></script>
     <script src="${pageContext.request.contextPath}/back/js/background.js"></script>
 </head>
 <body>
@@ -62,7 +65,8 @@
             <div class="am-form-group am-cf">
                 <div class="you">
                     <p>
-                        <button type="submit" class="am-btn am-btn-success am-radius">提交</button>
+                        <button type="button" class="am-btn am-btn-success am-radius"
+                                onclick="updateAdminInfo('${pageContext.request.contextPath}/admin/updateSuperAndOrdi')">提交</button>
                     </p>
                 </div>
             </div>
@@ -116,11 +120,11 @@
             </ul>
             <h3 class="am-icon-users"><em></em> <a href="#">会员管理</a></h3>
             <ul>
-                <li><a onclick="loadPage('${pageContext.request.contextPath}/background/UserList');" href="#">用户列表</a></li>
+                <li><a onclick="loadPage('${pageContext.request.contextPath}/background/UserList','userList');" href="#">用户列表</a></li>
             </ul>
             <h3 class="am-icon-volume-up"><em></em> <a href="#">评论管理</a></h3>
             <ul>
-                <li><a onclick="loadPage('${pageContext.request.contextPath}/background/CommentList');" href="#">评论列表</a></li>
+                <li><a onclick="loadPage('${pageContext.request.contextPath}/background/CommentList','commentList');" href="#">评论列表</a></li>
             </ul>
         </div>
         <!-- 菜单结束 -->

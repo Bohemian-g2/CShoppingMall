@@ -5,4 +5,17 @@
     select *from superadmin
     where superadmin_username=#{userName}
   </select>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.wsfzsc.pojo.SuperAdmin">
+    update superadmin
+    <set>
+      <if test="superadminPassword != null and superadminPassword !=''">
+        superadmin_password = #{superadminPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="superadminName != null">
+        superadmin_name = #{superadminName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where superadmin_id = #{superadminId,jdbcType=INTEGER}
+  </update>
 </mapper>

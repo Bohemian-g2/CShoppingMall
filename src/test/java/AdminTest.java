@@ -1,5 +1,9 @@
+import com.github.pagehelper.Page;
+import com.wsfzsc.mapper.CommentMapper;
 import com.wsfzsc.pojo.Admin;
+import com.wsfzsc.pojo.CommentHelper;
 import com.wsfzsc.service.AdminService;
+import com.wsfzsc.service.CommentService;
 import com.wsfzsc.util.Encryption;
 import com.wsfzsc.util.GUID;
 import org.junit.Test;
@@ -10,6 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 //告诉junit spring配置文件
@@ -17,10 +22,15 @@ import java.util.List;
 public class AdminTest {
     @Autowired
     private AdminService adminService;
+    @Autowired
+    private CommentMapper commentMapper;
+
+    @Autowired
+    private CommentService commentService;
 
     @Test
     public  void testmain() {
-        System.out.println(Encryption.Encrypt("123123"));
+        System.out.println(Encryption.Encrypt("wsfzsc"));//03D7E48DBAFD9E94
     }
 
     @Test
@@ -34,4 +44,20 @@ public class AdminTest {
         String s="啊飒飒的a";
         System.out.println(s+" of length is "+s.length());
     }
+
+    @Test
+    public void testdeleteAdmin(){
+        List<Integer> ids=new ArrayList<Integer>();
+        ids.add(11);
+        ids.add(10);
+        System.out.println("删除数量===="+adminService.deleteAdmin(ids));
+    }
+
+    @Test
+    public void testdeleteComment(){
+        List<Integer> ids=new ArrayList<Integer>();
+        ids.add(4);
+        System.out.println(commentService.deleteComment(ids));
+    }
+
 }

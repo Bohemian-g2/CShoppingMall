@@ -1,5 +1,7 @@
 package com.wsfzsc.controller.background;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.wsfzsc.pojo.Admin;
 import com.wsfzsc.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,30 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
 @RequestMapping("background")
 public class BackManagerController {
-    @Autowired
-    private AdminService adminService;
-
-    /*业务逻辑功能*/
-    /*管理员添加*/
-    @RequestMapping("AddAdmin")
-    @ResponseBody
-    public String AddAdmin(@RequestBody Admin admin){
-        System.out.println("进入添加管理员");
-        String result=adminService.saveAdmin(admin);
-        System.out.println(result);
-        return result;
-    }
-
-
-
-
-
-
     /*页面跳转功能*/
     /*管理员列表页面返回*/
     @RequestMapping("AdminList")
@@ -42,6 +27,7 @@ public class BackManagerController {
         model.setViewName("background/info/AdminList");
         return model;
     }
+
     /*用户列表页面返回*/
     @RequestMapping("UserList")
     @ResponseBody

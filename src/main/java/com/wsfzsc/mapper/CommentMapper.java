@@ -2,6 +2,7 @@ package com.wsfzsc.mapper;
 
 import com.wsfzsc.pojo.Comment;
 import com.wsfzsc.pojo.CommentExample;
+import com.wsfzsc.pojo.CommentHelper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -28,4 +29,6 @@ public interface CommentMapper {
     int updateByPrimaryKeySelective(Comment record);
 
     int updateByPrimaryKey(Comment record);
+
+    List<CommentHelper> selectCommentHelper(CommentHelper commentHelper);
 }

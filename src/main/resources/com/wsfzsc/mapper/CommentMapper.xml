@@ -8,6 +8,17 @@
     <result column="comment_time" jdbcType="TIMESTAMP" property="commentTime" />
     <result column="content" jdbcType="VARCHAR" property="content" />
   </resultMap>
+
+  <resultMap id="ResultCommentHelper" type="com.wsfzsc.pojo.CommentHelper">
+    <id column="comment_id" jdbcType="INTEGER" property="commentId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="indent_id" jdbcType="INTEGER" property="indentId" />
+    <result column="comment_time" jdbcType="TIMESTAMP" property="commentTime" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="commodity_id" jdbcType="INTEGER" property="commodityId"/>
+    <result column="commodity_name" jdbcType="VARCHAR" property="commodityName"/>
+    <result column="login_name" jdbcType="VARCHAR" property="userLoginName"/>
+  </resultMap>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -208,4 +219,25 @@
       content = #{content,jdbcType=VARCHAR}
     where comment_id = #{commentId,jdbcType=INTEGER}
   </update>
+
+  <select id="selectCommentHelper" parameterType="map" resultMap="ResultCommentHelper">
+    select a.comment_id,a.user_id,a.indent_id,a.comment_time,a.content,b.commodity_id,b.commodity_name,c.login_name
+    from comment a,commodity b,user_inf c,indent_detail d
+    <where>
+      a.user_id=c.user_id and a.indent_id=d.indent_id and d.indent_goods_id=b.commodity_id
+      <if test="commentId!=null">
+        and a.comment_id=#{commentId}
+      </if>
+      <if test="userLoginName!=null">
+        and c.login_name=#{userLoginName}
+      </if>
+      <if test="commodityId!=null">
+        and b.commodity_id=#{commodityId}
+      </if>
+      <if test="commodityName!=null">
+        and b.commodity_name='%${commodityName}%'
+      </if>
+    </where>
+
+  </select>
 </mapper>

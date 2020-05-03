@@ -15,7 +15,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("admin")
-public class AdminController {
+public class LoginController {
     @Autowired
     private SuperAdminService superAdminService;
     @Autowired
@@ -50,8 +50,8 @@ public class AdminController {
     /*登录进入系统*/
     @RequestMapping("LoginInSys")
     public String LoginSuccess(String logname,String logpass,HttpServletRequest request){
-        SuperAdmin superAdmin=superAdminService.checkSuperadmin(logname,logpass);
-        Admin admin=adminService.checkAdmin(logname,logpass);
+        SuperAdmin superAdmin=superAdminService.LoginSuperadmin(logname,logpass);
+        Admin admin=adminService.LoginAdmin(logname,logpass);
         if(superAdmin!=null){
             request.getSession().setAttribute("superAdmin",superAdmin);
             return "/background/back";
@@ -67,15 +67,39 @@ public class AdminController {
     /*登出*/
     @RequestMapping("LoginOut")
     public String LoginOut(HttpServletRequest request){
-        System.out.println("退出登录");
         request.getSession().removeAttribute("superAdmin");
         return"/background/backLogin";
     }
 
-    @RequestMapping("SuperAdmin")
-    public String SuperAdmin(){return "/background/back"; }
-
-    @RequestMapping("OrdinaryAdmin")
-    public String OrdinaryAdmin(){return "/background/ordinaryback"; }
+    /*个人信息修改*/
+    @RequestMapping("updateSuperAndOrdi")
+    @ResponseBody
+    public String updateSuperAndOrdi(@RequestBody Map<String,Object> map,HttpServletRequest request){
+        SuperAdmin superAdmin=(SuperAdmin)request.getSession().getAttribute("superAdmin");
+        Admin admin=(Admin)request.getSession().getAttribute("admin");
+        if(superAdmin!=null){
+            superAdmin.setSuperadminPassword(null);//清除密码
+            if(map.get("name")!=null&&!map.get("name").equals("")) {
+                superAdmin.setSuperadminName((String) map.get("name"));
+            }
+            superAdmin.setSuperadminPassword((String) map.get("password"));
+            String result=superAdminService.updateSuperAdminInfo(superAdmin);
+            return result;
+        }
+        if(admin!=null){
+            admin.setAdminPassword(null);//清除密码
+            System.out.println("======="+(String)map.get("name"));
+            if(map.get("name")!=null&&!map.get("name").equals("")){
+                admin.setAdminName((String)map.get("name"));
+            }
+            admin.setAdminPassword((String)map.get("password"));
+            if(map.get("phone")!=null&&!map.get("phone").equals("")){
+                admin.setAdminPhone((String)map.get("phone"));
+            }
+            String result=adminService.updateAdminInfo(admin);
+            return result;
+        }
+        return "error";
+    }
 
 }

@@ -173,7 +173,7 @@ gallery.html css
 
 
 .admin-biaogelist .am-pagination{margin: 0;}
-.am-pagination>li>a,.am-pagination>li>span {  padding: 0.2em .7em;}
+.am-pagination>li>a,.am-pagination>li>span,.am-pagination>div>li>a,.am-pagination>div>li>span{  padding: 0.2em .7em;}
 
 
 .admin-biaogelist .am-btn-group{z-index: 999}

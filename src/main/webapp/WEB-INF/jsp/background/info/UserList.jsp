@@ -13,6 +13,147 @@
 </head>
 <body>
 <!-- 新页面 -->
+<!-- 用户条件查询的模态框 -->
+<div class="am-popup am-popup-inner" id="my-secuserinfo">
+    <div class="am-popup-hd">
+        <h4 class="am-popup-title">查询用户信息</h4>
+        <span data-am-modal-close  class="am-close">&times;</span>
+    </div>
+    <div class="am-popup-bd">
+        <form class="am-form tjlanmu"  style="width: 90%;margin: auto">
+            <div class="am-form-group">
+                <div class="zuo" style="float: left;width: 19%">用户ID：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" id="SecUserId" placeholder="请输入用户ID">
+                </div>
+            </div>
+            <div class="am-form-group">
+                <div class="zuo" style="float: left;width: 19%">用户名称：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" id="SecUserName" placeholder="请输入用户名称">
+                </div>
+            </div>
+            <div class="am-form-group">
+                <div class="zuo" style="float: left;width: 19%">用户账号：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" id="SecUserLoginName" placeholder="请输入用户账号">
+                </div>
+            </div>
+            <div class="am-form-group">
+                <div class="zuo">身份证类型：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" id="SecUserIdType" placeholder="请输入身份证类型">
+                </div>
+            </div>
+            <div class="am-form-group">
+                <div class="zuo">身份证号码：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" id="SecUserIdNumber" placeholder="请输入身份证号码">
+                </div>
+            </div>
+            <div class="am-form-group">
+                <div class="zuo">联系方式：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" id="SecUserPhone" placeholder="请输入联系方式">
+                </div>
+            </div>
+            <div class="am-form-group">
+                <div class="zuo">e-mail：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" id="SecUserEmail" placeholder="请输入e-mail">
+                </div>
+            </div>
+            <div class="am-form-group">
+                <div class="zuo">性别：</div>
+                <div class="you">
+                    <input type="radio" class="am-input-sm" name="SecUserSex" value="1"/>男
+                    <input type="radio" class="am-input-sm" name="SecUserSex" value="2"/>女
+                </div>
+            </div>
+            <div class="am-form-group am-cf">
+                <div class="you">
+                    <p>
+                        <button type="button" class="am-btn am-btn-success am-radius"
+                                onclick="getUserList()">提交</button>
+                    </p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<%--用户条件查询模态框结束--%>
+
+<%--user修改模态框--%>
+<div class="am-popup am-popup-inner" id="my-upduserinfo">
+    <div class="am-popup-hd">
+        <h4 class="am-popup-title">修改用户信息</h4>
+        <span data-am-modal-close  class="am-close">&times;</span>
+    </div>
+    <div class="am-popup-bd">
+        <form class="am-form tjlanmu" style="width: 90%;margin: auto">
+            <div class="am-form-group">
+                <div class="zuo" style="float: left;width: 19%">用户ID：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" id="upateUserId" placeholder="请输入用户ID" readonly/>
+                </div>
+            </div>
+            <div class="am-form-group">
+                <div class="zuo" style="float: left;width: 19%">用户账号：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" id="upateUserLoginName" placeholder="请输入用户账号"readonly/>
+                </div>
+            </div>
+            <div class="am-form-group">
+                <div class="zuo">身份证类型：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" id="updateUserIdType" placeholder="请输入身份证类型" readonly/>
+                </div>
+            </div>
+            <div class="am-form-group">
+                <div class="zuo">身份证号码：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" id="updateUserIdNumber" placeholder="请输入身份证号码" readonly/>
+                </div>
+            </div>
+            <div class="am-form-group">
+                <div class="zuo" style="float: left;width: 19%">用户名称：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" id="upateUserName" placeholder="请输入用户名称"/>
+                </div>
+            </div>
+            <div class="am-form-group">
+                <div class="zuo">e-mail：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" id="updateUserEmail" placeholder="请输入e-mail" />
+                </div>
+            </div>
+            <div class="am-form-group">
+                <div class="zuo">联系方式：</div>
+                <div class="you">
+                    <input type="text" class="am-input-sm" id="updateUserPhone" placeholder="请输入联系方式" />
+                </div>
+            </div>
+            <div class="am-form-group">
+                <div class="zuo">性别：</div>
+                <div class="you">
+                    <input type="radio" class="am-input-sm" name="updateUserSex" value="1"/>男
+                    <input type="radio" class="am-input-sm" name="updateUserSex" value="0"/>女
+                </div>
+            </div>
+            <div class="am-form-group am-cf">
+                <div class="you">
+                    <p>
+                        <button type="button" class="am-btn am-btn-success am-radius"
+                                onclick="updateUser('${pageContext.request.contextPath}/backuser/updateUser')">提交</button>
+                    </p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<%--user修改模态框结束--%>
+
+
 <!-- 用户列表页面 -->
 <div class="admin-biaogelist">
     <!-- 新页面内部导航栏 -->
@@ -25,71 +166,30 @@
         <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
             <thead>
             <tr class="am-success">
-                <th class="table-check"><input type="checkbox" /></th>
+                <th class="table-check"><input type="checkbox" onclick="allselect(this,'usercheckbox')"/></th>
                 <th class="table-id">ID</th>
+                <th class="table-title">用户账号</th>
                 <th class="table-title">用户名称</th>
-                <th class="table-title">用户email</th>
-                <th class="table-title">用户证件证件类型</th>
+                <th class="table-title">用户证件类型</th>
                 <th class="table-title">用户证件证件号</th>
+                <th class="table-title">性别</th>
+                <th class="table-title">联系方式</th>
                 <th width="130px" class="table-set">操作</th>
             </tr>
             </thead>
-            <tbody>
-            <tr>
-                <td><input type="checkbox"/></td>
-                <td>14</td>
-                <td>田源宽</td>
-                <td>tianyuankuan@163.com</td>
-                <td>美利坚合众国身份证</td>
-                <td>1111111111111111</td>
-                <td>
-                    <!-- 操作栏 -->
-                    <div class="am-btn-toolbar">
-                        <div class="am-btn-group am-btn-group-xs">
-                            <button class="am-btn am-btn-default am-btn-xs am-text-success am-round"><span class="am-icon-search" title="查看用户详情"></span> </button>
-                            <button class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" data-am-modal="{target: '#my-popups'}" title="修改用户"><span class="am-icon-pencil-square-o"></span></button>
-                            <button class="am-btn am-btn-default am-btn-xs am-text-danger am-round" title="删除用户"><span class="am-icon-trash-o" ></span></button>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"/></td>
-                <td>14</td>
-                <td>田源宽</td>
-                <td>tianyuankuan@163.com</td>
-                <td>美利坚合众国身份证</td>
-                <td>1111111111111111</td>
-                <td>
-                    <!-- 操作栏 -->
-                    <div class="am-btn-toolbar">
-                        <div class="am-btn-group am-btn-group-xs">
-                            <button class="am-btn am-btn-default am-btn-xs am-text-success am-round"><span class="am-icon-search" title="查看用户详情"></span> </button>
-                            <button class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" data-am-modal="{target: '#my-popups'}" title="修改用户"><span class="am-icon-pencil-square-o"></span></button>
-                            <button class="am-btn am-btn-default am-btn-xs am-text-danger am-round" title="删除用户"><span class="am-icon-trash-o" ></span></button>
-                        </div>
-                    </div>
-                </td>
-            </tr>
+            <tbody id="userInfoPage">
             </tbody>
         </table>
-
         <!-- 新页面底部 -->
-        <div class="am-btn-group am-btn-group-xs">
-            <button type="button" class="am-btn am-btn-default"><span class="am-icon-search-plus"></span> 查询</button>
-            <button type="button" class="am-btn am-btn-default"><span class="am-icon-trash-o"></span> 删除</button>
+        <div class="am-btn-group am-btn-group-xs" style="float: left;margin-top: 10px ">
+            <button type="button" class="am-btn am-btn-default"><span class="am-icon-search-plus"  data-am-modal="{target: '#my-secuserinfo'}" style="font-size: 1.4rem"></span> 查询</button>
+            <button type="button" class="am-btn am-btn-default" style="font-size: 1.4rem"
+             onclick="deleteInfo('usercheckbox','${pageContext.request.contextPath}/backuser/deleteUserList')" >
+                <span class="am-icon-trash-o"></span> 删除</button>
         </div>
-
-        <!-- 分页标签 -->
-        <ul class="am-pagination am-fr">
-            <li class="am-disabled"><a href="#">«</a></li>
-            <li class="am-active"><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">»</a></li>
-        </ul>
+        <%--分页按钮--%>
+        <div id="laypage" style="float: right;"></div>
+        <div style="clear: both"></div>
         <hr />
         <p>
             备注：操作图标含义
