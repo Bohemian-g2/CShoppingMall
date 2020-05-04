@@ -31,5 +31,4 @@ public interface UserInfMapper {
 
     /*得到所有账号*/
     List<String> selectUsernames();
-
 }
