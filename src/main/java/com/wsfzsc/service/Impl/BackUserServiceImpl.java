@@ -27,8 +27,8 @@ public class BackUserServiceImpl implements BackUserService {
         if(user.getUserName()!=null&&!user.getUserName().equals("")){
             criteria.andUserNameLike("%"+user.getUserName()+"%");//姓名
         }
-        if(user.getUserPhone()!=null&&user.getUserPhone()!=0){
-            criteria.andUserPhoneEqualTo(user.getUserPhone());//电话(int)
+        if(user.getUserPhone()!=null&&user.getUserPhone().equals("")){
+            criteria.andUserPhoneLike(user.getUserPhone());//电话(String)
         }
         if(user.getLoginName()!=null&&!user.getLoginName().equals("")){
             criteria.andLoginNameLike("%"+user.getLoginName()+"%");//账号
@@ -76,7 +76,7 @@ public class BackUserServiceImpl implements BackUserService {
 
     @Override
     public String updateUser(UserInf user) {
-        String regexPhone="^1[3578]\\d{8}$";
+        String regexPhone="^1[3578]\\d{9}$";
         if(!user.getUserPhone().toString().matches(regexPhone)){
             return "phoneError";
         }

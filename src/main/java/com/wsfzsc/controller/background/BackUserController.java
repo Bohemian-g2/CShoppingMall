@@ -42,7 +42,7 @@ public class BackUserController {
             user.setIdentityType(Integer.parseInt(map.get("identityType")));
         }
         if(map.get("userPhone")!=null&&!map.get("userPhone").equals("")){
-            user.setUserPhone(Integer.parseInt(map.get("userPhone")));
+            user.setUserPhone(map.get("userPhone"));
         }
         if(map.get("sex")!=null&&!map.get("sex").equals("")){
             user.setSex(Integer.parseInt(map.get("sex")));
@@ -72,7 +72,7 @@ public class BackUserController {
         user.setUserName((String)map.get("userName"));
         user.setUserEmail((String)map.get("userEmail"));
         user.setSex(Integer.parseInt((String)map.get("sex")));
-        user.setUserPhone(Integer.parseInt((String)map.get("userPhone")));
+        user.setUserPhone((String)map.get("userPhone"));
         String updateResult=userService.updateUser(user);
         return updateResult;
     }
