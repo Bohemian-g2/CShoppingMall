@@ -413,7 +413,7 @@ function updateUser(url){
 	var userPhone=$("#updateUserPhone").val();
 	var userSex=$("input[name='updateUserSex']:checked").val();
 	var id=$("#upateUserId").val();
-	var phoneRegex=/^1[3578][0-9]{8}$/;
+	var phoneRegex=/^1[3578][0-9]{9}$/;
 	if(userName.length<0||userName.length>20){
 		layer.tips('昵称过长！', '#upateUserName', {
 			tips: [2, '#FF3030'],
@@ -463,7 +463,7 @@ function updateUser(url){
 			,closeBtn: 0
 			,anim: 4 //动画类型
 		});
-		getUserList();//刷新界面
+		getUserList(null);//刷新界面
 	}else{
 		layer.alert('修改失败', {
 			skin: 'layui-layer-mo'

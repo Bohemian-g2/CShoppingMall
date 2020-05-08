@@ -9,7 +9,7 @@
     <result column="identity_type" jdbcType="INTEGER" property="identityType" />
     <result column="identity_number" jdbcType="VARCHAR" property="identityNumber" />
     <result column="user_email" jdbcType="VARCHAR" property="userEmail" />
-    <result column="user_phone" jdbcType="INTEGER" property="userPhone" />
+    <result column="user_phone" jdbcType="VARCHAR" property="userPhone" />
     <result column="sex" jdbcType="INTEGER" property="sex" />
     <result column="user_title" jdbcType="VARCHAR" property="userTitle" />
   </resultMap>
@@ -112,7 +112,7 @@
       user_title)
     values (#{userId,jdbcType=INTEGER}, #{loginName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{userName,jdbcType=VARCHAR}, #{identityType,jdbcType=INTEGER}, #{identityNumber,jdbcType=VARCHAR}, 
-      #{userEmail,jdbcType=VARCHAR}, #{userPhone,jdbcType=INTEGER}, #{sex,jdbcType=INTEGER}, 
+      #{userEmail,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, 
       #{userTitle,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.wsfzsc.pojo.UserInf">
@@ -172,7 +172,7 @@
         #{userEmail,jdbcType=VARCHAR},
       </if>
       <if test="userPhone != null">
-        #{userPhone,jdbcType=INTEGER},
+        #{userPhone,jdbcType=VARCHAR},
       </if>
       <if test="sex != null">
         #{sex,jdbcType=INTEGER},
@@ -213,7 +213,7 @@
         user_email = #{record.userEmail,jdbcType=VARCHAR},
       </if>
       <if test="record.userPhone != null">
-        user_phone = #{record.userPhone,jdbcType=INTEGER},
+        user_phone = #{record.userPhone,jdbcType=VARCHAR},
       </if>
       <if test="record.sex != null">
         sex = #{record.sex,jdbcType=INTEGER},
@@ -235,7 +235,7 @@
       identity_type = #{record.identityType,jdbcType=INTEGER},
       identity_number = #{record.identityNumber,jdbcType=VARCHAR},
       user_email = #{record.userEmail,jdbcType=VARCHAR},
-      user_phone = #{record.userPhone,jdbcType=INTEGER},
+      user_phone = #{record.userPhone,jdbcType=VARCHAR},
       sex = #{record.sex,jdbcType=INTEGER},
       user_title = #{record.userTitle,jdbcType=VARCHAR}
     <if test="_parameter != null">
@@ -264,7 +264,7 @@
         user_email = #{userEmail,jdbcType=VARCHAR},
       </if>
       <if test="userPhone != null">
-        user_phone = #{userPhone,jdbcType=INTEGER},
+        user_phone = #{userPhone,jdbcType=VARCHAR},
       </if>
       <if test="sex != null">
         sex = #{sex,jdbcType=INTEGER},
@@ -283,12 +283,13 @@
       identity_type = #{identityType,jdbcType=INTEGER},
       identity_number = #{identityNumber,jdbcType=VARCHAR},
       user_email = #{userEmail,jdbcType=VARCHAR},
-      user_phone = #{userPhone,jdbcType=INTEGER},
+      user_phone = #{userPhone,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=INTEGER},
       user_title = #{userTitle,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
+
   <select id="selectUsernames" resultType="String">
-    select login_name from user_inf
-  </select>
+select login_name from user_inf
+</select>
 </mapper>

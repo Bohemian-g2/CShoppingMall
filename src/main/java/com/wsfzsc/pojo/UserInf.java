@@ -15,7 +15,7 @@ public class UserInf {
 
     private String userEmail;
 
-    private Integer userPhone;
+    private String userPhone;
 
     private Integer sex;
 
@@ -77,12 +77,12 @@ public class UserInf {
         this.userEmail = userEmail == null ? null : userEmail.trim();
     }
 
-    public Integer getUserPhone() {
+    public String getUserPhone() {
         return userPhone;
     }
 
-    public void setUserPhone(Integer userPhone) {
-        this.userPhone = userPhone;
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone == null ? null : userPhone.trim();
     }
 
     public Integer getSex() {
@@ -99,37 +99,5 @@ public class UserInf {
 
     public void setUserTitle(String userTitle) {
         this.userTitle = userTitle == null ? null : userTitle.trim();
-    }
-
-    public UserInf() {
-    }
-
-    public UserInf(Integer userId, String loginName, String password, String userName, Integer identityType, String identityNumber, String userEmail, Integer userPhone, Integer sex, String userTitle) {
-        this.userId = userId;
-        this.loginName = loginName;
-        this.password = password;
-        this.userName = userName;
-        this.identityType = identityType;
-        this.identityNumber = identityNumber;
-        this.userEmail = userEmail;
-        this.userPhone = userPhone;
-        this.sex = sex;
-        this.userTitle = userTitle;
-    }
-
-    @Override
-    public String toString() {
-        return "UserInf{" +
-                "userId=" + userId +
-                ", loginName='" + loginName + '\'' +
-                ", password='" + password + '\'' +
-                ", userName='" + userName + '\'' +
-                ", identityType=" + identityType +
-                ", identityNumber='" + identityNumber + '\'' +
-                ", userEmail='" + userEmail + '\'' +
-                ", userPhone=" + userPhone +
-                ", sex=" + sex +
-                ", userTitle='" + userTitle + '\'' +
-                '}';
     }
 }
