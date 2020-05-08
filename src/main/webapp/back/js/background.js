@@ -17,7 +17,6 @@ function loadPage(url,jspName){
 			if(jspName=="commentList"){
 				getCommentList();
 			}
-
 		},
 		error:function(){
 			alert("出现错误"+url);
