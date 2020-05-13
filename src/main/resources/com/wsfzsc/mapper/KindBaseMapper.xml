@@ -81,7 +81,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from kind_base
     where kind_id = #{kindId,jdbcType=INTEGER}
@@ -142,7 +142,7 @@
   <update id="updateByExample" parameterType="map">
     update kind_base
     set kind_id = #{record.kindId,jdbcType=INTEGER},
-      kind_name = #{record.kindName,jdbcType=VARCHAR}
+    kind_name = #{record.kindName,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

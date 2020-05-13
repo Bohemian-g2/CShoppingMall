@@ -2,16 +2,13 @@ package com.wsfzsc.service.Impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.sun.tracing.dtrace.ArgsAttributes;
 import com.wsfzsc.mapper.CommentMapper;
-import com.wsfzsc.mapper.CommodityMapper;
-import com.wsfzsc.mapper.UserInfMapper;
-import com.wsfzsc.pojo.*;
+import com.wsfzsc.pojo.CommentExample;
+import com.wsfzsc.pojo.CommentHelper;
 import com.wsfzsc.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

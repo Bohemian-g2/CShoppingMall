@@ -255,6 +255,12 @@
       <artifactId>druid</artifactId>
       <version>1.0.9</version>
     </dependency>
+    <!-- controller层接收Date类型 -->
+    <dependency>
+      <groupId>joda-time</groupId>
+      <artifactId>joda-time</artifactId>
+      <version>2.4</version>
+    </dependency>
   </dependencies>
   <!-- 添加tomcat7插件，我们本地使用的是Tomcat9，但我还是加了一个tomcat7插件 -->
   <build>

@@ -114,8 +114,9 @@ public class IndentDetailExample {
             return (Criteria) this;
         }
 
+        //修改过
         public Criteria andIndentIdEqualTo(Integer value) {
-            addCriterion("indent_id =", value, "indentId");
+            addCriterion("ind.indent_id =", value, "indentId");
             return (Criteria) this;
         }
 

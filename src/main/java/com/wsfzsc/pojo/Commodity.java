@@ -31,8 +31,16 @@ public class Commodity {
 
     private Date commodityDate;
 
-    //商品类别信息
+    //增加外键
     private KindBase kindBase;
+
+    public KindBase getKindBase() {
+        return kindBase;
+    }
+
+    public void setKindBase(KindBase kindBase) {
+        this.kindBase = kindBase;
+    }
 
     public Integer getCommodityId() {
         return commodityId;
@@ -146,14 +154,6 @@ public class Commodity {
         this.commodityDate = commodityDate;
     }
 
-    public KindBase getKindBase() {
-        return kindBase;
-    }
-
-    public void setKindBase(KindBase kindBase) {
-        this.kindBase = kindBase;
-    }
-
     public Commodity() {
     }
 
@@ -191,6 +191,7 @@ public class Commodity {
                 ", commodityStyle='" + commodityStyle + '\'' +
                 ", commoditySource='" + commoditySource + '\'' +
                 ", commodityDate=" + commodityDate +
+                ", kindBase=" + kindBase +
                 '}';
     }
 }

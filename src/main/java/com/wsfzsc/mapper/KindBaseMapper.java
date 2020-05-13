@@ -28,4 +28,5 @@ public interface KindBaseMapper {
     int updateByPrimaryKeySelective(KindBase record);
 
     int updateByPrimaryKey(KindBase record);
+
 }

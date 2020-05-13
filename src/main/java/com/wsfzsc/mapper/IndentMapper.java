@@ -28,4 +28,11 @@ public interface IndentMapper {
     int updateByPrimaryKeySelective(Indent record);
 
     int updateByPrimaryKey(Indent record);
+
+    /**
+     * 添加外键
+     * @param example
+     * @return
+     */
+    List<Indent> selectByExampleWithUserAddress(IndentExample example);
 }

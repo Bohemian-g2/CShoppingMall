@@ -28,4 +28,16 @@ public interface CommodityMapper {
     int updateByPrimaryKeySelective(Commodity record);
 
     int updateByPrimaryKey(Commodity record);
+
+    /**
+     * 带商品类别外键
+     * @param example
+     * @return
+     */
+    List<Commodity> selectByExampleWithKind(CommodityExample example);
+
+    //模糊查询
+    List<Commodity> selectByCommodityName(String commodity_name);
+
+    Commodity selectByPrimaryKeyWithKind(Integer commodityId);
 }

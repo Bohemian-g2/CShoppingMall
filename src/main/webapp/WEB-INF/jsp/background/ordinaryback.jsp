@@ -113,10 +113,10 @@
             </ul>
             <h3 class="am-icon-cart-plus"><em></em> <a href="#"> 订单管理</a></h3>
             <ul>
-                <li><a onclick="loadPage('${pageContext.request.contextPath}/background/OrderList');" href="#">订单列表</a></li>
+                <li><a onclick="loadPage('${pageContext.request.contextPath}/background/OrderList');" href="#">未发货订单列表</a></li>
                 <li><a onclick="loadPage('${pageContext.request.contextPath}/background/SendOrderList');" href="#">发货单列表</a></li>
                 <li><a onclick="loadPage('${pageContext.request.contextPath}/background/ReplaceOrderList');" href="#">换货单列表</a></li>
-                <li><a onclick="loadPage('${pageContext.request.contextPath}/background/ReturnOrderList');" href="#">退货单列表</a></li>
+                <li><a onclick="loadPage('${pageContext.request.contextPath}/background/ReturnOrderList');" href="#">到货单列表</a></li>
             </ul>
             <h3 class="am-icon-users"><em></em> <a href="#">会员管理</a></h3>
             <ul>

@@ -20,4 +20,12 @@ public class IndentDetailKey {
     public void setIndentGoodsId(Integer indentGoodsId) {
         this.indentGoodsId = indentGoodsId;
     }
+
+    public IndentDetailKey() {
+    }
+
+    public IndentDetailKey(Integer indentId, Integer indentGoodsId) {
+        this.indentId = indentId;
+        this.indentGoodsId = indentGoodsId;
+    }
 }

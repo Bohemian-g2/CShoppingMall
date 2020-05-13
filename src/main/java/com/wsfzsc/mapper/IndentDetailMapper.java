@@ -29,4 +29,10 @@ public interface IndentDetailMapper {
     int updateByPrimaryKeySelective(IndentDetail record);
 
     int updateByPrimaryKey(IndentDetail record);
+
+    /**
+     * 带外键
+     */
+    List<IndentDetail> selectByExampleWithIndentCommodity(IndentDetailExample example);
+
 }

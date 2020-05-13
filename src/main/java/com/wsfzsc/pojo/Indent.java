@@ -29,6 +29,31 @@ public class Indent {
 
     private Date indentDrawbackMoneyTime;
 
+    /**
+     * 添加外键
+     * @return
+     */
+
+    private Address address;
+
+    private UserInf userInf;
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public UserInf getUserInf() {
+        return userInf;
+    }
+
+    public void setUserInf(UserInf userInf) {
+        this.userInf = userInf;
+    }
+
     public Integer getIndentId() {
         return indentId;
     }
@@ -131,5 +156,45 @@ public class Indent {
 
     public void setIndentDrawbackMoneyTime(Date indentDrawbackMoneyTime) {
         this.indentDrawbackMoneyTime = indentDrawbackMoneyTime;
+    }
+
+    public Indent() {
+    }
+
+    public Indent(Integer indentId, Integer indentUserId, Integer indentRecId, Integer indentStatus, Integer indentDeleteStatus, Float indentTotal, Float indentCarriage, Date indentCreateTime, Integer indentWay, Date indentPaidTime, Date indentEndTime, Date indentDrawbackTime, Date indentDrawbackMoneyTime) {
+        this.indentId = indentId;
+        this.indentUserId = indentUserId;
+        this.indentRecId = indentRecId;
+        this.indentStatus = indentStatus;
+        this.indentDeleteStatus = indentDeleteStatus;
+        this.indentTotal = indentTotal;
+        this.indentCarriage = indentCarriage;
+        this.indentCreateTime = indentCreateTime;
+        this.indentWay = indentWay;
+        this.indentPaidTime = indentPaidTime;
+        this.indentEndTime = indentEndTime;
+        this.indentDrawbackTime = indentDrawbackTime;
+        this.indentDrawbackMoneyTime = indentDrawbackMoneyTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Indent{" +
+                "indentId=" + indentId +
+                ", indentUserId=" + indentUserId +
+                ", indentRecId=" + indentRecId +
+                ", indentStatus=" + indentStatus +
+                ", indentDeleteStatus=" + indentDeleteStatus +
+                ", indentTotal=" + indentTotal +
+                ", indentCarriage=" + indentCarriage +
+                ", indentCreateTime=" + indentCreateTime +
+                ", indentWay=" + indentWay +
+                ", indentPaidTime=" + indentPaidTime +
+                ", indentEndTime=" + indentEndTime +
+                ", indentDrawbackTime=" + indentDrawbackTime +
+                ", indentDrawbackMoneyTime=" + indentDrawbackMoneyTime +
+                ", address=" + address +
+                ", userInf=" + userInf +
+                '}';
     }
 }

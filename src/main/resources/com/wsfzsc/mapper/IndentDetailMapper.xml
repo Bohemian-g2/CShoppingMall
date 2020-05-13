@@ -6,6 +6,44 @@
     <id column="indent_goods_id" jdbcType="INTEGER" property="indentGoodsId" />
     <result column="indent_goods_num" jdbcType="INTEGER" property="indentGoodsNum" />
   </resultMap>
+  <!-- 带订单和商品  辅助查询User Address-->
+  <resultMap id="WithIndentCommodityBaseResultMap" type="com.wsfzsc.pojo.IndentDetail">
+    <id column="indent_id" jdbcType="INTEGER" property="indentId" />
+    <id column="indent_goods_id" jdbcType="INTEGER" property="indentGoodsId" />
+    <result column="indent_goods_num" jdbcType="INTEGER" property="indentGoodsNum" />
+    <association property="indent" javaType="com.wsfzsc.pojo.Indent">
+      <id column="indent_id" jdbcType="INTEGER" property="indentId" />
+      <result column="indent_user_id" jdbcType="INTEGER" property="indentUserId" />
+      <result column="indent_rec_id" jdbcType="INTEGER" property="indentRecId" />
+      <result column="indent_status" jdbcType="INTEGER" property="indentStatus" />
+      <result column="indent_delete_status" jdbcType="INTEGER" property="indentDeleteStatus" />
+      <result column="indent_total" jdbcType="REAL" property="indentTotal" />
+      <result column="indent_carriage" jdbcType="REAL" property="indentCarriage" />
+      <result column="indent_create_time" jdbcType="TIMESTAMP" property="indentCreateTime" />
+      <result column="indent_way" jdbcType="INTEGER" property="indentWay" />
+      <result column="indent_paid_time" jdbcType="TIMESTAMP" property="indentPaidTime" />
+      <result column="indent_end_time" jdbcType="TIMESTAMP" property="indentEndTime" />
+      <result column="indent_drawback_time" jdbcType="TIMESTAMP" property="indentDrawbackTime" />
+      <result column="indent_drawback_money_time" jdbcType="TIMESTAMP" property="indentDrawbackMoneyTime" />
+    </association>
+    <association property="commodity" javaType="com.wsfzsc.pojo.Commodity">
+      <id column="commodity_id" jdbcType="INTEGER" property="commodityId" />
+      <result column="commodity_kind" jdbcType="INTEGER" property="commodityKind" />
+      <result column="commodity_name" jdbcType="VARCHAR" property="commodityName" />
+      <result column="commodity_status" jdbcType="INTEGER" property="commodityStatus" />
+      <result column="commodity_money" jdbcType="REAL" property="commodityMoney" />
+      <result column="commodity_stock" jdbcType="INTEGER" property="commodityStock" />
+      <result column="commodity_size" jdbcType="VARCHAR" property="commoditySize" />
+      <result column="commodity_sex" jdbcType="INTEGER" property="commoditySex" />
+      <result column="commodity_picture" jdbcType="VARCHAR" property="commodityPicture" />
+      <result column="commodity_descript" jdbcType="VARCHAR" property="commodityDescript" />
+      <result column="commodity_color" jdbcType="VARCHAR" property="commodityColor" />
+      <result column="commodity_style" jdbcType="VARCHAR" property="commodityStyle" />
+      <result column="commodity_source" jdbcType="VARCHAR" property="commoditySource" />
+      <result column="commodity_date" jdbcType="TIMESTAMP" property="commodityDate" />
+    </association>
+
+  </resultMap>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -33,6 +71,37 @@
           </trim>
         </if>
       </foreach>
+    </where>
+  </sql>
+  <!-- 修改过的 -->
+  <sql id="UpdateExample_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+      and ind.indent_id = i.indent_id and ind.indent_goods_id = c.commodity_id
     </where>
   </sql>
   <sql id="Update_By_Example_Where_Clause">
@@ -67,6 +136,14 @@
   <sql id="Base_Column_List">
     indent_id, indent_goods_id, indent_goods_num
   </sql>
+  <!-- 带订单和商品 辅助查询User Address-->
+  <sql id="WithIndentCommodity_Base_Column_List">
+    ind.indent_id, ind.indent_goods_id, ind.indent_goods_num ,i.indent_id, i.indent_user_id, i.indent_rec_id, i.indent_status, i.indent_delete_status, i.indent_total,
+    i.indent_carriage, i.indent_create_time, i.indent_way, i.indent_paid_time, i.indent_end_time,
+    i.indent_drawback_time, i.indent_drawback_money_time,c.commodity_id, c.commodity_kind, c.commodity_name, c.commodity_status, c.commodity_money,
+    c.commodity_stock, c.commodity_size, c.commodity_sex, c.commodity_picture, c.commodity_descript,
+    c.commodity_color, c.commodity_style, c.commodity_source, c.commodity_date
+    </sql>
   <select id="selectByExample" parameterType="com.wsfzsc.pojo.IndentDetailExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -82,11 +159,26 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="com.wsfzsc.pojo.IndentDetailKey" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from indent_detail
     where indent_id = #{indentId,jdbcType=INTEGER}
-      and indent_goods_id = #{indentGoodsId,jdbcType=INTEGER}
+    and indent_goods_id = #{indentGoodsId,jdbcType=INTEGER}
+  </select>
+  <select id="selectByExampleWithIndentCommodity" parameterType="com.wsfzsc.pojo.IndentDetailExample" resultMap="WithIndentCommodityBaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="WithIndentCommodity_Base_Column_List" />
+    from indent_detail ind , indent i , commodity c
+
+
+    <include refid="UpdateExample_Where_Clause" />
+
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="com.wsfzsc.pojo.IndentDetailKey">
     delete from indent_detail
@@ -156,8 +248,8 @@
   <update id="updateByExample" parameterType="map">
     update indent_detail
     set indent_id = #{record.indentId,jdbcType=INTEGER},
-      indent_goods_id = #{record.indentGoodsId,jdbcType=INTEGER},
-      indent_goods_num = #{record.indentGoodsNum,jdbcType=INTEGER}
+    indent_goods_id = #{record.indentGoodsId,jdbcType=INTEGER},
+    indent_goods_num = #{record.indentGoodsNum,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -170,7 +262,7 @@
       </if>
     </set>
     where indent_id = #{indentId,jdbcType=INTEGER}
-      and indent_goods_id = #{indentGoodsId,jdbcType=INTEGER}
+    and indent_goods_id = #{indentGoodsId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.wsfzsc.pojo.IndentDetail">
     update indent_detail

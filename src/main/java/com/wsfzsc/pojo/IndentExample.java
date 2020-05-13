@@ -145,6 +145,7 @@ public class IndentExample {
             return (Criteria) this;
         }
 
+        //修改
         public Criteria andIndentIdIn(List<Integer> values) {
             addCriterion("indent_id in", values, "indentId");
             return (Criteria) this;
@@ -294,9 +295,9 @@ public class IndentExample {
             addCriterion("indent_status is not null");
             return (Criteria) this;
         }
-
+        //修改
         public Criteria andIndentStatusEqualTo(Integer value) {
-            addCriterion("indent_status =", value, "indentStatus");
+            addCriterion("i.indent_status =", value, "indentStatus");
             return (Criteria) this;
         }
 
