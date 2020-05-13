@@ -350,13 +350,6 @@
     <!-- 商品列表 -->
     <div class="am-btn-toolbars am-btn-toolbar am-kg am-cf">
         <ul>
-            <li>
-                <div class="am-btn-group am-btn-group-xs">
-                    <select data-am-selected="{btnWidth: 90, btnSize: 'sm', btnStyle: 'default'}">
-                        <option value="b">产品分类</option>
-                    </select>
-                </div>
-            </li>
             <li><input type="text" class="am-form-field am-input-sm am-input-xm" placeholder="关键词搜索" id="select_name"/></li>
             <li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;" id="select_btn">搜索</button></li>
         </ul>

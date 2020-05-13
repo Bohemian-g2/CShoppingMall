@@ -96,7 +96,7 @@ $(function(){
         page_area.append(next_page);
     }
     //显示订单内商品详情
-    $(document).on('click',"#indent_detail_btn",function(){
+    $(document).on('click',".indent_detail_btn",function(){
         $("#replace_detail_modal").modal();
         $.ajax({
             url : "../indentDetail/showById",

@@ -51,7 +51,7 @@
     <tr class="am-popup-bd">
         <form class="am-form tjlanmu" style="width: 90%;margin: auto">
             物流地址 : <input type="text" id="logistics_address">
-            <button type="button" id="logistic">修改</button>
+            <button type="button" class="am-btn am-radius am-btn-xs am-btn-success" id="logistic">修改</button>
         </form>
 </div>
 </div>

@@ -186,7 +186,6 @@ $(function(){
         $("#logistic_modal").modal();
         $("#logistic").attr("com_id",$(this).attr("com_id"));
         var indentId = $(this).attr("com_id");
-        alert(indentId);
         $.ajax({
             url : "../logistic/selectOne",
             data : {
@@ -195,7 +194,6 @@ $(function(){
             type : "POST",
             datatype: "application/json; charset=utf-8",
             success : function(result){
-                alert("hello");
                 console.log(result);
                 $("#logistics_address").val(result);
             },
