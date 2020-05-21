@@ -229,11 +229,9 @@
     select *from admin
     where admin_username=#{userName}
   </select>
-
   <select id="selectUsernames" resultType="String">
     select admin_username from admin
   </select>
-
   <select id="selectByPageAndSelections" parameterType="com.wsfzsc.pojo.Admin" resultMap="BaseResultMap">
     SELECT *FROM admin
     <where>

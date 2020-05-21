@@ -235,7 +235,7 @@ public class AnswerExample {
         }
 
         public Criteria andUserIdEqualTo(Integer value) {
-            addCriterion("user_id =", value, "userId");
+            addCriterion("a.user_id =", value, "userId");
             return (Criteria) this;
         }
 

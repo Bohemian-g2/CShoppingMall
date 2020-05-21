@@ -100,4 +100,20 @@ public class UserInf {
     public void setUserTitle(String userTitle) {
         this.userTitle = userTitle == null ? null : userTitle.trim();
     }
+
+    @Override
+    public String toString() {
+        return "UserInf{" +
+                "userId=" + userId +
+                ", loginName='" + loginName + '\'' +
+                ", password='" + password + '\'' +
+                ", userName='" + userName + '\'' +
+                ", identityType=" + identityType +
+                ", identityNumber='" + identityNumber + '\'' +
+                ", userEmail='" + userEmail + '\'' +
+                ", userPhone='" + userPhone + '\'' +
+                ", sex=" + sex +
+                ", userTitle='" + userTitle + '\'' +
+                '}';
+    }
 }

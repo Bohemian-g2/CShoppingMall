@@ -7,6 +7,18 @@
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="answer" jdbcType="VARCHAR" property="answer" />
   </resultMap>
+
+  <resultMap id="ResultMapWithQue" type="com.wsfzsc.pojo.Answer">
+    <id column="answer_id" jdbcType="INTEGER" property="answerId" />
+    <result column="question_id" jdbcType="INTEGER" property="questionId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="answer" jdbcType="VARCHAR" property="answer" />
+    <association property="question" javaType="com.wsfzsc.pojo.Question">
+      <id column="question_id" property="questionId"></id>
+      <result column="question" property="question"></result>
+    </association>
+  </resultMap>
+
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -68,6 +80,10 @@
   <sql id="Base_Column_List">
     answer_id, question_id, user_id, answer
   </sql>
+  <!--带具体问题信息-->
+  <sql id="With_Question_Column_List">
+    a.answer_id,a.question_id,a.user_id,a.answer,q.question_id,q.question
+  </sql>
   <select id="selectByExample" parameterType="com.wsfzsc.pojo.AnswerExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -88,6 +104,29 @@
     from answer
     where answer_id = #{answerId,jdbcType=INTEGER}
   </select>
+  <!--带具体问题查询-->
+  <select id="selectByUserIdWithQue" parameterType="com.wsfzsc.pojo.AnswerExample" resultMap="ResultMapWithQue">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="With_Question_Column_List" />
+    from answer a
+    LEFT JOIN question q ON a.question_id = q.question_id
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByUserIdAndQueId" parameterType="com.wsfzsc.pojo.Answer" resultType="com.wsfzsc.pojo.Answer">
+    select * from answer
+    where user_id = #{userId}
+    AND question_id = #{queId}
+  </select>
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from answer
     where answer_id = #{answerId,jdbcType=INTEGER}
@@ -141,6 +180,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+
   <update id="updateByExampleSelective" parameterType="map">
     update answer
     <set>
@@ -193,4 +233,5 @@
       answer = #{answer,jdbcType=VARCHAR}
     where answer_id = #{answerId,jdbcType=INTEGER}
   </update>
+
 </mapper>

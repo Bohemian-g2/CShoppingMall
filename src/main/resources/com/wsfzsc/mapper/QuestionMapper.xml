@@ -161,4 +161,7 @@
     set question = #{question,jdbcType=VARCHAR}
     where question_id = #{questionId,jdbcType=INTEGER}
   </update>
+  <select id="selectall" parameterType="com.wsfzsc.pojo.Question">
+    select * from question
+  </select>
 </mapper>

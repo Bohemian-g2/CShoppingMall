@@ -18,13 +18,13 @@ public class FrontController {
     /*商品购物车页面返回 （包括库存）*/
     @RequestMapping("frontCart")
     public String frontCart(){
-        return "front/frontCart";
+        return "frontground/frontCart";
     }
 
     /*商品收藏页面返回 （包括库存）*/
     @RequestMapping("frontCollect")
     public String frontCollect(){
-        return "front/frontCollect";
+        return "frontground/frontCollect";
     }
 
     /*商品收藏页面返回 （包括库存）*/

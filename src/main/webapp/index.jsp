@@ -15,6 +15,7 @@
 
 <%--头部--%>
 <header>
+    <a href="admin/Login">进入后台登录系统</a>
     <div class="top center">
         <div class="left fl">
             <ul>
@@ -33,9 +34,9 @@
         <div class="right fr">
             <div class="fr">
                 <ul>
-                    <li><a href="" target="_blank">登录</a></li>
+                    <li><a href="${pageContext.request.contextPath}/user/ToLogin" target="_blank">登录</a></li>
                     <li>|</li>
-                    <li><a href="" target="_blank" >注册</a></li>
+                    <li><a href="${pageContext.request.contextPath}/user/ToReg" target="_blank" >注册</a></li>
                 </ul>
             </div>
             <div class="clear"></div>

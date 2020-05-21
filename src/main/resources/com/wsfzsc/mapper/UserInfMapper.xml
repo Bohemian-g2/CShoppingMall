@@ -288,8 +288,37 @@
       user_title = #{userTitle,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
-
   <select id="selectUsernames" resultType="String">
 select login_name from user_inf
 </select>
+  <select id="selectByUsername" parameterType="String" resultType="com.wsfzsc.pojo.UserInf">
+    select *from user_inf
+    where login_name=#{userName}
+  </select>
+  <select id="selectByUserId" parameterType="Integer" resultType="com.wsfzsc.pojo.UserInf">
+    select * from user_inf
+    where user_id = #{userId}
+  </select>
+  <select id="selectUserId" resultType="Integer">
+    select user_id from user_inf
+  </select>
+  <update id="updateByUserId" >
+    update user_inf
+    set
+    password = #{newPwd}
+    where
+    user_id = #{userId}
+
+  </update>
+  <update id="updateTilByUserId" >
+    update user_inf
+    set
+    user_title = #{UserTitle}
+    where
+    user_id = #{userId}
+
+  </update>
+
+
 </mapper>
+

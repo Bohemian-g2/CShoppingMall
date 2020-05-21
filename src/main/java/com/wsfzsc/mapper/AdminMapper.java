@@ -36,4 +36,6 @@ public interface AdminMapper {
     List<String> selectUsernames();
     /*得到管理员数据*/
     public List<Admin> selectByPageAndSelections(Admin admin);
+
+
 }

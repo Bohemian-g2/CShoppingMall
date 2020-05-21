@@ -82,6 +82,7 @@ public class Answer {
                 ", questionId=" + questionId +
                 ", userId=" + userId +
                 ", answer='" + answer + '\'' +
+                ", question=" + question +
                 '}';
     }
 }

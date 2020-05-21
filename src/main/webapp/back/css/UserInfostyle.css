@@ -1,0 +1,49 @@
+
+article, aside, audio, canvas, command, datalist, details, embed, figcaption, figure, footer, header, hgroup, keygen, meter, nav, output, progress, section, source, video {display:block}
+mark, rp, rt, ruby, summary, time {display:inline}
+.left {float:left}
+.right {float:right}
+.uif{margin-right: 80px}
+.bottom{float: bottom;margin-bottom: 20px}
+.wrapper {width:100%;overflow:hidden}
+body {background:url(../img/p_big3.jpg) repeat;border:0;font:14px Arial, Helvetica, sans-serif;color:#363636;line-height:20px; background-size:cover;
+}
+.ic, .ic a {border:0;float:right;background:#fff;color:#f00;width:50%;line-height:10px;font-size:10px;margin:-220% 0 0 0;overflow:hidden;padding:0}
+.css3 {border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;box-shadow:0 0 4px rgba(0, 0, 0, .4);-moz-box-shadow:0 0 4px rgba(0, 0, 0, .4);-webkit-box-shadow:0 0 4px rgba(0, 0, 0, .4);position:relative}
+.main {margin:0 auto;width:900px}
+body, html {height:100%}
+a {color:#FFFFFF;text-decoration:underline;outline:none;font-size: 22px;}
+a:hover {text-decoration:none}
+h1 {float:left;
+    padding:114px 0 0 63px;
+    color: #FFFFFF;
+    font-size: 35px;
+}
+p {padding-bottom:20px}
+header {height:266px;width:100%;overflow:hidden;
+font-family: STKaiti;
+}
+#menu {}
+#menu li {}
+#menu li a{}
+#menu li a:hover, #menu #menu_active a {}
+#content {height:372px;width:100%;overflow:hidden;background:#fff;position:relative}
+.cont_top_left, .cont_top_right, .cont_bot_left, .cont_bot_right {display:block;width:20px;height:20px;position:absolute;z-index:11}
+.inner {padding:3px;position:relative;z-index:10}
+.kwiks_wrap {height:366px}
+.kwicks{list-style:none;margin:0;	overflow:hidden;width:100% !important;	height:366px;position:relative}
+.kwicks > li {width:176px;height:366px;float:left;overflow:hidden;padding:0;cursor:pointer;background:url(../images/bg_content_right.jpg) top right no-repeat;position:relative;cursor:auto}
+.text {float:left;width:60px;height:366px;text-indent:-9999px;cursor:pointer}
+#page_1 .text {background:url(../img/page_1.gif) 0 0 no-repeat}
+#page_2 .text {background:url(../img/page_2.gif) 0 0 no-repeat}
+#page_3 .text {background:url(../img/page_3.gif) 0 0 no-repeat}
+#page_4 .text {background:url(../img/page_4.gif) 0 0 no-repeat}
+#page_5 .text {background:url(../img/page_5.gif) 0 0 no-repeat}
+#page_1.active .text, #page_1:hover .text {background:url(../img/page1_active.gif) 0 0 no-repeat}
+#page_2.active .text, #page_2:hover .text {background:url(../img/page2_active.gif) 0 0 no-repeat}
+#page_3.active .text, #page_3:hover .text {background:url(../img/page3_active.gif) 0 0 no-repeat}
+#page_4.active .text, #page_4:hover .text {background:url(../img/page4_active.gif) 0 0 no-repeat}
+#page_5.active .text, #page_5:hover .text {background:url(../img/page5_active.gif) 0 0 no-repeat}
+.cont {position:absolute;left:107px;top:32px;width:500px;height:320px;overflow:hidden}
+
+
