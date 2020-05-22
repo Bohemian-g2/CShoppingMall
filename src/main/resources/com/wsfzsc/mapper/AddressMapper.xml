@@ -273,4 +273,22 @@
       detailed_address = #{detailedAddress,jdbcType=VARCHAR}
     where address_id = #{addressId,jdbcType=INTEGER}
   </update>
+
+  <select id="selectByUserId" parameterType="Integer" resultType="com.wsfzsc.pojo.Address">
+    select * from address
+    where user_id = #{userId}
+  </select>
+  <update id="updateByAddressId" parameterType="com.wsfzsc.pojo.Address">
+    update address
+    set user_id = #{userId,jdbcType=INTEGER},
+      address_name = #{addressName,jdbcType=VARCHAR},
+      address_phone = #{addressPhone,jdbcType=INTEGER},
+      address_province = #{addressProvince,jdbcType=VARCHAR},
+      address_city = #{addressCity,jdbcType=VARCHAR},
+      address_district = #{addressDistrict,jdbcType=VARCHAR},
+      address_postcode = #{addressPostcode,jdbcType=INTEGER},
+      detailed_address = #{detailedAddress,jdbcType=VARCHAR}
+    where address_id = #{addressId,jdbcType=INTEGER}
+  </update>
+
 </mapper>

@@ -16,9 +16,12 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/back/js/jquery-1.5.2.js" ></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/back/js/kwicks-1.5.1.pack.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/back/js/script.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/back/js/sanJselect.js" charset="UTF-8"></script>
+
+
 
 </head>
-<body id="page1">
+<body id="page1" >
 
 <a href="#">返回商城</a>
 <div class="body1">
@@ -122,17 +125,38 @@
                                 </form>
                                 </div>
                             </li>
-                            <li id="page_4">
+                            <li id="page_4" onclick="showAddress('${pageContext.request.contextPath}/address/showAddress')">
                                 <div class="text">My address</div>
+                                <br>
                                 <div class="cont">
-
-
+                                    <center><h3>我的收货地址</h3></center>
+                                    <div id="addressMes">
+                                    </div>
                                 </div>
                             </li>
                             <li id="page_5">
-                                <div class="text">Contact Us</div>
+                                <div class="text">Add address</div>
                                 <div class="cont">
-
+                                    <center><h3>新增收货地址</h3></center>
+                                    <form action="${pageContext.request.contextPath}/address/AddAddress" method="post">
+                                        收货人姓名:<input type="text" name="addressName"><br>
+                                        收货人电话:<input type="text" name="addressPhone"><br>
+                                        省：
+                                        <select name="province" id="province">
+                                            <option value="">请选择</option>
+                                        </select>
+                                        市：
+                                        <select name="city" id="city" disabled="disabled">
+                                            <option value="">请选择</option>
+                                        </select>
+                                        区：
+                                        <select name="district" id="district" disabled="disabled">
+                                            <option value="">请选择</option>
+                                        </select><br>
+                                        邮编:<input type="text" name="postCode"><br>
+                                        详细地址:<input type="text" name="detailedAddress"><br>
+                                        <input type="submit" value="添加">
+                                    </form>
                                 </div>
                             </li>
                         </ul>

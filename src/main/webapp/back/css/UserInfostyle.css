@@ -45,5 +45,9 @@ font-family: STKaiti;
 #page_4.active .text, #page_4:hover .text {background:url(../img/page4_active.gif) 0 0 no-repeat}
 #page_5.active .text, #page_5:hover .text {background:url(../img/page5_active.gif) 0 0 no-repeat}
 .cont {position:absolute;left:107px;top:32px;width:500px;height:320px;overflow:hidden}
+input{margin-top:2px;text-decoration: underline; }
+#opt{color: rebeccapurple;font-size: 15px;margin: 2px;}
+#del{color: rebeccapurple;font-size: 15px;margin: 2px;}
+#fin{float: right}
 
 

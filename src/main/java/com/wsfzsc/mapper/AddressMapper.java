@@ -2,6 +2,7 @@ package com.wsfzsc.mapper;
 
 import com.wsfzsc.pojo.Address;
 import com.wsfzsc.pojo.AddressExample;
+import com.wsfzsc.pojo.UserInf;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -28,4 +29,13 @@ public interface AddressMapper {
     int updateByPrimaryKeySelective(Address record);
 
     int updateByPrimaryKey(Address record);
+
+    /*根据用户ID查找该用户的收货地址*/
+    List<Address> selectByUserId(@Param("userId") Integer userId);
+
+    /**/
+    int updateByAddressId(Address address);
+
+
+
 }
