@@ -110,7 +110,7 @@
     <ul class="nav nav-pills">
         <li role="presentation" style="background: #ff6700;border-radius:15px;"><a href="#">商品介绍</a></li>
         <li role="presentation" style="background: #ff6700;border-radius:15px;">
-            <a href="#" onclick="loadComment('${pageContext.request.contextPath}/front/comment')">商品评价</a></li>
+            <a href="#" onclick="loadComment('${commodity.commodityId}')">商品评价</a></li>
     </ul>
     <div id="commoditydetail">
         这里直接写商品介绍，我在commoditydetail.js文件中写了异步函数，点击评论信息直接切换出评论页面

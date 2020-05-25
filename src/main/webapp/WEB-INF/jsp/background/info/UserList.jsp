@@ -34,7 +34,7 @@
                 </div>
             </div>
             <div class="am-form-group">
-                <div class="zuo" style="float: left;width: 19%">用户账号：</div>
+                <div class="zuo" style="float: left;width: 19%;">用户账号：</div>
                 <div class="you">
                     <input type="text" class="am-input-sm" id="SecUserLoginName" placeholder="请输入用户账号">
                 </div>
@@ -74,7 +74,7 @@
                 <div class="you">
                     <p>
                         <button type="button" class="am-btn am-btn-success am-radius"
-                                onclick="getUserList()">提交</button>
+                                onclick="getUserList(1)">提交</button>
                     </p>
                 </div>
             </div>
@@ -98,7 +98,7 @@
                 </div>
             </div>
             <div class="am-form-group">
-                <div class="zuo" style="float: left;width: 19%">用户账号：</div>
+                <div class="zuo" style="float: left;width: 19%;margin-top: 5px;">用户账号：</div>
                 <div class="you">
                     <input type="text" class="am-input-sm" id="upateUserLoginName" placeholder="请输入用户账号"readonly/>
                 </div>
@@ -182,7 +182,8 @@
         </table>
         <!-- 新页面底部 -->
         <div class="am-btn-group am-btn-group-xs" style="float: left;margin-top: 10px ">
-            <button type="button" class="am-btn am-btn-default"><span class="am-icon-search-plus"  data-am-modal="{target: '#my-secuserinfo'}" style="font-size: 1.4rem"></span> 查询</button>
+            <button type="button" class="am-btn am-btn-default"  data-am-modal="{target: '#my-secuserinfo'}" style="font-size: 1.4rem">
+                <span class="am-icon-search-plus"></span>查询</button>
             <button type="button" class="am-btn am-btn-default" style="font-size: 1.4rem"
              onclick="deleteInfo('usercheckbox','${pageContext.request.contextPath}/backuser/deleteUserList')" >
                 <span class="am-icon-trash-o"></span> 删除</button>

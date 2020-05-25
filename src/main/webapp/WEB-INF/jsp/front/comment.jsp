@@ -11,7 +11,14 @@
 <head>
     <title>评论页面</title>
 </head>
+<style>
+    .circleImg{
+        border-radius: 30px;
+        width:60px;
+        height:60px;
+    }
+</style>
 <body>
-评论信息自己完成（写一个table）在商品详情页的评论按钮点击就显示改页面的table
+
 </body>
 </html>

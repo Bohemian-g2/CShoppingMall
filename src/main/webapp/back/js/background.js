@@ -310,7 +310,7 @@ function getUserList(userpage) {
 	var userIdType=$("#SecUserIdType").val();
 	var userIdNumber=$("#SecUserIdNumber").val();
 	var userPhone=$("#SecUserPhone").val();
-	var userSex=$("input[name='usersex']:checked").val();
+	var userSex=$("input[name='SecUserSex']:checked").val();
 	var userEmail=$("#SecUserEmail").val();
 	$.ajax({
 		type: "post",
