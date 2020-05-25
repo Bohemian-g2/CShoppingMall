@@ -41,16 +41,20 @@
                                 <div class="cont">
                                     <div class="left">
                                     <figure class="left marg_right1">
-                                        <img src="<%
-                                              UserInf user = (UserInf) session.getAttribute("user");
-                                              if(user.getUserTitle()==null){
-                                                  %>${pageContext.request.contextPath}/back/img/UserTitle.jpg
+                                        <img src="
+                                              <%
+                                                UserInf user = (UserInf) session.getAttribute("user");
+                                                if(user.getUserTitle()==null){
+                                              %>
+                                                  ${pageContext.request.contextPath}/back/img/UserTitle.jpg
                                               <%
                                               }else{
-                                              %>localhost:8080/usertitle/${sessionScope.user.userTitle}
+                                              %>
+                                                  ${pageContext.request.contextPath}/usertitle/${sessionScope.user.userTitle}
                                               <%
                                               }
-                                        %>" width="150px" height="150px">
+                                              %>"
+                                             width="150px" height="150px">
                                     </figure>
                                     <div class="bottom">
                                     <form action="${pageContext.request.contextPath}/user/uploadTitle" method="post" enctype="multipart/form-data">

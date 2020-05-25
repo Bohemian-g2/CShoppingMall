@@ -15,7 +15,6 @@
 
 <%--头部--%>
 <header>
-    <a href="admin/Login">进入后台登录系统</a>
     <div class="top center">
         <div class="left fl">
             <ul>

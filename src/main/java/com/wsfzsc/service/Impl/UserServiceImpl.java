@@ -74,6 +74,8 @@ public class UserServiceImpl implements UserService {
         }
         /*自动生成用户ID*/
         user.setUserId(guid.createUserID());
+        System.out.println("正在生成ID");
+        System.out.println("当前生成id："+user.getUserId());
         /*加密密码*/
         user.setPassword(Encryption.Encrypt(user.getPassword()));
         userInfMapper.insertSelective(user);
@@ -111,11 +113,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public String uploadUserPic(CommonsMultipartFile file, UserInf user, HttpServletRequest request) throws IOException {
         String fileName = file.getOriginalFilename();
-        String prefix = fileName.substring(0,fileName.indexOf("."));
         String suffix = fileName.substring(fileName.lastIndexOf("."));
-        String newFileName = prefix+suffix;
+        String newFileName = user.getLoginName()+suffix;
         ServletContext sc = request.getSession().getServletContext();
-        String path;
         String basePath = sc.getRealPath("/usertitle");
         File f = new File(basePath);
         if(!f.exists()){
