@@ -14,7 +14,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("comment")
-public class CommentController {
+public class BackCommentController {
     @Autowired
     private CommentService commentService;
 

@@ -1,5 +1,6 @@
 /*页面载入函数*/
 function loadPage(url,jspName){
+
 	$.ajax({
 		type:"GET",
 		url:url,
@@ -8,13 +9,13 @@ function loadPage(url,jspName){
 		contentType:"application/json;charset=utf-8",
 		success:function(html){
 			$("#content").html(html);
-			if(jspName=="adminList"){
+			if(jspName=="AdminList"){
 				getAdminList();
 			}
-			if(jspName=="userList"){
+			if(jspName=="UserList"){
 				getUserList();
 			}
-			if(jspName=="commentList"){
+			if(jspName=="CommentList"){
 				getCommentList();
 			}
 		},

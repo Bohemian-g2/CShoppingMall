@@ -11,7 +11,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="multipart/form-data; charset=utf-8" />
     <title>商品列表</title>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/back/js/commodity.js"></script>
+
 
 </head>
 <body>
@@ -417,5 +417,6 @@
 </div>
 </div>
 </div>
+<script type="text/javascript" src="${pageContext.request.contextPath}/back/js/commodity.js"></script>
 </body>
 </html>

@@ -35,7 +35,6 @@
                 </tr>
                 </thead>
                 <tbody>
-
                 </tbody>
             </table>
         </form>
@@ -68,44 +67,6 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td><input type="checkbox" /></td>
-                <td>14</td>
-                <td><a href="#">肥皂</a></td>
-                <td>11</td>
-                <td>杨司成</td>
-                <td>天津</td>
-                <td>2020年4月5日</td>
-                <td>
-                    <!-- 操作栏 -->
-                    <div class="am-btn-toolbar">
-                        <div class="am-btn-group am-btn-group-xs">
-                            <button class="am-btn am-btn-default am-btn-xs am-text-success am-round"><span class="am-icon-search" title="查看订单详情"></span> </button>
-                            <button class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" data-am-modal="{target: '#my-popups'}" title="修改订单"><span class="am-icon-pencil-square-o"></span></button>
-                            <button class="am-btn am-btn-default am-btn-xs am-text-danger am-round" title="删除订单"><span class="am-icon-trash-o" ></span></button>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td><input type="checkbox" /></td>
-                <td>14</td>
-                <td><a href="#">肥皂</a></td>
-                <td>11</td>
-                <td>杨司成</td>
-                <td>天津</td>
-                <td>2020年4月5日</td>
-                <td>
-                    <!-- 操作栏 -->
-                    <div class="am-btn-toolbar">
-                        <div class="am-btn-group am-btn-group-xs">
-                            <button class="am-btn am-btn-default am-btn-xs am-text-success am-round"><span class="am-icon-search" title="查看订单详情"></span> </button>
-                            <button class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" data-am-modal="{target: '#my-popups'}" title="修改订单"><span class="am-icon-pencil-square-o"></span></button>
-                            <%--<button class="am-btn am-btn-default am-btn-xs am-text-danger am-round" title="删除订单"><span class="am-icon-trash-o" ></span></button>--%>
-                        </div>
-                    </div>
-                </td>
-            </tr>
             </tbody>
         </table>
         <%--
@@ -117,24 +78,17 @@
 
         <!-- 分页标签 -->
         <ul class="am-pagination am-fr" id="page_info_area">
-            <%--<li class="am-disabled"><a href="#">«</a></li>
-            <li class="am-active"><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">»</a></li>--%>
         </ul>
         <hr />
         <p>
             备注：操作图标含义
             <a class="am-text-success am-icon-search-plus"> 查询订单信息</a>
             <a class="am-icon-pencil-square-o am-text-secondary"> 修改订单信息</a>
-            <%--<a class="am-icon-trash-o am-text-danger" > 删除订单信息</a>--%>
         </p>
     </form>
 </div>
 </div>
 </div>
+
 </body>
 </html>

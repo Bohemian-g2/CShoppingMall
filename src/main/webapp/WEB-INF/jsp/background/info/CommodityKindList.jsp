@@ -12,7 +12,7 @@
     <meta charset="utf-8">
     <title>商品分类列表</title>
 </head>
-<script type="text/javascript" src="${pageContext.request.contextPath}/back/js/commodityKind.js"></script>
+
 <body>
 <!-- 新页面 -->
 <!-- 手动添加商品分类的模态框 -->
@@ -142,5 +142,6 @@
 </div>
 </div>
 </div>
+<script type="text/javascript" src="${pageContext.request.contextPath}/back/js/commodityKind.js"></script>
 </body>
 </html>

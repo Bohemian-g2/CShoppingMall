@@ -16,6 +16,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/front/css/product.css" />
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/front/css/bootstrap.css"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/front/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/front/css/remark.css" />
     <script src="${pageContext.request.contextPath}/back/js/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/front/js/commoditydetail.js"></script>
 </head>
@@ -106,15 +107,23 @@
         </div>
 </div>
 
-<div  style="width: 1226px;margin:auto;margin-top: 20px;height: 600px;">
-    <ul class="nav nav-pills">
-        <li role="presentation" style="background: #ff6700;border-radius:15px;"><a href="#">商品介绍</a></li>
-        <li role="presentation" style="background: #ff6700;border-radius:15px;">
-            <a href="#" onclick="loadComment('${commodity.commodityId}')">商品评价</a></li>
+<div  id="foot" style="width: 1226px;margin:auto;margin-top: 50px;">
+    <ul class="nav nav-tabs" >
+        <li role="presentation" class="remark_header active" color="#ff6700"><a href="#foot" >商品介绍</a></li>
+        <%--<li role="presentation"><a href="#" onclick="loadComment('${commodity.commodityId}')">商品评价</a></li>--%>
+        <li role="presentation" class="remark_header" color="#ff6700"><a href="#foot"  onclick="loadComment(1)">商品评价</a></li>
     </ul>
-    <div id="commoditydetail">
+    <div id="commoditydetail" style="margin-top:20px;">
         这里直接写商品介绍，我在commoditydetail.js文件中写了异步函数，点击评论信息直接切换出评论页面
     </div>
 </div>
+<div class="copyright">版权所有，维权必究，所有数据均由出自我组测试</div>
+<script>
+
+    $(".remark_header").click(function(){
+        $(".remark_header").removeClass("active");
+        $(this).addClass("active");
+    });
+</script>
 </body>
 </html>

@@ -3,12 +3,17 @@ package com.wsfzsc.service.Impl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.wsfzsc.mapper.CommentMapper;
+import com.wsfzsc.pojo.Comment;
 import com.wsfzsc.pojo.CommentExample;
 import com.wsfzsc.pojo.CommentHelper;
 import com.wsfzsc.service.CommentService;
+import com.wsfzsc.util.CommentShow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,13 +39,26 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public String deleteComment(List<Integer> ids) {
         //批量删除操作
-        CommentExample commentExample=new CommentExample();
+        CommentExample commentExample = new CommentExample();
         CommentExample.Criteria criteria = commentExample.createCriteria();
         criteria.andCommentIdIn(ids);
-        int sum=commentMapper.deleteByExample(commentExample);
-        if(sum>0){
+        int sum = commentMapper.deleteByExample(commentExample);
+        if (sum > 0) {
             return "deletesuccess";
         }
         return "deleteerror";
+    }
+
+    @Override
+    public List<CommentShow> getCmtByCID(Integer commodityId) {
+        List<CommentShow>commentShowList=commentMapper.selectCommentByCID(commodityId);
+        return commentShowList;
+    }
+
+    @Override
+    public int saveComment(Comment comment){
+        comment.setCommentTime(new Date());
+        int number=commentMapper.insertSelective(comment);
+        return number;
     }
 }

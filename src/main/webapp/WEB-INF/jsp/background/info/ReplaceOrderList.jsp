@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8">
     <title>换货订单列表</title>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/back/js/replaceOrder.js"></script>
+
 </head>
 <body>
 <!-- 显示商品具体信息模态框 -->
@@ -141,5 +141,6 @@
 </div>
 </div>
 </div>
+<script type="text/javascript" src="${pageContext.request.contextPath}/back/js/replaceOrder.js"></script>
 </body>
 </html>

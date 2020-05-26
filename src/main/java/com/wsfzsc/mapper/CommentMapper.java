@@ -3,7 +3,9 @@ package com.wsfzsc.mapper;
 import com.wsfzsc.pojo.Comment;
 import com.wsfzsc.pojo.CommentExample;
 import com.wsfzsc.pojo.CommentHelper;
+import com.wsfzsc.util.CommentShow;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.security.core.parameters.P;
 
 import java.util.List;
 
@@ -31,4 +33,6 @@ public interface CommentMapper {
     int updateByPrimaryKey(Comment record);
 
     List<CommentHelper> selectCommentHelper(CommentHelper commentHelper);
+
+    List<CommentShow> selectCommentByCID(@Param("CommodityId") Integer CommodityId);
 }

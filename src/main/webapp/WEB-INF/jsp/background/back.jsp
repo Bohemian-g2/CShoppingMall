@@ -75,12 +75,10 @@
     <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
         <ul class="am-nav am-nav-pills am-topbar-nav admin-header-list">
             <li class="am-dropdown tognzhi" data-am-dropdown>
-                <button class="am-btn am-btn-primary am-dropdown-toggle am-btn-xs am-radius am-icon-bell-o" data-am-dropdown-toggle> 消息管理<span class="am-badge am-badge-danger am-round">6</span></button>
+                <button class="am-btn am-btn-primary am-dropdown-toggle am-btn-xs am-radius am-icon-bell-o"  data-am-dropdown-toggle> 消息管理<span class="am-badge am-badge-danger am-round">0</span></button>
                 <ul class="am-dropdown-content">
                     <li class="am-dropdown-header">所有消息都在这里</li>
-                    <li><a href="#">未发货订单</a></li>
-                    <li><a href="#">低库存产品</a></li>
-                    <li><a href="#">信息反馈</a></li>
+                    <li><a href="#" onclick="loadPage('${pageContext.request.contextPath}/background/OrderList');">未发货订单</a></li>
                 </ul>
             </li>
             <li class="kuanjie">
@@ -103,7 +101,7 @@
         <div class="sideMenu">
             <h3 class="am-icon-flag"><em></em> <a href="#">商品管理</a></h3>
             <ul>
-                <li><a onclick="loadPage('${pageContext.request.contextPath}/background/CommodityList',null);" href="#">商品列表</a></li>
+                <li><a  onclick="loadPage('${pageContext.request.contextPath}/background/CommodityList',null);" href="#">商品列表</a></li>
                 <li><a onclick="loadPage('${pageContext.request.contextPath}/background/CommodityKindList',null);" href="#">商品分类管理</a></li>
             </ul>
             <h3 class="am-icon-cart-plus"><em></em> <a href="#"> 订单管理</a></h3>
@@ -115,12 +113,12 @@
             </ul>
             <h3 class="am-icon-users"><em></em> <a href="#">会员管理</a></h3>
             <ul>
-                <li><a onclick="loadPage('${pageContext.request.contextPath}/background/UserList','userList');" href="#">用户列表</a></li>
-                <li><a onclick="loadPage('${pageContext.request.contextPath}/background/AdminList','adminList');" href="#">普通管理员列表</a></li>
+                <li><a onclick="loadPage('${pageContext.request.contextPath}/background/UserList','UserList');" href="#">用户列表</a></li>
+                <li><a onclick="loadPage('${pageContext.request.contextPath}/background/AdminList','AdminList');" href="#">普通管理员列表</a></li>
             </ul>
             <h3 class="am-icon-volume-up"><em></em> <a href="#">评论管理</a></h3>
             <ul>
-                <li><a onclick="loadPage('${pageContext.request.contextPath}/background/CommentList','commentList');" href="#">评论列表</a></li>
+                <li><a onclick="loadPage('${pageContext.request.contextPath}/background/CommentList','CommentList');" href="#">评论列表</a></li>
             </ul>
         </div>
         <!-- 菜单结束 -->
@@ -142,10 +140,8 @@
     <div class=" admin-content">
         <!-- 顶部导航栏 -->
         <div class="daohang">
-            <ul>
-                <li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs"> 首页</button></li>
-                <li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">帮助中心<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
-                <li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">产品管理<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
+            <ul id="leader_title">
+                <li><button type="button" onclick="loadPage('${pageContext.request.contextPath}/background/UserList','UserList');" class="am-btn am-btn-default am-radius am-btn-xs"> 首页</button></li>
             </ul>
         </div>
         <%--页面内容--%>
@@ -155,6 +151,34 @@
     <script src="${pageContext.request.contextPath}/back/js/amazeui.min.js"></script>
     <script src="${pageContext.request.contextPath}/back/js/layer.js"></script>
     <script src="${pageContext.request.contextPath}/back/js/background.js"></script>
+    <script>
+        $(function () {
+            loadPage('${pageContext.request.contextPath}/background/UserList','UserList');
+        })
+
+        $(".sideMenu li a").click(function () {
+            var url;
+            var title=$(this).text();
+            if(title=="商品列表") url="CommodityList";
+            else if(title=="商品分类管理")url="CommodityKindList";
+            else if(title=="未发货订单列表")url="OrderList";
+            else if(title=="发货单列表")url="SendOrderList";
+            else if(title=="换货单列表")url="ReplaceOrderList";
+            else if(title=="到货单列表")url="ReturnOrderList";
+            else if(title=="用户列表")url="UserList','UserList";
+            else if(title=="普通管理员列表")url="AdminList','AdminList";
+            else if(title=="评论列表")url="CommentList','CommentList";
+
+            $("#leader_title").append("<li><button type=\"button\" class=\"am-btn am-btn-default am-radius am-btn-xs\"" +
+                "onclick=\"loadPage('/CShoppingMall/background/"+url+"')\">"
+                +title+
+                "<a  class=\"am-close am-close-spin head_close\"  href='#' onclick='removehead(this)'>×</a></button></li>");
+        });
+        function removehead(obj){
+            $(obj).parent().remove();
+        }
+
+    </script>
 </div>
 </body>
 </html>

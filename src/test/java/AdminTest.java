@@ -1,9 +1,11 @@
 import com.github.pagehelper.Page;
 import com.wsfzsc.mapper.CommentMapper;
 import com.wsfzsc.pojo.Admin;
+import com.wsfzsc.pojo.Comment;
 import com.wsfzsc.pojo.CommentHelper;
 import com.wsfzsc.service.AdminService;
 import com.wsfzsc.service.CommentService;
+import com.wsfzsc.util.CommentShow;
 import com.wsfzsc.util.Encryption;
 import com.wsfzsc.util.GUID;
 import org.junit.Test;
@@ -12,7 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -58,6 +63,18 @@ public class AdminTest {
         List<Integer> ids=new ArrayList<Integer>();
         ids.add(4);
         System.out.println(commentService.deleteComment(ids));
+    }
+    @Test
+    public void testQueryComment(){
+        List<CommentShow> commentShowList=commentMapper.selectCommentByCID(1);
+        System.out.println(commentShowList);
+    }
+
+    @Test
+    public void testInsertComment(){
+        Comment comment= new Comment(2020490055,3,"非常好，老子很喜欢");
+        commentService.saveComment(comment);
+
     }
 
 }

@@ -10,7 +10,6 @@
 <head>
     <meta charset="utf-8">
     <title>到货订单列表</title>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/back/js/returnOrder.js"></script>
 </head>
 <body>
 <!-- 到货订单列表页面 -->
@@ -140,5 +139,6 @@
 </div>
 </div>
 </div>
+<script type="text/javascript" src="${pageContext.request.contextPath}/back/js/returnOrder.js"></script>
 </body>
 </html>

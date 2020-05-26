@@ -1,8 +1,8 @@
-package com.wsfzsc.pojo;
+package com.wsfzsc.util;
 
 import java.util.Date;
 
-public class Comment {
+public class CommentShow {
     private Integer commentId;
 
     private Integer userId;
@@ -12,6 +12,24 @@ public class Comment {
     private Date commentTime;
 
     private String content;
+
+    private String userTitle;
+
+    private String userName;
+
+    public CommentShow() {
+    }
+
+    public CommentShow(Integer commentId, Integer userId, Integer indentId, Date commentTime, String content, String usertitle, String userName) {
+        this.commentId = commentId;
+        this.userId = userId;
+        this.indentId = indentId;
+        this.commentTime = commentTime;
+        this.content = content;
+        this.userTitle = usertitle;
+        this.userName = userName;
+    }
+
 
     public Integer getCommentId() {
         return commentId;
@@ -50,32 +68,35 @@ public class Comment {
     }
 
     public void setContent(String content) {
-        this.content = content == null ? null : content.trim();
-    }
-
-    public Comment() {
-    }
-
-    public Comment(Integer commentId, Integer userId, Integer indentId, Date commentTime, String content) {
-        this.commentId = commentId;
-        this.userId = userId;
-        this.indentId = indentId;
-        this.commentTime = commentTime;
         this.content = content;
     }
-    public Comment(Integer userId, Integer indentId, String content) {
-        this.userId = userId;
-        this.indentId = indentId;
-        this.content = content;
+
+    public String getUserTitle() {
+        return userTitle;
     }
+
+    public void setUserTitle(String userTitle) {
+        this.userTitle = userTitle;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
     @Override
     public String toString() {
-        return "Comment{" +
+        return "CommentShow{" +
                 "commentId=" + commentId +
                 ", userId=" + userId +
                 ", indentId=" + indentId +
                 ", commentTime=" + commentTime +
                 ", content='" + content + '\'' +
+                ", userTitle='" + userTitle + '\'' +
+                ", userName='" + userName + '\'' +
                 '}';
     }
 }

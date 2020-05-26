@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8">
     <title>发货订单列表</title>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/back/js/sendOrder.js"></script>
+
 </head>
 <body>
 <!-- 发货订单列表页面 -->
@@ -84,46 +84,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td><input type="checkbox" /></td>
-                <td>14</td>
-                <td><a href="#">肥皂</a></td>
-                <td>11</td>
-                <td>杨司成</td>
-                <td>天津</td>
-                <td>2020年4月5日</td>
-                <td>未发货</td>
-                <td>
-                    <!-- 操作栏 -->
-                    <div class="am-btn-toolbar">
-                        <div class="am-btn-group am-btn-group-xs">
-                            <button class="am-btn am-btn-default am-btn-xs am-text-success am-round"><span class="am-icon-search" title="查看订单详情"></span> </button>
-                            <button class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" data-am-modal="{target: '#my-popups'}" title="修改订单"><span class="am-icon-pencil-square-o"></span></button>
-                            <button class="am-btn am-btn-default am-btn-xs am-text-danger am-round" title="删除订单"><span class="am-icon-trash-o" ></span></button>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td><input type="checkbox" /></td>
-                <td>14</td>
-                <td><a href="#">肥皂</a></td>
-                <td>11</td>
-                <td>杨司成</td>
-                <td>天津</td>
-                <td>2020年4月5日</td>
-                <td>已发货</td>
-                <td>
-                    <!-- 操作栏 -->
-                    <div class="am-btn-toolbar">
-                        <div class="am-btn-group am-btn-group-xs">
-                            <button class="am-btn am-btn-default am-btn-xs am-text-success am-round"><span class="am-icon-search" title="查看订单详情"></span> </button>
-                            <button class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" data-am-modal="{target: '#my-popups'}" title="修改订单"><span class="am-icon-pencil-square-o"></span></button>
-                            <button class="am-btn am-btn-default am-btn-xs am-text-danger am-round" title="删除订单"><span class="am-icon-trash-o" ></span></button>
-                        </div>
-                    </div>
-                </td>
-            </tr>
+
             </tbody>
         </table>
 
@@ -146,5 +107,6 @@
 </div>
 </div>
 </div>
+<script type="text/javascript" src="${pageContext.request.contextPath}/back/js/sendOrder.js"></script>
 </body>
 </html>

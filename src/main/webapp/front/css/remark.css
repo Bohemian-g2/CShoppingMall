@@ -1,0 +1,56 @@
+.user_remark{
+    border-radius: 5px;
+    height: 100px;
+    width: 900px;
+    border:2px solid #E9ECF1;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.user_remark .user_remark_info{
+    margin-left: 10px;
+    float: left;
+    width: 90px;
+    height: 90px;
+    margin-top:10px;
+}
+.user_remark .user_remark_info .circleImg{
+    border-radius: 40px;
+    width:80px;
+    height:80px;
+}
+.user_remark .user_remark_content{
+    float: left;
+    margin-top: 10px;
+    margin-left: 20px;
+    height: 100px;
+}
+.user_remark .user_remark_content .user_name{
+    font-size: 15px;
+    color: #ff6700
+}
+.user_remark .user_remark_content .content_time{
+    font-size: 15px;
+    color:#7F667F
+}
+.user_remark .user_remark_content .remark_content {
+    line-height: 16px;
+    width: 750px;
+    padding: 5px 0;
+    margin-right: 10px;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.copyright{
+    width: 1000px;
+    height: 60px;
+    font-family: 'STXingkai';
+    font-size: 16px;
+    text-align:center;
+    margin-top: 30px;
+    border-top:2px solid #EAEAEA;
+    margin-left: auto;
+    margin-right: auto;
+}
