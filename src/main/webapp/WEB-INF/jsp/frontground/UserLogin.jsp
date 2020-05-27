@@ -11,8 +11,10 @@
     <title>Title</title>
 </head>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/back/css/UserLoginTheme.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/back/css/layer.css"/>
 <script src="${pageContext.request.contextPath}/back/js/FrontLogin.js"></script>
 <script src="${pageContext.request.contextPath}/back/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/back/js/layer.js"></script>
 
 
 
@@ -45,7 +47,7 @@
                             </div>
 
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-block" onclick="loginCheck('${pageContext.request.contextPath}/user/LoginCheck');">登录</button>
+                                <button type="button" class="btn btn-primary btn-block" onclick="loginCheck('${pageContext.request.contextPath}/user/LoginCheck');">登录</button>
                             </div>
                             <a class="forg" href="${pageContext.request.contextPath}/user/LogToFind" >忘记密码？</a>
                         </form>

@@ -50,7 +50,7 @@ public class AnswerController {
                 answerService.saveAnswer(resultTwo);
             }
 
-        return "front/userC/SuccessPage";
+        return "frontground/UserLogin";
     }
 
     /*忘记密码时获取用户密保问题*/

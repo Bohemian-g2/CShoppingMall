@@ -33,7 +33,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public String checkUserNameAndPwd(String userLoginName, String userPassword) {
         UserInf user = userInfMapper.selectByUsername(userLoginName);
-        System.out.println(user);
         if(user==null){
             return "nameError";//用户名不存在
         }
@@ -60,26 +59,13 @@ public class UserServiceImpl implements UserService {
     //新增用户
     @Override
     public String saveUser(UserInf user) {
-        //密码格式：6-16位的数字+字母
-        String regexpwd = "^[a-zA-Z0-9]{6,16}$";
-        String regexPhone = "^1[3578]\\d{9}$";
-        if(!user.getPassword().matches(regexpwd)){
-            return "pwdError";
-        }
-        if(!user.getUserPhone().matches(regexPhone)){
-            return "phoneError";
-        }
-        if(user.getLoginName().length()>8){
-            return "LoginNameError";
-        }
-        /*自动生成用户ID*/
+        /*自动生成账号*/
         user.setUserId(guid.createUserID());
-        System.out.println("正在生成ID");
-        System.out.println("当前生成id："+user.getUserId());
+        user.setLoginName(guid.createUserID().toString());
         /*加密密码*/
         user.setPassword(Encryption.Encrypt(user.getPassword()));
+        user.setUserTitle("UserTitle.jpg");
         userInfMapper.insertSelective(user);
-        System.out.println(222222+user.toString());
         return user.getLoginName();
     }
 
@@ -122,13 +108,15 @@ public class UserServiceImpl implements UserService {
             f.mkdirs();
         }
         File saveFile = new File(basePath+"/"+newFileName);
-        System.out.println("_________");
         FileUtils.copyInputStreamToFile(file.getInputStream(),saveFile);
         String userTitle = newFileName;
-        System.out.println("usertitle2+"+userTitle);
-        System.out.println(basePath);
         userInfMapper.updateTilByUserId(user.getUserId(),userTitle);
         return "success";
+    }
+    @Override
+    public UserInf getUserByLoginName(String logname) {
+        UserInf userInf=userInfMapper.selectByUsername(logname);
+        return userInf;
     }
 
 

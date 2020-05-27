@@ -23,7 +23,7 @@
 </head>
 <body id="page1" >
 
-<a href="#">返回商城</a>
+<a href="/CShoppingMall/index.jsp">返回商城</a>
 <div class="body1">
     <header>
         <h1>用户个人信息</h1>
@@ -41,20 +41,8 @@
                                 <div class="cont">
                                     <div class="left">
                                     <figure class="left marg_right1">
-                                        <img src="
-                                              <%
-                                                UserInf user = (UserInf) session.getAttribute("user");
-                                                if(user.getUserTitle()==null){
-                                              %>
-                                                  ${pageContext.request.contextPath}/back/img/UserTitle.jpg
-                                              <%
-                                              }else{
-                                              %>
-                                                  ${pageContext.request.contextPath}/usertitle/${sessionScope.user.userTitle}
-                                              <%
-                                              }
-                                              %>"
-                                             width="150px" height="150px">
+                                        <img style=" border-radius: 50%;"  width="150px" height="150px"
+                                             src="${pageContext.request.contextPath}/usertitle/${sessionScope.user.userTitle}"/>
                                     </figure>
                                     <div class="bottom">
                                     <form action="${pageContext.request.contextPath}/user/uploadTitle" method="post" enctype="multipart/form-data">
@@ -69,6 +57,7 @@
                                     联系方式:${sessionScope.user.userPhone}<br>
                                     邮箱:${sessionScope.user.userEmail}<br>
                                     性别:<%
+                                        UserInf user = (UserInf) session.getAttribute("user");
                                         if (null!=user.getSex()){
                                             if (user.getSex()==1){
                                                 %>男<%

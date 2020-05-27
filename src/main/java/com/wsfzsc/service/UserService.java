@@ -26,5 +26,6 @@ public interface UserService {
     /*上传头像*/
     public String uploadUserPic(CommonsMultipartFile file,UserInf user, HttpServletRequest request) throws IOException;
 
-
+    /*根据用户名查找*/
+    public UserInf getUserByLoginName(String logname);
 }

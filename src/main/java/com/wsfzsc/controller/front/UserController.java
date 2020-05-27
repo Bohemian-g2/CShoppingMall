@@ -17,6 +17,13 @@ import java.util.Map;
 @Controller
 @RequestMapping("user")
 public class UserController {
+
+    /*打开个人信息页面*/
+    @RequestMapping("UserInfo")
+    public String UserInfo(){
+        return "frontground/UserInfoPage";
+    }
+
     /*测试登录页面*/
     @RequestMapping("ToLogin")
     public String Login(){
@@ -39,12 +46,11 @@ public class UserController {
     /*业务逻辑功能*/
     /*用户注册*/
     @RequestMapping("AddUser")
-    public String AddUser(UserInf user, HttpServletRequest request){
-        System.out.println("添加用户");
-        System.out.println(user.toString());
-        String result=userService.saveUser(user);
-        System.out.println(1111111+result);
+    public String AddUser(UserInf user,HttpServletRequest request){
+        System.out.println(user);
+        user.setLoginName(userService.saveUser(user));
         request.getSession().setAttribute("nuser",user);
+        System.out.println(user);
         return "front/userC/MbSetting";
     }
 
@@ -54,13 +60,7 @@ public class UserController {
     @ResponseBody
     public String LoginCheck(@RequestBody Map<String,String> map){
         String result=userService.checkUserNameAndPwd(map.get("logname"),map.get("logpass"));
-        if(result.equals("nameError")){
-                return "nameError";
-        }
-        if(result.equals("passwError")){
-            return "passwError";
-        }
-        return "success";
+        return result;
     }
 
     /*登录进入系统*/
@@ -69,11 +69,10 @@ public class UserController {
         UserInf user = userService.LoginUser(logname,logpass);
         if(user!=null){
             request.getSession().setAttribute("user",user);
-            return "/frontground/UserInfoPage";
+            return "redirect:/index.jsp";
         }else{
             return "/frontground/UserLogin";
         }
-
     }
 
     /*登出*/
@@ -113,6 +112,7 @@ public class UserController {
             user.setSex(usex);
             user.setIdentityType(identype);
             user.setIdentityNumber(indenNum);
+            request.getSession().setAttribute("user",user);
             String result= userService.updateUserInfo(user);
             modelAndView.setViewName("/frontground/UserInfoPage");
             return modelAndView;
@@ -129,7 +129,8 @@ public class UserController {
         System.out.println("上传1user+"+user);
         System.out.println("上传1file+"+file);
         userService.uploadUserPic(file,user,request);
-        System.out.println("??????");
+        UserInf newUser=userService.getUserByLoginName(user.getLoginName());
+        request.getSession().setAttribute("user",newUser);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/frontground/UserInfoPage");
         return modelAndView;

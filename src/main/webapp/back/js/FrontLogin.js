@@ -19,12 +19,12 @@ function loginCheck(url){
     if(datas == "nameError"){                 //用户名不正确
         layer.tips('用户名不存在！', '#logname', {
             tips: [2, '#FF3030'],
-            time: 2000
+            time: 3000
         });
-    }else if(datas == "passwError"){            //密码不正确
+    }else if(datas == "pwdError"){            //密码不正确
         layer.tips('密码不正确	！', '#logpass', {
             tips: [2, '#FF3030'],
-            time: 2000
+            time: 3000
         });
     }else{
         $("#f").submit();
