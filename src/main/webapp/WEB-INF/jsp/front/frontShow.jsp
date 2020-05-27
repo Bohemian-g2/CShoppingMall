@@ -34,11 +34,23 @@
         </div>
         <div class="right fr">
             <div class="fr">
-                <ul>
-                    <li><a href="" target="_blank">登录</a></li>
-                    <li>|</li>
-                    <li><a href="" target="_blank" >注册</a></li>
-                </ul>
+                <c:choose>
+                    <c:when test="${sessionScope.user!=null}">
+                        <ul>
+                            <li><img style=" margin-top:5px; border-radius: 50%; height: 30px;width: 30px;" src="${pageContext.request.contextPath}/usertitle/${sessionScope.user.userTitle}"/></li>
+                            <li><a href="/CShoppingMall/user/UserInfo">个人信息</a></li>
+                            <li>|</li>
+                            <li><a href="/CShoppingMall/user/LoginOut">退出</a></li>
+                        </ul>
+                    </c:when>
+                    <c:otherwise>
+                        <ul>
+                            <li><a href="${pageContext.request.contextPath}/user/ToLogin" target="_blank">登录</a></li>
+                            <li>|</li>
+                            <li><a href="${pageContext.request.contextPath}/user/ToReg" target="_blank" >注册</a></li>
+                        </ul>
+                    </c:otherwise>
+                </c:choose>
             </div>
             <div class="clear"></div>
         </div>

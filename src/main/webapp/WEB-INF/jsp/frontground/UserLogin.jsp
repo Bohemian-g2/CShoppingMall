@@ -24,7 +24,6 @@
     <a class="navbar-brand" href="index.html">
         网上服装商城系统
     </a>
-
 </nav>
 <!--hero header-->
 <section class="py-6 py-md-7 bg-primary" id="home">
