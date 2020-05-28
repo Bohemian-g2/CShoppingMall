@@ -18,6 +18,10 @@ public interface CommentService {
     /*后台删除评论信息*/
     public String deleteComment(List<Integer> ids);
 
+    public Integer insertComment(int id,String content);
+
+    public List<Comment> getCommentByIndentid(Integer id);
+
     /*前台显示评论信息*/
     public List<CommentShow> getCmtByCID(Integer commodityId);
 

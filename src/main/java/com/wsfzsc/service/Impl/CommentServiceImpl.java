@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,5 +61,24 @@ public class CommentServiceImpl implements CommentService {
         comment.setCommentTime(new Date());
         int number=commentMapper.insertSelective(comment);
         return number;
+    }
+
+    @Override
+    public Integer insertComment(int id, String content) {
+        Comment mycomment=new Comment();
+        mycomment.setIndentId(id);
+        mycomment.setContent(content);
+        mycomment.setCommentTime( new Date(System.currentTimeMillis()));
+        mycomment.setUserId(222);//从session中获得，先写死
+        return commentMapper.insertSelective(mycomment);
+
+    }
+
+    @Override
+    public List<Comment> getCommentByIndentid(Integer id) {
+        CommentExample commentExample=new CommentExample();
+        CommentExample.Criteria criteria = commentExample.createCriteria();
+        criteria.andIndentIdEqualTo(id);
+        return  commentMapper.selectByExample(commentExample);
     }
 }

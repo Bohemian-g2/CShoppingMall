@@ -5,6 +5,8 @@ import com.wsfzsc.pojo.Comment;
 import com.wsfzsc.pojo.CommentHelper;
 import com.wsfzsc.service.AdminService;
 import com.wsfzsc.service.CommentService;
+import com.wsfzsc.service.IndentDetailService;
+import com.wsfzsc.service.IndentService;
 import com.wsfzsc.util.CommentShow;
 import com.wsfzsc.util.Encryption;
 import com.wsfzsc.util.GUID;
@@ -32,6 +34,12 @@ public class AdminTest {
 
     @Autowired
     private CommentService commentService;
+
+    @Autowired
+    private IndentService indentService;
+
+    @Autowired
+    private IndentDetailService indentDetailService;
 
     @Test
     public  void testmain() {
@@ -77,4 +85,57 @@ public class AdminTest {
 
     }
 
+    @Test
+    public void testSaveIndent(){
+        System.out.println(indentService.saveIndent(222,12));
+    }
+
+    @Test
+    public void testSaveIndentDetail(){
+
+        indentDetailService.saveIndentDetail(1116,111,10);
+
+    }
+
+    @Test
+    public void testGetAllIndentByUid(){
+
+        System.out.println(indentService.getAllIndentByUid(111));
+
+    }
+
+    @Test
+    public void testShowById(){
+
+        System.out.println(indentDetailService.showById(1114));
+
+    }
+
+    @Test
+    public void testPayIndent(){
+
+       indentService.payIndent(1113,222200,1);
+
+    }
+
+    @Test
+    public void testdeleteIndent(){
+
+        indentService.deleteIndent(1114);
+
+    }
+
+    @Test
+    public void testsureIndent(){
+
+        indentService.sureIndent(1113);
+
+    }
+
+    @Test
+    public void testgetAddressByUserid(){
+
+        System.out.println(indentService.getAddressByUserid(222));
+
+    }
 }

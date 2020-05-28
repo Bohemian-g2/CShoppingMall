@@ -1,8 +1,12 @@
 package com.wsfzsc.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Indent {
+public class Indent implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     private Integer indentId;
 
     private Integer indentUserId;

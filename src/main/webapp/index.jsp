@@ -23,7 +23,7 @@
             <ul>
                 <li><a href="index.jsp" target="_blank">服装商城首页</a></li>
                 <li>|</li>
-                <li><a href="">我已买到的宝贝</a></li>
+                <li><a href="front/frontShowIndent">我已买到的宝贝</a></li>
                 <li>|</li>
                 <li><a href="Cart/selectAll">购物车</a></li>
                 <div class="clear"></div>
@@ -251,7 +251,7 @@
                                     <div class="clear"></div>
                                 </a>
                             </div>
-                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=7">选购</a></div>
+                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">选购</a></div>
                             <div class="clear"></div>
                         </div>
                         <div>
@@ -262,7 +262,7 @@
                                     <div class="clear"></div>
                                 </a>
                             </div>
-                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=1">选购</a></div>
+                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">选购</a></div>
                             <div class="clear"></div>
                         </div>
                         <div>

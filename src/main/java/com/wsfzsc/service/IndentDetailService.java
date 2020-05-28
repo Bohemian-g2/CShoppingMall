@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface IndentDetailService {
     List<IndentDetail> showById(Integer indentId);
+
+    public String saveIndentDetail(Integer indent_id, Integer goods_id, Integer goods_num);
+
+
 }
