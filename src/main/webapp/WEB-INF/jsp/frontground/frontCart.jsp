@@ -49,9 +49,15 @@
                     <td>${cDetail.commodity.commodityName}</td>
                     <td>${cDetail.commodity.commodityMoney}</td>
                     <td>
-                        <button type="button" style="border: none; background-color: white;" onclick="reduce(this)" title="减少">-</button>
-                        <span>${cDetail.cartCommodityNumbe}</span>
-                        <button type="button" style="border: none; background-color: white;" onclick="add(this)" title="增加">+</button>
+                        <%--<button type="button" style="border: none; background-color: white;" onclick="reduce(this)" title="减少">-</button>--%>
+                        <button type="button" onclick="reduce(this)" title="减少">
+                            <span style="border:2px;">&nbsp;&nbsp;-&nbsp;&nbsp;</span>
+                        </button>
+                        <span style="display:inline-block;width:20px;">${cDetail.cartCommodityNumbe}</span>
+                        <button type="button" onclick="add(this)" title="增加">
+                            <span style="border:2px;">&nbsp;&nbsp;+&nbsp;&nbsp;</span>
+                        </button>
+                        <%--<button type="button" style="border: none; background-color: white;" onclick="add(this)" title="增加">+</button>--%>
                     </td>
                     <td>${cDetail.cartCommodityMoney}</td>
                     <td>
@@ -80,12 +86,11 @@
                 <li><a href="#" id="check" class="clear">全选</a></li>
                 <li><a href="#" onclick="del_batch(this)"
                        class="delete" id="cart_delete_all">删除</a><br></li>
-                <li><a href="#" class="delete">移入收藏夹</a></li>
                 <div class="clear"></div>
             </ul>
         </div>
         <div class="jiesuan fr">
-            <div class="jiesuanjiage fl">已选商品：<span id="total_number">0</span> 件 &nbsp;&nbsp; 合计（不含运费）：<span id="total_money">0</span>元 </div>
+            <div class="jiesuanjiage fl">已选商品：<span id="total_number">0</span> 件 &nbsp;&nbsp;合计(不含运费)：<span id="total_money" style="display:inline-block;width:35px;">0</span>&nbsp;&nbsp;&nbsp;元 </div>
             <div class="jsanniu fr"><input class="jsan" type="submit" name="jiesuan"  value="去结算"/></div>
             <div class="clear"></div>
         </div>

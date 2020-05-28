@@ -21,7 +21,7 @@
     <div class="top center">
         <div class="left fl">
             <ul>
-                <<li><a href="index.jsp" target="_blank">服装商城首页</a></li>
+                <li><a href="index.jsp" target="_blank">服装商城首页</a></li>
                 <li>|</li>
                 <li><a href="">我已买到的宝贝</a></li>
                 <li>|</li>
@@ -499,12 +499,5 @@
     </div>
 </div>
 <!-- 好评服装结束-->
-<a href="front/commoditydetails">商品详情</a>
-<a href="front/frontCart">购物车</a>
-<a href="front/frontCollect">收藏夹</a>
-<a href="front/frontRecord">浏览记录</a>
-<a href="front/frontShow">商品显示</a>
-<a href="front/similarcommodity">类似商品</a>
-<a href="front/order">订单中心</a>
 </body>
 </html>

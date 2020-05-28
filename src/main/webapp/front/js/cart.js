@@ -30,7 +30,7 @@ function changeTotal(){
 
 //减少一个商品
 function reduce(obj){
-    var number = parseInt($(obj).parents("td").find("span").text());
+    var number = parseInt($(obj).parents("td").find("span:eq(1)").text());
     if(number == 1){
         alert("必须购买一个商品呦~");
         return false;
@@ -41,7 +41,7 @@ function reduce(obj){
 
 //增加一个商品
 function add(obj){
-    var number = parseInt($(obj).parents("td").find("span").text());
+    var number = parseInt($(obj).parents("td").find("span:eq(1)").text());
     if(number >= 99){
         alert("差不多了,兄弟 99个够了~");
         return false;
@@ -65,7 +65,7 @@ function opera(obj,opera){
                 alert("已达到最大库存");
                 return false;
             }
-            $(obj).parents("tr").find("td:eq(3)").find("span").text(result.cartCommodityNumbe);
+            $(obj).parents("tr").find("td:eq(3)").find("span:eq(1)").text(result.cartCommodityNumbe);
             $(obj).parents("tr").find("td:eq(4)").text(result.cartCommodityMoney);
             changeTotal();
         }
