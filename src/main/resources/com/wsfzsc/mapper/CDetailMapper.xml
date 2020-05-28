@@ -7,6 +7,34 @@
     <result column="cart_commodity_numbe" jdbcType="INTEGER" property="cartCommodityNumbe" />
     <result column="cart_commodity_money" jdbcType="REAL" property="cartCommodityMoney" />
   </resultMap>
+  <!-- 带外键commodity cart -->
+  <resultMap id="WithCommodityCartBaseResultMap" type="com.wsfzsc.pojo.CDetail">
+    <id column="cart_id" jdbcType="INTEGER" property="cartId" />
+    <id column="cart_commodity_id" jdbcType="INTEGER" property="cartCommodityId" />
+    <result column="cart_commodity_numbe" jdbcType="INTEGER" property="cartCommodityNumbe" />
+    <result column="cart_commodity_money" jdbcType="REAL" property="cartCommodityMoney" />
+    <association property="commodity" javaType="com.wsfzsc.pojo.Commodity">
+      <id column="commodity_id" jdbcType="INTEGER" property="commodityId" />
+      <result column="commodity_kind" jdbcType="INTEGER" property="commodityKind" />
+      <result column="commodity_name" jdbcType="VARCHAR" property="commodityName" />
+      <result column="commodity_status" jdbcType="INTEGER" property="commodityStatus" />
+      <result column="commodity_money" jdbcType="REAL" property="commodityMoney" />
+      <result column="commodity_stock" jdbcType="INTEGER" property="commodityStock" />
+      <result column="commodity_size" jdbcType="VARCHAR" property="commoditySize" />
+      <result column="commodity_sex" jdbcType="INTEGER" property="commoditySex" />
+      <result column="commodity_picture" jdbcType="VARCHAR" property="commodityPicture" />
+      <result column="commodity_descript" jdbcType="VARCHAR" property="commodityDescript" />
+      <result column="commodity_color" jdbcType="VARCHAR" property="commodityColor" />
+      <result column="commodity_style" jdbcType="VARCHAR" property="commodityStyle" />
+      <result column="commodity_source" jdbcType="VARCHAR" property="commoditySource" />
+      <result column="commodity_date" jdbcType="TIMESTAMP" property="commodityDate" />
+    </association>
+    <association property="cart" javaType="com.wsfzsc.pojo.Cart">
+      <id column="cart_id" jdbcType="INTEGER" property="cartId" />
+      <result column="cart_user_id" jdbcType="INTEGER" property="cartUserId" />
+      <result column="cart_capacity" jdbcType="INTEGER" property="cartCapacity" />
+    </association>
+  </resultMap>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -34,6 +62,37 @@
           </trim>
         </if>
       </foreach>
+    </where>
+  </sql>
+  <!-- 外键 -->
+  <sql id="UpdateExample_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+      and cd.cart_id = ca.cart_id and cd.cart_commodity_id = c.commodity_id
     </where>
   </sql>
   <sql id="Update_By_Example_Where_Clause">
@@ -68,6 +127,13 @@
   <sql id="Base_Column_List">
     cart_id, cart_commodity_id, cart_commodity_numbe, cart_commodity_money
   </sql>
+  <!-- 带外键commodity cart -->
+  <sql id="WithCommodityCart_Base_Column_List">
+    cd.cart_id, cd.cart_commodity_id, cd.cart_commodity_numbe, cd.cart_commodity_money ,c.commodity_id, c.commodity_kind,
+     c.commodity_name, c.commodity_status, c.commodity_money,c.commodity_stock, c.commodity_size, c.commodity_sex,
+     c.commodity_picture, c.commodity_descript,c.commodity_color, c.commodity_style, c.commodity_source, c.commodity_date ,
+     ca.cart_id, ca.cart_user_id, ca.cart_capacity
+  </sql>
   <select id="selectByExample" parameterType="com.wsfzsc.pojo.CDetailExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -82,12 +148,26 @@
       order by ${orderByClause}
     </if>
   </select>
+  <select id="selectByExampleWithCommodityCart" parameterType="com.wsfzsc.pojo.CDetailExample" resultMap="WithCommodityCartBaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="WithCommodityCart_Base_Column_List" />
+    from cart_detail cd,commodity c,cart ca
+
+    <include refid="UpdateExample_Where_Clause" />
+
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByPrimaryKey" parameterType="com.wsfzsc.pojo.CDetailKey" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from cart_detail
     where cart_id = #{cartId,jdbcType=INTEGER}
-      and cart_commodity_id = #{cartCommodityId,jdbcType=INTEGER}
+    and cart_commodity_id = #{cartCommodityId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="com.wsfzsc.pojo.CDetailKey">
     delete from cart_detail
@@ -95,15 +175,15 @@
       and cart_commodity_id = #{cartCommodityId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.wsfzsc.pojo.CDetailExample">
-    delete from cart_detail
+    delete cd from cart_detail AS cd
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.wsfzsc.pojo.CDetail">
-    insert into cart_detail (cart_id, cart_commodity_id, cart_commodity_numbe, 
+    insert into cart_detail (cart_id, cart_commodity_id, cart_commodity_numbe,
       cart_commodity_money)
-    values (#{cartId,jdbcType=INTEGER}, #{cartCommodityId,jdbcType=INTEGER}, #{cartCommodityNumbe,jdbcType=INTEGER}, 
+    values (#{cartId,jdbcType=INTEGER}, #{cartCommodityId,jdbcType=INTEGER}, #{cartCommodityNumbe,jdbcType=INTEGER},
       #{cartCommodityMoney,jdbcType=REAL})
   </insert>
   <insert id="insertSelective" parameterType="com.wsfzsc.pojo.CDetail">
@@ -166,9 +246,9 @@
   <update id="updateByExample" parameterType="map">
     update cart_detail
     set cart_id = #{record.cartId,jdbcType=INTEGER},
-      cart_commodity_id = #{record.cartCommodityId,jdbcType=INTEGER},
-      cart_commodity_numbe = #{record.cartCommodityNumbe,jdbcType=INTEGER},
-      cart_commodity_money = #{record.cartCommodityMoney,jdbcType=REAL}
+    cart_commodity_id = #{record.cartCommodityId,jdbcType=INTEGER},
+    cart_commodity_numbe = #{record.cartCommodityNumbe,jdbcType=INTEGER},
+    cart_commodity_money = #{record.cartCommodityMoney,jdbcType=REAL}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -184,7 +264,7 @@
       </if>
     </set>
     where cart_id = #{cartId,jdbcType=INTEGER}
-      and cart_commodity_id = #{cartCommodityId,jdbcType=INTEGER}
+    and cart_commodity_id = #{cartCommodityId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.wsfzsc.pojo.CDetail">
     update cart_detail

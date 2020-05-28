@@ -11,6 +11,8 @@
 <head>
     <title>服装商城</title>
     <link rel="stylesheet" type="text/css" href="./front/css/style.css"/>
+    <script src="${pageContext.request.contextPath}/back/js/jquery.min.js"></script>
+    <script src="front/js/index.js"></script>
 </head>
 <body>
 
@@ -19,15 +21,11 @@
     <div class="top center">
         <div class="left fl">
             <ul>
-                <li><a href="index.jsp" target="_blank">服装商城首页</a></li>
+                <<li><a href="index.jsp" target="_blank">服装商城首页</a></li>
                 <li>|</li>
                 <li><a href="">我已买到的宝贝</a></li>
                 <li>|</li>
-                <li><a href="front/frontCart">购物车</a></li>
-                <li>|</li>
-                <li><a href="front/frontCollect">收藏夹</a></li>
-                <li>|</li>
-                <li><a href="front/frontRecord">足迹</a></li>
+                <li><a href="Cart/selectAll">购物车</a></li>
                 <div class="clear"></div>
             </ul>
         </div>
@@ -57,25 +55,25 @@
     </div>
 </header>
 <%--头部结束--%>
-
+<input type="hidden" id="init" value="1">
 <%--顶部导航栏--%>
 <div class="banner_x center">
     <%-- <a href="./index.html" target="_blank"><div class="logo fl"></div></a>
      <a href=""><div class="ad_top fl"></div></a>--%>
     <div class="nav fl">
         <ul>
-            <li><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">女装</a></li><li></li>
-            <li><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">男装</a></li><li></li>
-            <li><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">童装</a></li><li></li>
-            <li><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">中性服装</a></li>
+            <li><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=1">女装</a></li><li></li>
+            <li><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=2">男装</a></li><li></li>
+            <li><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=3">童装</a></li><li></li>
         </ul>
     </div>
     <div class="search fr">
-        <form action="" method="post">
+        <form action="${pageContext.request.contextPath}/frontCommodity/selectByDim" method="post">
             <div class="text fl">
-                <input type="text" class="shuru" placeholder="搜索">
+                <input type="text" class="shuru" placeholder="搜索" name="selectCommodity">
             </div>
             <div class="submit fl">
+                <%--<input type="submit" class="sousuo" value="搜索" onclick="selectByDim('${pageContext.request.contextPath}/frontCommodity/selectByDim')"/>--%>
                 <input type="submit" class="sousuo" value="搜索"/>
             </div>
             <div class="clear"></div>
@@ -90,10 +88,10 @@
     <div class="nav">
         <ul>
             <li>
-                <a href="">女装</a>
+                <a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=1">女装</a>
             </li>
             <li>
-                <a href="">女裙</a>
+                <a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=4">女裙</a>
                 <a href="">连衣裙 半身裙 旗袍</a>
                 <div class="pop">
                     <div class="left fl">
@@ -105,7 +103,7 @@
                                     <div class="clear"></div>
                                 </a>
                             </div>
-                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">选购</a></div>
+                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=1">选购</a></div>
                             <div class="clear"></div>
                         </div>
                         <div>
@@ -116,7 +114,7 @@
                                     <div class="clear"></div>
                                 </a>
                             </div>
-                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">选购</a></div>
+                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=1">选购</a></div>
                             <div class="clear"></div>
                         </div>
                         <div>
@@ -127,7 +125,7 @@
                                     <div class="clear"></div>
                                 </a>
                             </div>
-                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">选购</a></div>
+                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=1">选购</a></div>
                             <div class="clear"></div>
                         </div>
                     </div>
@@ -146,7 +144,7 @@
                                     <div class="clear"></div>
                                 </a>
                             </div>
-                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">选购</a></div>
+                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=5">选购</a></div>
                             <div class="clear"></div>
                         </div>
                         <div>
@@ -157,7 +155,7 @@
                                     <div class="clear"></div>
                                 </a>
                             </div>
-                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">选购</a></div>
+                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=1">选购</a></div>
                             <div class="clear"></div>
                         </div>
                         <div>
@@ -168,7 +166,7 @@
                                     <div class="clear"></div>
                                 </a>
                             </div>
-                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">选购</a></div>
+                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=1">选购</a></div>
                             <div class="clear"></div>
                         </div>
                         <div>
@@ -179,7 +177,7 @@
                                     <div class="clear"></div>
                                 </a>
                             </div>
-                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">选购</a></div>
+                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=1">选购</a></div>
                             <div class="clear"></div>
                         </div>
                     </div>
@@ -190,54 +188,54 @@
             <li>
                 <a href="">女裤 牛仔裤 休闲裤 打底</a>
                 <div class="pop">
-            <div class="left fl">
-                <div>
-                    <div class="xuangou_left fl">
-                        <a href="">
-                            <div class="img fl"><img src="" alt=""></div>
-                            <span class="fl">女裤</span>
+                    <div class="left fl">
+                        <div>
+                            <div class="xuangou_left fl">
+                                <a href="">
+                                    <div class="img fl"><img src="" alt=""></div>
+                                    <span class="fl">女裤</span>
+                                    <div class="clear"></div>
+                                </a>
+                            </div>
+                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=6">选购</a></div>
                             <div class="clear"></div>
-                        </a>
+                        </div>
+                        <div>
+                            <div class="xuangou_left fl">
+                                <a href="">
+                                    <div class="img fl"><img src="" alt=""></div>
+                                    <span class="fl">牛仔裤</span>
+                                    <div class="clear"></div>
+                                </a>
+                            </div>
+                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=6">选购</a></div>
+                            <div class="clear"></div>
+                        </div>
+                        <div>
+                            <div class="xuangou_left fl">
+                                <a href="">
+                                    <div class="img fl"><img src="" alt=""></div>
+                                    <span class="fl">休闲裤</span>
+                                    <div class="clear"></div>
+                                </a>
+                            </div>
+                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=6">选购</a></div>
+                            <div class="clear"></div>
+                        </div>
+                        <div>
+                            <div class="xuangou_left fl">
+                                <a href="">
+                                    <div class="img fl"><img src="" alt=""></div>
+                                    <span class="fl"> 打底</span>
+                                    <div class="clear"></div>
+                                </a>
+                            </div>
+                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=6">选购</a></div>
+                            <div class="clear"></div>
+                        </div>
                     </div>
-                    <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">选购</a></div>
                     <div class="clear"></div>
                 </div>
-                <div>
-                    <div class="xuangou_left fl">
-                        <a href="">
-                            <div class="img fl"><img src="" alt=""></div>
-                            <span class="fl">牛仔裤</span>
-                            <div class="clear"></div>
-                        </a>
-                    </div>
-                    <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">选购</a></div>
-                    <div class="clear"></div>
-                </div>
-                <div>
-                    <div class="xuangou_left fl">
-                        <a href="">
-                            <div class="img fl"><img src="" alt=""></div>
-                            <span class="fl">休闲裤</span>
-                            <div class="clear"></div>
-                        </a>
-                    </div>
-                    <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">选购</a></div>
-                    <div class="clear"></div>
-                </div>
-                <div>
-                    <div class="xuangou_left fl">
-                        <a href="">
-                            <div class="img fl"><img src="" alt=""></div>
-                            <span class="fl"> 打底</span>
-                            <div class="clear"></div>
-                        </a>
-                    </div>
-                    <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">选购</a></div>
-                    <div class="clear"></div>
-                </div>
-            </div>
-                <div class="clear"></div>
-            </div>
             </li>
 
 
@@ -253,7 +251,7 @@
                                     <div class="clear"></div>
                                 </a>
                             </div>
-                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">选购</a></div>
+                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=7">选购</a></div>
                             <div class="clear"></div>
                         </div>
                         <div>
@@ -264,7 +262,7 @@
                                     <div class="clear"></div>
                                 </a>
                             </div>
-                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">选购</a></div>
+                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=1">选购</a></div>
                             <div class="clear"></div>
                         </div>
                         <div>
@@ -275,7 +273,7 @@
                                     <div class="clear"></div>
                                 </a>
                             </div>
-                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">选购</a></div>
+                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=7">选购</a></div>
                             <div class="clear"></div>
                         </div>
                         <div>
@@ -286,7 +284,7 @@
                                     <div class="clear"></div>
                                 </a>
                             </div>
-                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">选购</a></div>
+                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=1">选购</a></div>
                             <div class="clear"></div>
                         </div>
                     </div>
@@ -321,7 +319,7 @@
                                     <div class="clear"></div>
                                 </a>
                             </div>
-                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">选购</a></div>
+                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=2">选购</a></div>
                             <div class="clear"></div>
                         </div>
                         <div>
@@ -332,7 +330,7 @@
                                     <div class="clear"></div>
                                 </a>
                             </div>
-                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">选购</a></div>
+                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=2">选购</a></div>
                             <div class="clear"></div>
                         </div>
                         <div>
@@ -343,7 +341,7 @@
                                     <div class="clear"></div>
                                 </a>
                             </div>
-                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">选购</a></div>
+                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=2">选购</a></div>
                             <div class="clear"></div>
                         </div>
                     </div>
@@ -363,7 +361,7 @@
                                     <div class="clear"></div>
                                 </a>
                             </div>
-                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">选购</a></div>
+                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=2">选购</a></div>
                             <div class="clear"></div>
                         </div>
                         <div>
@@ -374,7 +372,7 @@
                                     <div class="clear"></div>
                                 </a>
                             </div>
-                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">选购</a></div>
+                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=2">选购</a></div>
                             <div class="clear"></div>
                         </div>
                         <div>
@@ -385,7 +383,7 @@
                                     <div class="clear"></div>
                                 </a>
                             </div>
-                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">选购</a></div>
+                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=2">选购</a></div>
                             <div class="clear"></div>
                         </div>
                         <div>
@@ -396,7 +394,7 @@
                                     <div class="clear"></div>
                                 </a>
                             </div>
-                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">选购</a></div>
+                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=7">选购</a></div>
                             <div class="clear"></div>
                         </div>
                     </div>
@@ -406,84 +404,41 @@
 
             <li>
                 <a href="">童装</a>
-            <div class="pop">
-                <div class="left fl">
-                    <div>
-                        <div class="xuangou_left fl">
-                            <a href="">
-                                <div class="img fl"><img src="" alt=""></div>
-                                <span class="fl">1-2岁</span>
-                                <div class="clear"></div>
-                            </a>
-                        </div>
-                        <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">选购</a></div>
-                        <div class="clear"></div>
-                    </div>
-                    <div>
-                        <div class="xuangou_left fl">
-                            <a href="">
-                                <div class="img fl"><img src="" alt=""></div>
-                                <span class="fl">3-6岁</span>
-                                <div class="clear"></div>
-                            </a>
-                        </div>
-                        <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">选购</a></div>
-                        <div class="clear"></div>
-                    </div>
-                    <div>
-                        <div class="xuangou_left fl">
-                            <a href="">
-                                <div class="img fl"><img src="" alt=""></div>
-                                <span class="fl">6-12岁</span>
-                                <div class="clear"></div>
-                            </a>
-                        </div>
-                        <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">选购</a></div>
-                        <div class="clear"></div>
-                    </div>
-                    <div>
-                        <div class="xuangou_left fl">
-                            <a href="">
-                                <div class="img fl"><img src="" alt=""></div>
-                                <span class="fl">孕产妇</span>
-                                <div class="clear"></div>
-                            </a>
-                        </div>
-                        <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">选购</a></div>
-                        <div class="clear"></div>
-                    </div>
-                </div>
-                <div class="clear"></div>
-            </div>
-        </li>
-            <li>
-                <a href="">中性服装</a>
-
                 <div class="pop">
                     <div class="left fl">
                         <div>
                             <div class="xuangou_left fl">
                                 <a href="">
                                     <div class="img fl"><img src="" alt=""></div>
-                                    <span class="fl">中性服装</span>
+                                    <span class="fl">1-2岁</span>
                                     <div class="clear"></div>
                                 </a>
                             </div>
-                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">选购</a></div>
+                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=3">选购</a></div>
                             <div class="clear"></div>
                         </div>
                         <div>
                             <div class="xuangou_left fl">
                                 <a href="">
                                     <div class="img fl"><img src="" alt=""></div>
-                                    <span class="fl">大码服装</span>
+                                    <span class="fl">3-6岁</span>
                                     <div class="clear"></div>
                                 </a>
                             </div>
-                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">选购</a></div>
+                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=3">选购</a></div>
                             <div class="clear"></div>
                         </div>
-
+                        <div>
+                            <div class="xuangou_left fl">
+                                <a href="">
+                                    <div class="img fl"><img src="" alt=""></div>
+                                    <span class="fl">6-12岁</span>
+                                    <div class="clear"></div>
+                                </a>
+                            </div>
+                            <div class="xuangou_right fr"><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=3">选购</a></div>
+                            <div class="clear"></div>
+                        </div>
                     </div>
                     <div class="clear"></div>
                 </div>
@@ -497,37 +452,16 @@
 <!-- 热卖服装 -->
 <div class="danpin center">
     <div class="biaoti center">热卖服装</div>
-    <div class="main center">
-        <div class="mingxing fl">
-            <div class="sub_mingxing"><a href=""><img src="./front/img/qz1.png" alt=""></a></div>
-            <div class="pinpai"><a href="front/commoditydetails">服装</a></div>
-            <div class="youhui">5月9日-10日，下单立减50元</div>
-            <div class="jiage">350元起</div>
-        </div>
-        <div class="mingxing fl">
-            <div class="sub_mingxing"><a href=""><img src="./front/img/kz1.png" alt=""></a></div>
-            <div class="pinpai"><a href="front/commoditydetails">服装</a></div>
-            <div class="youhui">5月9日-10日，下单立减50元</div>
-            <div class="jiage">350</div>
-        </div>
-        <div class="mingxing fl">
-            <div class="sub_mingxing"><a href=""><img src="./front/img/wt1.png" alt=""></a></div>
-            <div class="pinpai"><a href="front/commoditydetails">服装</a></div>
-            <div class="youhui">5月9日-10日，下单立减50元</div>
-            <div class="jiage">350</div>
-        </div>
-        <div class="mingxing fl">
-            <div class="sub_mingxing"><a href=""><img src="" alt=""></a></div>
-            <div class="pinpai"><a href="front/commoditydetails">服装</a></div>
-            <div class="youhui">5月9日-10日，下单立减50元</div>
-            <div class="jiage">350</div>
-        </div>
-        <div class="mingxing fl">
-            <div class="sub_mingxing"><a href=""><img src="" alt=""></a></div>
-            <div class="pinpai"><a href="front/commoditydetails">服装</a></div>
-            <div class="youhui">5月9日-10日，下单立减50元</div>
-            <div class="jiage">350</div>
-        </div>
+    <div class="main center" id="hotlist">
+        <c:forEach items="${hotlist}" var="hotlist" varStatus="states">
+            <div class="mingxing fl">
+                <div class="sub_mingxing"><a href=""><img width="160px;" height="160px;" src="${hotlist.commodityPicture}" alt=""></a></div>
+                    <%--<div class="sub_mingxing"><a href=""><img src="./front/img/qz1.png" alt=""></a></div>--%>
+                <div class="pinpai"><a href="${pageContext.request.contextPath}/frontCommodity/selectOne?commodityId=${hotlist.commodityId}">${hotlist.commodityName}</a></div>
+                <div class="youhui">5月9日-10日，下单立减50元</div>
+                <div class="jiage">${hotlist.commodityMoney}</div>
+            </div>
+        </c:forEach>
         <div class="clear"></div>
     </div>
 </div>
@@ -538,91 +472,29 @@
     <div class="biaoti center">好评服装</div>
     <div class="main center">
         <div class="content">
-            <div class="remen fl"><a href=""><img src=" "></a>
-            </div>
-            <div class="remen fl">
-                <div class="xinpin"><span>新品</span></div>
-                <div class="tu"><a href=""><img src=" "></a></div>
-                <div class="miaoshu"><a href="front/commoditydetails">服装</a></div>
-                <div class="jiage">49元</div>
-                <div class="pingjia">372人评价</div>
-                <div class="piao">
-                    <a href="">
-                        <span>发货速度很快！</span>
-                        <span>评价</span>
-                    </a>
+            <c:forEach items="${goodlist}" var="goodlist" varStatus="states" begin="0" end="4">
+                <div class="remen fl">
+                    <div class="xinpin"><span style="background:#fff"></span></div>
+                    <div class="tu"><a href=""><img width="160px;" height="160px;" src="${goodlist.commodityPicture}"></a></div>
+                    <div class="miaoshu"><a href="${pageContext.request.contextPath}/frontCommodity/selectOne?commodityId=${goodlist.commodityId}">${goodlist.commodityName}</a></div>
+                    <div class="jiage">29元</div>
+                    <div class="pingjia">372人评价</div>
                 </div>
-            </div>
-            <div class="remen fl">
-                <div class="xinpin"><span style="background:#fff"></span></div>
-                <div class="tu"><a href=""><img src=" "></a></div>
-                <div class="miaoshu"><a href="front/commoditydetails">服装</a></div>
-                <div class="jiage">29元</div>
-                <div class="pingjia">372人评价</div>
-            </div>
-            <div class="remen fl">
-                <div class="xinpin"><span style="background:red">享6折</span></div>
-                <div class="tu"><a href=""><img src=""></a></div>
-                <div class="miaoshu"><a href="front/commoditydetails">服装</a></div>
-                <div class="jiage">19元</div>
-                <div class="pingjia">372人评价</div>
-                <div class="piao">
-                    <a href="">
-                        <span>发货速度很快</span>
-                        <span>评价</span>
-                    </a>
-                </div>
-            </div>
-            <div class="remen fl">
-                <div class="xinpin"><span style="background:#fff"></span></div>
-                <div class="tu"><a href=""><img src="./image/peijian5.jpg"></a></div>
-                <div class="miaoshu"><a href="">服装</a></div>
-                <div class="jiage">89元</div>
-                <div class="pingjia">372人评价</div>
-                <div class="piao">
-                    <a href="">
-                        <span>发货速度很快</span>
-                        <span>评价</span>
-                    </a>
-                </div>
-            </div>
+            </c:forEach>
             <div class="clear"></div>
         </div>
         <div class="content">
-            <div class="remen fl"><a href=""><img src=" "></a>
-            </div>
-            <div class="remen fl">
-                <div class="xinpin"><span style="background:#fff"></span></div>
-                <div class="tu"><a href=""><img src=" "></a></div>
-                <div class="miaoshu"><a href="front/commoditydetails">服装</a></div>
-                <div class="jiage">19元</div>
-                <div class="pingjia">372人评价</div>
-                <div class="piao">
-                    <a href="">
-                        <span>发货速度很快</span>
-                        <span>评价</span>
-                    </a>
+            <c:forEach items="${goodlist}" var="goodlist" varStatus="states" begin="5" end="9">
+                <div class="remen fl">
+                    <div class="xinpin"><span style="background:#fff"></span></div>
+                    <div class="tu"><a href=""><img width="160px;" height="160px;" src="${goodlist.commodityPicture}"></a></div>
+                    <div class="miaoshu"><a href="${pageContext.request.contextPath}/frontCommodity/selectOne?commodityId=${goodlist.commodityId}">${goodlist.commodityName}</a></div>
+                    <div class="jiage">${goodlist.commodityMoney}</div>
+                    <div class="pingjia">372人评价</div>
                 </div>
-            </div>
-            <div class="remen fl">
-                <div class="xinpin"><span style="background:#fff"></span></div>
-                <div class="tu"><a href=""><img src=""></a></div>
-                <div class="miaoshu"><a href="front/commoditydetails">服装</a></div>
-                <div class="jiage">19.9元</div>
-                <div class="pingjia">372人评价</div>
-            </div>
-            <div class="remen fl">
-                <div class="xinpin"><span style="background:#fff"></span></div>
-                <div class="tu"><a href=""><img src=""></a></div>
-                <div class="miaoshu"><a href="front/commoditydetails">服装</a></div>
-                <div class="jiage">59元</div>
-                <div class="pingjia">775人评价</div>
-            </div>
-            <div class="remenlast fr">
-                <div class="hongmi"><a href=""><img src="./image/hongmin4.png" alt=""></a></div>
-                <div class="liulangengduo"><a href=""><img src="./image/liulangengduo.png" alt=""></a></div>
-            </div>
+            </c:forEach>
             <div class="clear"></div>
+
         </div>
     </div>
 </div>

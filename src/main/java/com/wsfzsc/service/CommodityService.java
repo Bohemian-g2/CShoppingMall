@@ -27,4 +27,8 @@ public interface CommodityService {
     String updatePhoto(MultipartFile file, Integer upd_id);
 
     Integer updateCommodity(Commodity commodity);
+
+    List<Commodity> selectCommodityUp();
+
+    List<Commodity> selectByKind(Integer kindId);
 }

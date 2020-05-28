@@ -29,4 +29,11 @@ public interface CDetailMapper {
     int updateByPrimaryKeySelective(CDetail record);
 
     int updateByPrimaryKey(CDetail record);
+
+    /**
+     * 带外键
+     * @param example
+     * @return
+     */
+    List<CDetail> selectByExampleWithCommodityCart(CDetailExample example);
 }

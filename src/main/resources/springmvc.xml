@@ -41,7 +41,19 @@
             <bean class="com.wsfzsc.interceptor.AdminLoginInter"></bean>
         </mvc:interceptor>
         <mvc:interceptor>
-            <mvc:mapping path="/frontground/*"/>
+            <mvc:mapping path="/Cart/selectAll"/>
+            <mvc:mapping path="/Cart/insertOne"/>
+            <mvc:mapping path="/Cart/insertOneCurrent"/>
+            <mvc:mapping path="/user/UserInfo"/>
+            <mvc:mapping path="/user/updateUserInfo"/>
+            <mvc:mapping path="/user/uploadTitle"/>
+            <mvc:mapping path="/user/updatePwd"/>
+            <mvc:mapping path="/address/AddAddress"/>
+            <mvc:mapping path="/address/showAddress"/>
+            <mvc:mapping path="/address/JumpAndSaveAddress"/>
+            <mvc:mapping path="/address/DeleteAddress"/>
+
+
             <bean class="com.wsfzsc.interceptor.UserLoginInter"></bean>
         </mvc:interceptor>
     </mvc:interceptors>

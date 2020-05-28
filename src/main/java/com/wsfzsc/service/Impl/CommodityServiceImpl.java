@@ -63,6 +63,26 @@ public class CommodityServiceImpl implements CommodityService {
         return i;
     }
 
+    //获取上架商品
+    @Override
+    public List<Commodity> selectCommodityUp() {
+        CommodityExample commodityExample = new CommodityExample();
+        CommodityExample.Criteria criteria = commodityExample.createCriteria();
+        criteria.andCommodityStatusEqualTo(1);
+        List<Commodity> list = commodityDao.selectByExample(commodityExample);
+        return list;
+    }
+
+    //根据类别选择
+    @Override
+    public List<Commodity> selectByKind(Integer kindId) {
+        CommodityExample commodityExample = new CommodityExample();
+        CommodityExample.Criteria criteria = commodityExample.createCriteria();
+        criteria.andCommodityKindEqualTo(kindId);
+        List<Commodity> list = commodityDao.selectByExample(commodityExample);
+        return list;
+    }
+
     /*public String updatePhoto( Integer upd_id) {
         //获取到路径
         String oldPath = "D:"+commodityDao.selectByPrimaryKey(upd_id).getCommodityPicture();

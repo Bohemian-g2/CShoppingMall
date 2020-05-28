@@ -47,3 +47,72 @@ function changeDateFormat(val) {
         return dd;
     }
 }
+
+/**
+ * 商品详情页 添加商品至购物车
+ * @param url
+ */
+function insertCart(url){
+    $.ajax({
+        url : url,
+        type : "POST",
+        data : "commodityId="+$("#insertCart").attr("commodityId"),
+        success : function(result){
+            if(result == "stock"){
+                alert("库存不够了 无法购买");
+                return false;
+            }
+            console.log(result);
+            alert("已添加入购物车");
+        },
+        error : function (result) {
+            // 解决Ajax异步请求 springMvc 不跳转页面的问题
+            $.ajaxSetup({
+                //设置ajax请求结束后的执行动作
+                complete:
+                    function (XMLHttpRequest, textStatus) {
+                        // 通过XMLHttpRequest取得响应头，sessionstatus
+                        var sessionstatus = XMLHttpRequest.getResponseHeader("sessionstatus");
+                        if (sessionstatus == "TIMEOUT") {
+                            var win = window;
+                            while (win != win.top) {
+                                win = win.top;
+                            }
+                            win.location.href = XMLHttpRequest.getResponseHeader("CONTEXTPATH");
+                        }
+                    }
+            });
+        }
+    });
+
+}
+
+function insertCartCurrent(url){
+    $.ajax({
+        url : url,
+        type : "POST",
+        data : "commodityId="+$("#insertCart").attr("commodityId"),
+        success : function(result){
+            if(result == "stock"){
+                alert("库存不够了 无法购买");
+                return false;
+            }
+            alert("已添加入购物车");
+        },
+    });
+}
+
+function loadCommodityDetile(commodityId){
+    $.ajax({
+        url : "../frontCommodity/selectOneJson",
+        data : "commodityId="+commodityId,
+        type : "POST",
+        success : function(result){
+            console.log(result);
+            data = "<ul><li>尺码 : "+result.commoditySize+ " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;颜色 ："+ result.commodityColor  + "</li><li>" +
+                "风格 : "+ result.commodityStyle + " &nbsp;&nbsp;出产商 : "+ result.commoditySource +"</li><li>商品详情 : </li>" +
+                "<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+ result.commodityDescript + "</li></ul>";
+            $("#commoditydetail").empty().append(data);
+        }
+    });
+}

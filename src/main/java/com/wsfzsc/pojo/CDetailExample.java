@@ -114,8 +114,9 @@ public class CDetailExample {
             return (Criteria) this;
         }
 
+        //修改过
         public Criteria andCartIdEqualTo(Integer value) {
-            addCriterion("cart_id =", value, "cartId");
+            addCriterion("cd.cart_id =", value, "cartId");
             return (Criteria) this;
         }
 
@@ -204,8 +205,9 @@ public class CDetailExample {
             return (Criteria) this;
         }
 
+        //修改
         public Criteria andCartCommodityIdIn(List<Integer> values) {
-            addCriterion("cart_commodity_id in", values, "cartCommodityId");
+            addCriterion("cd.cart_commodity_id in", values, "cartCommodityId");
             return (Criteria) this;
         }
 

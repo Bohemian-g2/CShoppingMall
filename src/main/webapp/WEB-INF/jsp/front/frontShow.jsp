@@ -20,15 +20,11 @@
     <div class="top center">
         <div class="left fl">
             <ul>
-                <li><a href="index.jsp" target="_blank">服装商城首页</a></li>
+                <li><a href="../index.jsp" target="_blank">服装商城首页</a></li>
                 <li>|</li>
                 <li><a href="">我已买到的宝贝</a></li>
                 <li>|</li>
-                <li><a href="${pageContext.request.contextPath}/front/frontCart">购物车</a></li>
-                <li>|</li>
-                <li><a href="${pageContext.request.contextPath}/front/frontCollect">收藏夹</a></li>
-                <li>|</li>
-                <li><a href="${pageContext.request.contextPath}/front/frontRecord">足迹</a></li>
+                <li><a href="${pageContext.request.contextPath}/Cart/selectAll">购物车</a></li>
                 <div class="clear"></div>
             </ul>
         </div>
@@ -64,17 +60,16 @@
     <div class="nav fl">
         <ul>
             <ul>
-                <li><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">女装</a></li><li></li>
-                <li><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">男装</a></li><li></li>
-                <li><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">童装</a></li><li></li>
-                <li><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">中性服装</a></li>
+                <li><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=1">女装</a></li><li></li>
+                <li><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=2">男装</a></li><li></li>
+                <li><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=3">童装</a></li><li></li>
             </ul>
         </ul>
     </div>
     <div class="search fr">
-        <form action="" method="post">
+        <form action="${pageContext.request.contextPath}/frontCommodity/selectByDim" method="post">
             <div class="text fl">
-                <input type="text" class="shuru" placeholder="搜索">
+                <input type="text" class="shuru" placeholder="搜索" name="selectCommodity">
             </div>
             <div class="submit fl">
                 <input type="submit" class="sousuo" value="搜索"/>
@@ -88,29 +83,16 @@
 
 <div class="danpin center">
     <div class="biaoti center">商品列表</div>
-    <%--<c:forEach var="c" items="${}">--%>
-        <div class="main center">
-                <%--例子1--%>
+    <div class="main center">
+        <c:forEach items="${commodityList}" var="commodityList" varStatus="status">
             <div class="mingxing fl mb20" style="border:2px solid #fff;width:230px;cursor:pointer;" onmouseout="this.style.border='2px solid #fff'" onmousemove="this.style.border='2px solid red'">
-                <div class="sub_mingxing"><a href="commoditydetails" target="_blank"><img src=" " alt=""></a></div>
-                <div class="pinpai"><a href="commoditydetails" target="_blank">${c.commodityName}例子1</a></div>
-                <div class="jiage">￥100</div>
+                <div class="sub_mingxing"><a href="commoditydetails" target="_blank"><img src="${commodityList.commodityPicture}" alt=""></a></div>
+                <div class="pinpai"><a href="${pageContext.request.contextPath}/frontCommodity/selectOne?commodityId=${commodityList.commodityId}">${commodityList.commodityName}</a></div>
+                <div class="jiage">${commodityList.commodityMoney}元</div>
             </div>
-                <%--例子2--%>
-            <div class="mingxing fl mb20" style="border:2px solid #fff;width:230px;cursor:pointer;" onmouseout="this.style.border='2px solid #fff'" onmousemove="this.style.border='2px solid red'">
-                <div class="sub_mingxing"><a href="commoditydetails" target="_blank"><img src=" " alt=""></a></div>
-                <div class="pinpai"><a href="commoditydetails" target="_blank">${c.commodityName}例子2</a></div>
-                <div class="jiage">￥200</div>
-            </div>
-                <%--例子3--%>
-            <div class="mingxing fl mb20" style="border:2px solid #fff;width:230px;cursor:pointer;" onmouseout="this.style.border='2px solid #fff'" onmousemove="this.style.border='2px solid red'">
-                <div class="sub_mingxing"><a href="commoditydetails" target="_blank"><img src=" " alt=""></a></div>
-                <div class="pinpai"><a href="commoditydetails" target="_blank">${c.commodityName}例子3</a></div>
-                <div class="jiage">￥300</div>
-            </div>
-            <div class="clear"></div>
-        </div>
-<%--    </c:forEach>--%>
+        </c:forEach>
+        <div class="clear"></div>
+    </div>
 </div>
 </body>
 </html>

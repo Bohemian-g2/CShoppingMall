@@ -20,4 +20,20 @@ public class CDetailKey {
     public void setCartCommodityId(Integer cartCommodityId) {
         this.cartCommodityId = cartCommodityId;
     }
+
+    public CDetailKey() {
+    }
+
+    public CDetailKey(Integer cartId, Integer cartCommodityId) {
+        this.cartId = cartId;
+        this.cartCommodityId = cartCommodityId;
+    }
+
+    @Override
+    public String toString() {
+        return "CDetailKey{" +
+                "cartId=" + cartId +
+                ", cartCommodityId=" + cartCommodityId +
+                '}';
+    }
 }

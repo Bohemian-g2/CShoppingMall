@@ -82,7 +82,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from cart
     where cart_id = #{cartId,jdbcType=INTEGER}
@@ -154,8 +154,8 @@
   <update id="updateByExample" parameterType="map">
     update cart
     set cart_id = #{record.cartId,jdbcType=INTEGER},
-      cart_user_id = #{record.cartUserId,jdbcType=INTEGER},
-      cart_capacity = #{record.cartCapacity,jdbcType=INTEGER}
+    cart_user_id = #{record.cartUserId,jdbcType=INTEGER},
+    cart_capacity = #{record.cartCapacity,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
