@@ -17,8 +17,8 @@ public class AddressServiceImpl implements AddressService {
 
 
     @Override
-    public String AddAddress(Address address) {
-        List<Address> list = addressMapper.selectByExample(null);
+    public String AddAddress(Address address,Integer userId) {
+        List<Address> list = addressMapper.selectByUserId(userId);
         Integer maxNum = list.size();
         if (maxNum>5){
             System.out.println("地址已满。。。。");

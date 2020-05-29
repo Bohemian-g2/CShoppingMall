@@ -40,6 +40,11 @@ public class UserController {
         return "front/userC/FindoutPwd";
     }
 
+    @RequestMapping("test")
+    public String test(){return "frontground/frontCart";}
+
+
+
     @Autowired
     private UserService userService;
 

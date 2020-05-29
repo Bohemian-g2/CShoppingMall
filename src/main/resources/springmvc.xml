@@ -41,9 +41,7 @@
             <bean class="com.wsfzsc.interceptor.AdminLoginInter"></bean>
         </mvc:interceptor>
         <mvc:interceptor>
-            <mvc:mapping path="/Cart/selectAll"/>
-            <mvc:mapping path="/Cart/insertOne"/>
-            <mvc:mapping path="/Cart/insertOneCurrent"/>
+            <mvc:mapping path="/frontground/*"/>
             <bean class="com.wsfzsc.interceptor.UserLoginInter"></bean>
         </mvc:interceptor>
     </mvc:interceptors>

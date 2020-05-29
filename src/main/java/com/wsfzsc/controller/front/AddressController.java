@@ -41,7 +41,7 @@ public class AddressController {
         address.setAddressDistrict(district);
         address.setAddressPostcode(Integer.parseInt(postCode));
         address.setDetailedAddress(detailedAddress);
-        String result = addressService.AddAddress(address);
+        String result = addressService.AddAddress(address,user.getUserId());
         modelAndView.setViewName("/frontground/UserInfoPage");
         return modelAndView;
     }

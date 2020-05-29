@@ -7,7 +7,7 @@ import java.util.List;
 public interface AddressService {
 
     /*新增收货地址*/
-    public String AddAddress(Address address);
+    public String AddAddress(Address address,Integer userId);
 
     /*修改收货地址*/
     public String updateAddress(Address address);
