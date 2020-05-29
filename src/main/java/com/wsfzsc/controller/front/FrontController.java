@@ -1,9 +1,7 @@
 package com.wsfzsc.controller.front;
 
 import com.wsfzsc.pojo.*;
-import com.wsfzsc.service.CommentService;
-import com.wsfzsc.service.IndentDetailService;
-import com.wsfzsc.service.IndentService;
+import com.wsfzsc.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,10 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -32,6 +29,9 @@ public class FrontController {
 
     @Autowired
     private CommentService commentService;
+
+    @Autowired
+    private CDetailService cDetailService;
 
     /*商品详情页面返回 （包括库存）*/
     @RequestMapping("commoditydetails")
@@ -63,8 +63,8 @@ public class FrontController {
     @RequestMapping("frontSaveIndent")
     public String frontSaveIndent(@RequestParam("ids") String ids,
                                   @RequestParam("nums")String nums,HttpServletRequest request){
-        String ids_list[]=ids.split(",");
-        String nums_list[]= nums.split(",");
+        String[] ids_list =ids.split(",");
+        String[] nums_list = nums.split(",");
         UserInf user = (UserInf) request.getSession().getAttribute("user");
         Integer uid= user.getUserId();
         Integer indent_id= indentService.saveIndent(uid,1110);
@@ -75,6 +75,9 @@ public class FrontController {
         request.getSession().setAttribute("indentList",indentList);
         return "front/order";
     }
+
+
+
 
     /*显示订单*/
     @RequestMapping("frontShowIndent")
@@ -90,7 +93,6 @@ public class FrontController {
     @RequestMapping(value="/frontShowIndentDetailByIndentId")
     @ResponseBody
     public List<IndentDetail> frontShowIndentDetailByIndentId( @RequestParam("id")String id){
-        System.out.println("=========controller--frontShowIndentDetailByIndentId=====id="+id);
         List<IndentDetail> indentDetailListList= indentDetailService.showById(Integer.parseInt(id));
         System.out.println(indentDetailListList);
         return indentDetailListList;
@@ -152,5 +154,24 @@ public class FrontController {
         HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
         id=Integer.parseInt(request.getParameter("id"));
         return commentService.getCommentByIndentid(id);
+    }
+
+    /*生成订单并删除购物车*/
+    @RequestMapping("frontSaveIndentDeleleCart")
+    public String frontSaveIndentDeleleCart(Integer cartId,@RequestParam("ids") String ids,
+                                            @RequestParam("nums")String nums,HttpServletRequest request){
+        String[] ids_list =ids.split(",");
+        String[] nums_list = nums.split(",");
+        List<Integer> idList = new ArrayList<>();
+        UserInf user = (UserInf) request.getSession().getAttribute("user");
+        Integer uid= user.getUserId();
+        Integer indent_id= indentService.saveIndent(uid,1110);
+        for(int i=0;i<ids_list.length;i++){
+            indentDetailService.saveIndentDetail(indent_id,Integer.parseInt(ids_list[i]),Integer.parseInt(nums_list[i]));
+            idList.add(Integer.parseInt(ids_list[i]));
+        }
+        //调用批量删除购物车的方法
+        cDetailService.deleteBatch(cartId,idList);
+        return "front/order";
     }
 }

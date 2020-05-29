@@ -1,7 +1,5 @@
 package com.wsfzsc.interceptor;
 
-import com.wsfzsc.pojo.Admin;
-import com.wsfzsc.pojo.SuperAdmin;
 import com.wsfzsc.pojo.UserInf;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,10 +12,20 @@ public class UserLoginInter implements HandlerInterceptor {
     //controller方法执行前进行拦截
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         UserInf user = (UserInf) request.getSession().getAttribute("user");
-            if(user==null){
-                request.getRequestDispatcher("user/ToLogin").forward(request,response);
-                return false;
-
+        if(user == null){
+            // 如果是 ajax 请求，则设置 session 状态 、CONTEXTPATH 的路径值
+            // 如果是ajax请求响应头会有，X-Requested-With
+            if (request.getHeader("X-Requested-With") != null && request.getHeader("X-Requested-With").equalsIgnoreCase("XMLHttpRequest")){
+                response.setHeader("SESSIONSTATUS", "TIMEOUT");
+                response.setHeader("CONTEXTPATH", "../user/ToLogin");
+                // FORBIDDEN，forbidden。也就是禁止、403
+                response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+            }else{
+                //直接跳转
+                request.getRequestDispatcher("../user/ToLogin").forward(request,response);
+            }
+            /*request.getRequestDispatcher("/WEB-INF/jsp/frontground/UserLogin.jsp").forward(request,response);*/
+            return false;
         }
         return true;
     }

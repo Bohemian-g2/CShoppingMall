@@ -100,6 +100,7 @@ function del_batch(){
     changeTotal();
 }
 
+
 function deleteFunction(commodityIds,cartId){
     $.ajax({
         url : "../Cart/deleteBatch",
@@ -109,6 +110,34 @@ function deleteFunction(commodityIds,cartId){
         },
         type : "POST",
         success : function (result) {
+        }
+    });
+}
+
+//结算商品,跳转订单页面
+function saveIndent(url){
+    var cartId = "";
+    var ids = "";
+    var nums = "";
+    $.each($(".check_one:checked"),function (index,item) {
+        ids += $(item).parents("tr").find("td:eq(0)").find("input").attr("commodityId") + ",";
+        nums += $(item).parents("tr").find("td:eq(3)").find("span:eq(1)").text()+",";
+        cartId = $(item).parents("tr").find("td:eq(0)").find("input").attr("cartId");
+    });
+    if(ids == "" || ids == null){
+        return false;
+    }
+    $.ajax({
+        url : url,
+        data : {
+            'ids':ids,
+            'nums':nums,
+            'cartId':cartId
+        },
+        type : "POST",
+        async:false,
+        success : function () {
+            window.location.href='/CShoppingMall/front/frontShowIndent';
         }
     });
 }

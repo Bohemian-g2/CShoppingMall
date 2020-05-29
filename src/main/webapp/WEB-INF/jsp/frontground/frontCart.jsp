@@ -89,7 +89,7 @@
         </div>
         <div class="jiesuan fr">
             <div class="jiesuanjiage fl">已选商品：<span id="total_number">0</span> 件 &nbsp;&nbsp;合计(不含运费)：<span id="total_money" style="display:inline-block;width:35px;">0</span>&nbsp;&nbsp;&nbsp;元 </div>
-            <div class="jsanniu fr"><input class="jsan" type="submit" name="jiesuan"  value="去结算"/></div>
+            <div class="jsanniu fr"><input class="jsan" type="submit" name="jiesuan" onclick="saveIndent('${pageContext.request.contextPath}/front/frontSaveIndentDeleleCart')" value="去结算"/></div>
             <div class="clear"></div>
         </div>
         <div class="clear"></div>
