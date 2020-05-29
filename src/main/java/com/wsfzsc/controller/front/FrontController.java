@@ -1,9 +1,6 @@
 package com.wsfzsc.controller.front;
 
-import com.wsfzsc.pojo.Address;
-import com.wsfzsc.pojo.Comment;
-import com.wsfzsc.pojo.Indent;
-import com.wsfzsc.pojo.IndentDetail;
+import com.wsfzsc.pojo.*;
 import com.wsfzsc.service.CommentService;
 import com.wsfzsc.service.IndentDetailService;
 import com.wsfzsc.service.IndentService;
@@ -48,17 +45,6 @@ public class FrontController {
         return "frontground/frontCart";
     }
 
-    /*商品收藏页面返回 （包括库存）*/
-    @RequestMapping("frontCollect")
-    public String frontCollect(){
-        return "frontground/frontCollect";
-    }
-
-    /*商品收藏页面返回 （包括库存）*/
-    @RequestMapping("frontRecord")
-    public String frontRecord(){
-        return "front/frontRecord";
-    }
 
     /*商品检索页面返回*/
     @RequestMapping("frontShow")
@@ -72,51 +58,41 @@ public class FrontController {
         return "front/similarcommodity";
     }
 
-    /*购物车检索相似商品页面返回*/
-    @RequestMapping("order")
-    public String order(){
-        return "front/order";
-    }
-
 
     /*保存订单*/
     @RequestMapping("frontSaveIndent")
-    public String frontSaveIndent(String ids, String nums, String moneys){
+    public String frontSaveIndent(@RequestParam("ids") String ids,
+                                  @RequestParam("nums")String nums,HttpServletRequest request){
         String ids_list[]=ids.split(",");
         String nums_list[]= nums.split(",");
-        Integer uid=222;    //从……中获取，先写死
-
+        UserInf user = (UserInf) request.getSession().getAttribute("user");
+        Integer uid= user.getUserId();
         Integer indent_id= indentService.saveIndent(uid,1110);
         for(int i=0;i<ids_list.length;i++){
             indentDetailService.saveIndentDetail(indent_id,Integer.parseInt(ids_list[i]),Integer.parseInt(nums_list[i]));
         }
         List<Indent> indentList= indentService.getAllIndentByUid(uid);
-        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         request.getSession().setAttribute("indentList",indentList);
-
         return "front/order";
     }
 
     /*显示订单*/
     @RequestMapping("frontShowIndent")
-    public String frontShowIndent(){
-        Integer uid=222;    //从……中获取，先写死
-
+    public String frontShowIndent(HttpServletRequest request){
+        UserInf user = (UserInf) request.getSession().getAttribute("user");
+        Integer uid= user.getUserId();
         List<Indent> indentList= indentService.getAllIndentByUid(uid);
-        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         request.getSession().setAttribute("indentList",indentList);
-
         return "front/order";
     }
 
     /*显示订单详情*/
-    @RequestMapping(value="/frontShowIndentDetailByIndentId",method = {RequestMethod.POST})
+    @RequestMapping(value="/frontShowIndentDetailByIndentId")
     @ResponseBody
-    public List<IndentDetail> frontShowIndentDetailByIndentId( @RequestParam(value = "id",defaultValue = "1111")String id){
+    public List<IndentDetail> frontShowIndentDetailByIndentId( @RequestParam("id")String id){
         System.out.println("=========controller--frontShowIndentDetailByIndentId=====id="+id);
-
         List<IndentDetail> indentDetailListList= indentDetailService.showById(Integer.parseInt(id));
-
+        System.out.println(indentDetailListList);
         return indentDetailListList;
     }
 
@@ -124,27 +100,21 @@ public class FrontController {
     @RequestMapping("frontPayIndent")
     @ResponseBody
     public Map<String,String> frontPayIndent(Integer id, Integer addressId, Integer payway){
-
         return indentService.payIndent(id,addressId,payway);
-
     }
 
     /* 删除订单*/
     @RequestMapping("frontDeleteIndent")
     @ResponseBody
     public void frontDeleteIndent(Integer id){
-
         indentService.deleteIndent(id);
-
     }
 
     /* 订单确认收货*/
     @RequestMapping("frontSureIndent")
     @ResponseBody
     public void frontSureIndent(Integer id){
-
         indentService.sureIndent(id);
-
     }
 
     /*显示该用户所有的收货信息*/
@@ -152,9 +122,7 @@ public class FrontController {
     @ResponseBody
     public List<Address> frontShowAddressByUserId(@RequestParam(value = "id",defaultValue = "1111")String id){
         System.out.println("=========controller--frontShowAddressByUserId=====id="+id);
-
         List<Address> addressList=indentService.getAddressByUserid(Integer.parseInt(id));
-
         return addressList;
     }
 
@@ -163,7 +131,6 @@ public class FrontController {
     @RequestMapping("frontChangeIndent")
     @ResponseBody
     public void frontChangeIndent(Integer id){
-
         indentService.changeIndent(id);
     }
 
@@ -175,7 +142,6 @@ public class FrontController {
         myComment=request.getParameter("myComment");
         System.out.println("indentId==="+indentId+"myComment===="+myComment);
         indentService.insertComment(indentId,myComment);
-
         return "forward:frontShowIndent";
     }
 

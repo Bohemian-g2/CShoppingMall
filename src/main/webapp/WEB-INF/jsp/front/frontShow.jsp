@@ -22,7 +22,7 @@
             <ul>
                 <li><a href="../index.jsp" target="_blank">服装商城首页</a></li>
                 <li>|</li>
-                <li><a href="">我已买到的宝贝</a></li>
+                <li><a href="/CShoppingMall/front/frontShowIndent">我已买到的宝贝</a></li>
                 <li>|</li>
                 <li><a href="${pageContext.request.contextPath}/Cart/selectAll">购物车</a></li>
                 <div class="clear"></div>
@@ -59,11 +59,9 @@
 <div class="banner_x center">
     <div class="nav fl">
         <ul>
-            <ul>
-                <li><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=1">女装</a></li><li></li>
-                <li><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=2">男装</a></li><li></li>
-                <li><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=3">童装</a></li><li></li>
-            </ul>
+            <li><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=1">女装</a></li><li></li>
+            <li><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=2">男装</a></li><li></li>
+            <li><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=3">童装</a></li><li></li>
         </ul>
     </div>
     <div class="search fr">
@@ -86,7 +84,7 @@
     <div class="main center">
         <c:forEach items="${commodityList}" var="commodityList" varStatus="status">
             <div class="mingxing fl mb20" style="border:2px solid #fff;width:230px;cursor:pointer;" onmouseout="this.style.border='2px solid #fff'" onmousemove="this.style.border='2px solid red'">
-                <div class="sub_mingxing"><a href="commoditydetails" target="_blank"><img src="${commodityList.commodityPicture}" alt=""></a></div>
+                <div class="sub_mingxing"><a href="${pageContext.request.contextPath}/frontCommodity/selectOne?commodityId=${commodityList.commodityId}" target="_blank"><img src="${commodityList.commodityPicture}" alt=""></a></div>
                 <div class="pinpai"><a href="${pageContext.request.contextPath}/frontCommodity/selectOne?commodityId=${commodityList.commodityId}">${commodityList.commodityName}</a></div>
                 <div class="jiage">${commodityList.commodityMoney}元</div>
             </div>

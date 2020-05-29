@@ -160,7 +160,6 @@
         <p>
             备注：操作图标含义
             <a class="am-text-success am-icon-search-plus" > 查询评论信息</a>
-            <a class="am-icon-pencil-square-o am-text-secondary" > 修改评论信息</a>
             <a class="am-icon-trash-o am-text-danger" > 删除评论信息</a>
         </p>
     </form>

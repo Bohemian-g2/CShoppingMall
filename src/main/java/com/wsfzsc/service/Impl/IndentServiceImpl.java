@@ -64,7 +64,7 @@ public class IndentServiceImpl implements IndentService {
     @Override
     public Integer saveIndent(Integer user_id,float total){
         Indent indent=new Indent();
-        Integer indentRecId=222200; //联查address表 写该user_id的第一个收货人id（默认值） 先写死
+        Integer indentRecId=1; //联查address表 写该user_id的第一个收货人id（默认值） 先写死
 
         //插入该订单
         indent.setIndentUserId(user_id);

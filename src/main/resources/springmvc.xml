@@ -41,7 +41,13 @@
             <bean class="com.wsfzsc.interceptor.AdminLoginInter"></bean>
         </mvc:interceptor>
         <mvc:interceptor>
-            <mvc:mapping path="/frontground/*"/>
+            <mvc:mapping path="/Cart/selectAll"/>
+            <mvc:mapping path="/Cart/insertOne"/>
+            <mvc:mapping path="/Cart/insertOneCurrent"/>
+            <mvc:mapping path="/front/*"/>
+            <mvc:exclude-mapping path="/front/commoditydetails"/>
+            <mvc:exclude-mapping path="/front/frontShow"/>
+            <mvc:exclude-mapping path="/front/similarcommodity"/>
             <bean class="com.wsfzsc.interceptor.UserLoginInter"></bean>
         </mvc:interceptor>
     </mvc:interceptors>

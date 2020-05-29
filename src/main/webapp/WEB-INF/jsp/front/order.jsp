@@ -1,6 +1,3 @@
-<%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="java.util.Date" %>
-
 <%--
   Created by IntelliJ IDEA.
   User: GZX
@@ -10,16 +7,19 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.text.SimpleDateFormat" %>
 
 <html>
 <head>
     <title>订单中心</title>
 
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/front/css/style.css">
-    <!--<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>-->
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/front/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/back/css/layer.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/front/css/style.css"/>
+
     <script type="text/javascript" src="${pageContext.request.contextPath}/front/js/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/front/css/bootstrap.css">
     <script src="${pageContext.request.contextPath}/front/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/back/js/layer.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/front/js/order.js"></script>
 </head>
 <body>
@@ -29,24 +29,20 @@
     <div class="top center">
         <div class="left fl">
             <ul>
-                <li><a href="index.jsp" target="_blank">服装商城首页</a></li>
+                <li><a href="../index.jsp" target="_blank">服装商城首页</a></li>
                 <li>|</li>
-                <li><a href="${pageContext.request.contextPath}/front/frontShowIndent">我已买到的宝贝</a></li>
+                <li><a href="#">我已买到的宝贝</a></li>
                 <li>|</li>
-                <li><a href="${pageContext.request.contextPath}/front/frontCart">购物车</a></li>
-                <li>|</li>
-                <li><a href="${pageContext.request.contextPath}/front/frontCollect">收藏夹</a></li>
-                <li>|</li>
-                <li><a href="${pageContext.request.contextPath}/front/frontRecord">足迹</a></li>
+                <li><a href="/CShoppingMall/Cart/selectAll">购物车</a></li>
                 <div class="clear"></div>
             </ul>
         </div>
         <div class="right fr">
-            <div class="fr">
+            <div class="nav fr">
                 <c:choose>
                     <c:when test="${sessionScope.user!=null}">
                         <ul>
-                            <li><img style=" margin-top:5px; border-radius: 50%; height: 30px;width: 30px;" src="${pageContext.request.contextPath}/usertitle/${sessionScope.user.userTitle}"/></li>
+                            <li><img style=" margin-top:-2px; border-radius: 50%; height: 30px;width: 30px;" src="${pageContext.request.contextPath}/usertitle/${sessionScope.user.userTitle}"/></li>
                             <li><a href="/CShoppingMall/user/UserInfo">个人信息</a></li>
                             <li>|</li>
                             <li><a href="/CShoppingMall/user/LoginOut">退出</a></li>
@@ -67,23 +63,19 @@
     </div>
 </header>
 <%--头部结束--%>
-
 <%--顶部导航栏--%>
 <div class="banner_x center">
-    <%-- <a href="./index.html" target="_blank"><div class="logo fl"></div></a>
-     <a href=""><div class="ad_top fl"></div></a>--%>
     <div class="nav fl">
         <ul>
-            <li><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">女装</a></li><li></li>
-            <li><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">男装</a></li><li></li>
-            <li><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">童装</a></li><li></li>
-            <li><a href="${pageContext.request.contextPath}/FindByKindId.action?kindId=${KindBase.kindId}">中性服装</a></li>
+            <li><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=1">女装</a></li><li></li>
+            <li><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=2">男装</a></li><li></li>
+            <li><a href="${pageContext.request.contextPath}/frontCommodity/selectByKind?kindId=3">童装</a></li><li></li>
         </ul>
     </div>
     <div class="search fr">
-        <form action="" method="post">
+        <form action="${pageContext.request.contextPath}/frontCommodity/selectByDim" method="post">
             <div class="text fl">
-                <input type="text" class="shuru" placeholder="搜索">
+                <input type="text" class="shuru" placeholder="搜索" name="selectCommodity"/>
             </div>
             <div class="submit fl">
                 <input type="submit" class="sousuo" value="搜索"/>
@@ -94,6 +86,7 @@
     </div>
 </div>
 <%--顶部导航栏结束--%>
+<div class="xiantiao"></div>
 
 <div class="grzxbj">
     <div class="selfinfo center">
@@ -105,13 +98,6 @@
                     <li><a href="" style="color:#ff6700;font-weight:bold;">我的订单</a></li>
                 </ul>
             </div>
-            <div class="ddzx">个人中心</div>
-            <div class="subddzx">
-                <ul>
-                    <li><a href="#">我的个人中心</a></li>
-                    <li><a href="#">收货地址</a></li>
-                </ul>
-            </div>
         </div>
 
         <%--订单列表--%>
@@ -121,8 +107,8 @@
             <c:forEach items="${sessionScope.indentList}" var="indent" varStatus="status">
                 <input type="hidden"  id="myid" value="${indent.indentId}"/>
                 <div class="ddxq">
-                        <div class="ddspt fl"><img src="./image/gwc_xiaomi6.jpg" alt=""></div>
-                        <div class="ddbh fl" >${indent.indentId}</div>  <!-- 订单id-->
+                        <div class="ddspt fl"><img style="height: 80px;width: 80px;" src="/CShoppingMall/front/img/order.png"></div>
+                        <div class="ddbh fl" style="font-size: 20px;">${indent.indentId}</div>  <!-- 订单id-->
                         <div class="ztxx fr">
                             <ul>
                                 <li>  <!-- 订单状态-->
@@ -140,15 +126,15 @@
                                         已到货
                                     </c:if>
                                 </li>
-                                <li>￥ ${indent.indentTotal}</li>      <!-- 订单总金额-->
-                                <li>
+                                <li style="font-size: 20px;">￥ ${indent.indentTotal}</li>      <!-- 订单总金额-->
+                                <li style="font-size: 16px;">
                                     <c:set var="oldTime" value="${indent.indentCreateTime}" scope="request"></c:set>
                                     <%=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(request.getAttribute("oldTime"))%>
                                 </li>        <!-- 订单创建时间-->
                                 <li>
                                     <!-- 订单详情 跳转模态框-->
                                     <!-- Button trigger modal -->
-                                    <button class="btn btn-default" type="button" onclick="getIndentDetail(${indent.indentId})" data-toggle="modal" data-target="#myModal" style="margin-top: 10px;">
+                                    <button class="btn btn-default" type="button" onclick="getIndentDetail(${indent.indentId},${user.userId})" data-toggle="modal" data-target="#myModal" style="margin-top: 10px;">
                                         订单详情
                                     </button>
                                 </li>

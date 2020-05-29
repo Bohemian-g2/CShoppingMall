@@ -14,11 +14,19 @@ $(document).ready(function(){
             type : "POST",
             data: {                },
             success : function(data) {
-                alert(data.paymessage);
-                $('#myModal').modal('hide');
-                location.href ="frontShowIndent";
+                layer.msg(data.paymessage);
+                setTimeout(
+                    function(){
+                        $('#myModal').modal('hide');
+                        location.href ="frontShowIndent";
+                    }, 2000);
             },error:function(XMLHttpRequest, textStatus, errorThrown){
-                alert("支付失败,请选择收货人信息与支付方式");
+                layer.alert('支付失败,请选择收货人信息与支付方式', {
+                    skin: 'layui-layer-cheng'
+                    ,closeBtn: 0
+                    ,anim: 4 //动画类型
+                });
+
             }
         });
     });
@@ -31,9 +39,13 @@ $(document).ready(function(){
             type : "POST",
             data: {                },
             success : function() {
-                alert("确认收货成功！");
-                $('#myModal').modal('hide');
-                window.location.reload();
+
+                layer.msg('确认收货成功');
+                setTimeout(
+                    function(){
+                        $('#myModal').modal('hide');
+                        window.location.reload();
+                    }, 2000);
             }
         });
     });
@@ -46,9 +58,12 @@ $(document).ready(function(){
             type : "POST",
             data : { },
             success : function() {
-                alert("删除成功！");
-                $('#myModal').modal('hide');
-                location.href ="frontShowIndent";
+                layer.msg('删除成功！');
+                setTimeout(
+                    function(){
+                        $('#myModal').modal('hide');
+                        location.href ="frontShowIndent";
+                    }, 2000);
             }
         });
     });
@@ -61,9 +76,14 @@ $(document).ready(function(){
             type : "POST",
             data : { },
             success : function() {
-                alert("换货成功！");
-                $('#myModal').modal('hide');
-                window.location.reload();
+                layer.msg('换货成功！');
+                setTimeout(
+                    function(){
+                        $('#myModal').modal('hide');
+                        $(".modal-backdrop.fade").hide();
+                        window.location.reload();
+                    }, 2000);
+
             }
         });
     });
@@ -126,7 +146,7 @@ function changeDateFormat(val) {
     }
 }
 
-function getIndentDetail(indentId){
+function getIndentDetail(indentId,userId){
 
     $('#myModal').on('shown.bs.modal', function () {
         var id=indentId;
@@ -164,8 +184,7 @@ function getIndentDetail(indentId){
                     i++;
                 });
                 if(indent_status==0){           //未支付（未发货）
-
-                    find_address_by_id(222);        //从session中获得userid，先写死
+                    find_address_by_id(userId);
                     var div1= $("#div1");
                     div1.append("<div class=\"strap\" style=\"border-radius: 3px;border-left:2px solid #FF6700;\n" +
                         "                        border-right: 1px solid #BBBBBB;border-top: 1px solid #BBBBBB;\n" +
@@ -195,28 +214,50 @@ function getIndentDetail(indentId){
                         async: false,
                         url:"frontFindCommentByid?id="+id,
                         success : function(a) {
+                            var data=eval(a);
                             if (a =="") {  //还没有添加评论
                                 $("#myComment").html(
-                                    "<form action='frontInsertComment' style='margin-top: 20px;'>" +
-                                    "<input type='text' name='myComment' class=\"form-control\" style='height: 60px;'> <br>" +
-                                    "<input type='hidden' name='indentId' value='"+id+"'>" +
-                                    "<input type='submit' class=\"btn btn-default\" id='subComment' value='提交评论' style='margin-left: 480px;'>" +
+                                    "<form  style='margin-top: 20px;'>" +
+                                    "<input type='text' id='content' class=\"form-control\" style='height: 60px;'> <br>" +
+                                    "<input type='button' class=\"btn btn-default\" onclick='saveComment("+indentId+")' value='提交评论' style='margin-left: 480px;'>" +
                                     "</form>");
-                            }   else {    //已经评论过
-                                $('#myComment').html("我的评价：" + a.content + "<br/>评论时间:" + changeDateFormat(a.commentTime));
+                            }else {    //已经评论过
+                                $('#myComment').html("<div style='margin-left: 10px;margin-top: 10px;margin-bottom: 20px'>" +
+                                    "<span style='font-size: 10px;'>评论时间:"+changeDateFormat(data[0]["commentTime"])+"</span><br/>"+
+                                    "<span style='font-size: 16px;'>" + data[0]["content"] + "</span></div>");
                             }
                             $("#div1").after("<div class=\"strap\" style=\"border-radius: 3px;border-left:2px solid #FF6700;\n" +
                                 "border-right: 1px solid #BBBBBB;border-top: 1px solid #BBBBBB;\n" +
-                                "border-bottom:1px solid #BBBBBB;background-color: #F8F8F8;font-family:Microsoft JhengHei;margin-top: 20px;\">我的评论</div>\n")
-
+                                "border-bottom:1px solid #BBBBBB;background-color: #F8F8F8;font-family:Microsoft JhengHei;margin-top: 20px;\">我的评论</div>\n");
                         }
                     });
 
                 }
             }
         });
-
     });
 }
 
+function saveComment(id){
+    var content=$("#content").val();
+    $.ajax({
+        type: "post",
+        contentType: "application/json;charset=utf-8",
+        dataType: "text",
+        data: JSON.stringify({
+            content:content,
+            indentId:id,
+        }),
+        async: false,
+        url: "/CShoppingMall/FrontComment/saveCommentByCdtId",
+        success: function (data) {
+            layer.msg('评论提交成功！');
+            setTimeout(
+                function(){
+                    $('#myModal').modal('hide');
+                    $(".modal-backdrop.fade").hide();
+                }, 2000);
+        }
+    });
+}
 

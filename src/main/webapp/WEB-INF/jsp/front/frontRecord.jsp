@@ -117,10 +117,8 @@
             <div class="pinpai"><a href="commoditydetails" target="_blank">${c.commodityName}例子3</a></div>
             <div class="jiage">￥300</div>
         </div>
-
         <div class="clear"></div>
     </div>
-
 </div>
 </body>
 </html>

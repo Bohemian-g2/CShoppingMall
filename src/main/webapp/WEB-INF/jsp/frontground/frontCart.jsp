@@ -68,8 +68,6 @@
                                     相似
                                 </a>
                             </button>
-                                <%-- <a href="${ pageContext.request.contextPath }/delProFromCart.action?pid=${c.cartId}"
-                                    class="delete" id="kind">相似</a><br>--%>
                         </div>
                     </td>
                 </tr>

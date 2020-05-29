@@ -271,13 +271,13 @@
         <version>2.2</version>
         <configuration>
           <update>true</update>
-          <port>8088</port>
+          <port>8080</port>
           <uriEncoding>UTF-8</uriEncoding>
           <server>tomcat7</server>
-       <!--   <staticContextPath>/photoUpLoad</staticContextPath>
-          <staticContextDocbase>d:/photoUpLoad/</staticContextDocbase>
+       <staticContextPath>/photoUpLoad</staticContextPath>
+          <staticContextDocbase>d:/test/photoUpLoad/</staticContextDocbase>
           <contextReloadable>false</contextReloadable>
-          <useTestClasspath>true</useTestClasspath>-->
+          <useTestClasspath>true</useTestClasspath>
         </configuration>
       </plugin>
 

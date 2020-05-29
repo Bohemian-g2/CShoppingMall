@@ -94,7 +94,7 @@
 
         <div class="clear"></div>
         <div class="xiadan ml20 mt20">
-            <button class="jrgwc"  type="button" name="jrgwc" ><a style="color: white;" href="${pageContext.request.contextPath}/Cart/insertOneCurrent?commodityId=${commodity.commodityId}">立即选购</a></button>
+            <button class="jrgwc"  type="button" name="jrgwc" ><a style="color: white;" href="${pageContext.request.contextPath}/front/frontSaveIndent?ids=${commodity.commodityId}&nums=1">立即选购</a></button>
             <input class="jrgwc" type="button" name="jrgwc" value="加入购物车" commodityId="${commodity.commodityId}" id="insertCart" onclick="insertCart('${pageContext.request.contextPath}/Cart/insertOne')"/>
         </div>
     </div>
