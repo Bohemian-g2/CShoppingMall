@@ -59,11 +59,19 @@ function insertCart(url){
         data : "commodityId="+$("#insertCart").attr("commodityId"),
         success : function(result){
             if(result == "stock"){
-                alert("库存不够了 无法购买");
+                layer.alert('库存不够了 无法购买', {
+                    skin: 'layui-layer-lan'
+                    ,closeBtn: 0
+                    ,anim: 4 //动画类型
+                });
                 return false;
             }
             console.log(result);
-            alert("已添加入购物车");
+            layer.alert('已添加入购物车', {
+                skin: 'layui-layer-lan'
+                ,closeBtn: 0
+                ,anim: 4 //动画类型
+            });
         },
         error : function (result) {
             // 解决Ajax异步请求 springMvc 不跳转页面的问题
@@ -94,10 +102,18 @@ function insertCartCurrent(url){
         data : "commodityId="+$("#insertCart").attr("commodityId"),
         success : function(result){
             if(result == "stock"){
-                alert("库存不够了 无法购买");
+                layer.alert('库存不够了 无法购买', {
+                    skin: 'layui-layer-lan'
+                    ,closeBtn: 0
+                    ,anim: 4 //动画类型
+                });
                 return false;
             }
-            alert("已添加入购物车");
+            layer.alert('已添加入购物车', {
+                skin: 'layui-layer-lan'
+                ,closeBtn: 0
+                ,anim: 4 //动画类型
+            });
         },
     });
 }
@@ -109,9 +125,11 @@ function loadCommodityDetile(commodityId){
         type : "POST",
         success : function(result){
             console.log(result);
-            data = "<ul><li>尺码 : "+result.commoditySize+ " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;颜色 ："+ result.commodityColor  + "</li><li>" +
-                "风格 : "+ result.commodityStyle + " &nbsp;&nbsp;出产商 : "+ result.commoditySource +"</li><li>商品详情 : </li>" +
-                "<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+ result.commodityDescript + "</li></ul>";
+            data="<font class=\"left_title\">尺码：</font><font class=\"right_info\">"+result.commoditySize+"</font><br/>" +
+                "<font class=\"left_title\">颜色：</font>  <font class=\"right_info\">"+result.commodityColor+"</font><br/>" +
+                "<font class=\"left_title\">风格：</font>  <font class=\"right_info\">"+result.commodityStyle+"</font><br/>" +
+                "<font class=\"left_title\">出产商：</font><font class=\"right_info\">"+result.commoditySource+"</font> <br/>" +
+                "<font class=\"left_title\">商品详情：</font><font class=\"right_info\"> "+result.commodityDescript+"</font><br/>"
             $("#commoditydetail").empty().append(data);
         }
     });

@@ -31,4 +31,6 @@ public interface CommodityService {
     List<Commodity> selectCommodityUp();
 
     List<Commodity> selectByKind(Integer kindId);
+    /*获取单价*/
+    public float getAccountByCId(Integer CommodityId);
 }

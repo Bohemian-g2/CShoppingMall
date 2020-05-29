@@ -33,7 +33,7 @@
 <!-- 我的资料模态框 -->
 <div class="am-popup am-popup-inner" id="my-superinfo"style="height: 300px;">
     <div class="am-popup-hd">
-        <h4 class="am-popup-title">管理员信息修改</h4>
+        <h4 class="am-popup-title">超级管理员信息修改</h4>
         <span data-am-modal-close  class="am-close">&times;</span>
     </div>
     <div class="am-popup-bd">

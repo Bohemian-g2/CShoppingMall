@@ -83,6 +83,12 @@ public class CommodityServiceImpl implements CommodityService {
         return list;
     }
 
+    @Override
+    public float getAccountByCId(Integer CommodityId) {
+        Commodity commodity=commodityDao.selectByPrimaryKey(CommodityId);
+        return commodity.getCommodityMoney();
+    }
+
     /*public String updatePhoto( Integer upd_id) {
         //获取到路径
         String oldPath = "D:"+commodityDao.selectByPrimaryKey(upd_id).getCommodityPicture();

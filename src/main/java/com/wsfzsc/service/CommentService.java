@@ -27,4 +27,6 @@ public interface CommentService {
 
     /*前台插入评论信息*/
     public int saveComment(Comment comment);
+
+
 }

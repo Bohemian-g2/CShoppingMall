@@ -33,6 +33,9 @@ public class FrontController {
     @Autowired
     private CDetailService cDetailService;
 
+    @Autowired
+    private  CommodityService commodityService;
+
     /*商品详情页面返回 （包括库存）*/
     @RequestMapping("commoditydetails")
     public String commoditydetail(){
@@ -67,7 +70,12 @@ public class FrontController {
         String[] nums_list = nums.split(",");
         UserInf user = (UserInf) request.getSession().getAttribute("user");
         Integer uid= user.getUserId();
-        Integer indent_id= indentService.saveIndent(uid,1110);
+        float total=0;
+        for(int i=0;i<ids_list.length;i++){
+            float money=commodityService.getAccountByCId(Integer.parseInt(ids_list[i]));
+            total+=money*Integer.parseInt(ids_list[i]);
+        }
+        Integer indent_id= indentService.saveIndent(uid,total);
         for(int i=0;i<ids_list.length;i++){
             indentDetailService.saveIndentDetail(indent_id,Integer.parseInt(ids_list[i]),Integer.parseInt(nums_list[i]));
         }
@@ -75,9 +83,6 @@ public class FrontController {
         request.getSession().setAttribute("indentList",indentList);
         return "front/order";
     }
-
-
-
 
     /*显示订单*/
     @RequestMapping("frontShowIndent")
@@ -165,11 +170,17 @@ public class FrontController {
         List<Integer> idList = new ArrayList<>();
         UserInf user = (UserInf) request.getSession().getAttribute("user");
         Integer uid= user.getUserId();
-        Integer indent_id= indentService.saveIndent(uid,1110);
+        float total=0;
+        for(int i=0;i<ids_list.length;i++){
+            float money=commodityService.getAccountByCId(Integer.parseInt(ids_list[i]));
+            total+=money*Integer.parseInt(ids_list[i]);
+        }
+        Integer indent_id= indentService.saveIndent(uid,total);
         for(int i=0;i<ids_list.length;i++){
             indentDetailService.saveIndentDetail(indent_id,Integer.parseInt(ids_list[i]),Integer.parseInt(nums_list[i]));
             idList.add(Integer.parseInt(ids_list[i]));
         }
+
         //调用批量删除购物车的方法
         cDetailService.deleteBatch(cartId,idList);
         return "front/order";
