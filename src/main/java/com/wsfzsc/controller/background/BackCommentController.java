@@ -41,7 +41,7 @@ public class BackCommentController {
 
 
 
-    /*删除管理员信息*/
+    /*删除评论信息*/
     @RequestMapping("deleteCommentList")
     @ResponseBody
     public String deleteCommentList(@RequestBody Map<String,Object> map){

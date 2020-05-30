@@ -85,16 +85,16 @@ public class AdminServiceImpl implements AdminService {
         AdminExample adminExample=new AdminExample();
         AdminExample.Criteria criteria = adminExample.createCriteria();
         if(admin.getAdminName()!=null&&!admin.getAdminName().equals("")){
-            criteria.andAdminNameLike("%"+admin.getAdminName()+"%");
+            criteria.andAdminNameLike(admin.getAdminName());
         }
         if(admin.getAdminPhone()!=null&&!admin.getAdminPhone().equals("")){
-            criteria.andAdminPhoneLike("%"+admin.getAdminPhone()+"%");
+            criteria.andAdminPhoneLike(admin.getAdminPhone());
         }
         if(admin.getAdminRegisterDate()!=null&&!admin.getAdminRegisterDate().equals("")){
-            criteria.andAdminRegisterDateLike("%"+admin.getAdminRegisterDate()+"%");
+            criteria.andAdminRegisterDateLike(admin.getAdminRegisterDate());
         }
         if(admin.getAdminUsername()!=null&&!admin.getAdminUsername().equals("")){
-            criteria.andAdminUsernameLike("%"+admin.getAdminUsername()+"%");
+            criteria.andAdminUsernameLike(admin.getAdminUsername());
         }
         Map<String, Object> data = new HashMap<>();
         //设置分页属性进行分页查询

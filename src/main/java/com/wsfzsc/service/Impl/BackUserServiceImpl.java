@@ -25,22 +25,22 @@ public class BackUserServiceImpl implements BackUserService {
         UserInfExample userInfExample=new UserInfExample();
         UserInfExample.Criteria criteria = userInfExample.createCriteria();
         if(user.getUserName()!=null&&!user.getUserName().equals("")){
-            criteria.andUserNameLike("%"+user.getUserName()+"%");//姓名
+            criteria.andUserNameLike(user.getUserName());//姓名
         }
         if(user.getUserPhone()!=null&&user.getUserPhone().equals("")){
             criteria.andUserPhoneLike(user.getUserPhone());//电话(String)
         }
         if(user.getLoginName()!=null&&!user.getLoginName().equals("")){
-            criteria.andLoginNameLike("%"+user.getLoginName()+"%");//账号
+            criteria.andLoginNameLike(user.getLoginName());//账号
         }
         if(user.getIdentityType()!=null&&user.getIdentityType()!=0){
             criteria.andIdentityTypeEqualTo(user.getIdentityType());//证件类型(int)
         }
         if(user.getIdentityNumber()!=null&&!user.getIdentityNumber().equals("")){
-            criteria.andIdentityNumberLike("%"+user.getIdentityNumber()+"%");//证件号
+            criteria.andIdentityNumberLike(user.getIdentityNumber());//证件号
         }
         if(user.getUserEmail()!=null&&!user.getUserEmail().equals("")){
-            criteria.andUserEmailLike("%"+user.getUserEmail()+"%");//email
+            criteria.andUserEmailLike(user.getUserEmail());//email
         }
         if(user.getSex()!=null&&user.getSex()!=0){
             criteria.andSexEqualTo(user.getSex());//证件类型(int)

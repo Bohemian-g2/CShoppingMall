@@ -165,9 +165,9 @@ function getIndentDetail(indentId,userId){
                         "<td>" + val.commodity.commodityName + "</td>" +
                         "<td>" + val.commodity.commoditySize + "</td>" +
                         "<td>" + val.commodity.commodityColor+ "</td>" ;
-                    if( val.commodity.commoditySex==1){
+                    if( val.commodity.commoditySex==0){
                         item+="<td>男</td>";
-                    }else if ( val.commodity.commoditySex==0){
+                    }else if ( val.commodity.commoditySex==1){
                         item+="<td>女</td>";
                     }
                     item+="<td>" + val.commodity.commodityMoney + "</td>" +

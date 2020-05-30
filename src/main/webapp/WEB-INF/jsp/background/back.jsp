@@ -154,7 +154,7 @@
     <script>
         $(function () {
             loadPage('${pageContext.request.contextPath}/background/UserList','UserList');
-        })
+        });
 
         $(".sideMenu li a").click(function () {
             var url;

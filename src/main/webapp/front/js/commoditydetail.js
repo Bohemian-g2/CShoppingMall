@@ -60,7 +60,7 @@ function insertCart(url){
         success : function(result){
             if(result == "stock"){
                 layer.alert('库存不够了 无法购买', {
-                    skin: 'layui-layer-lan'
+                    skin: 'layui-layer-cheng'
                     ,closeBtn: 0
                     ,anim: 4 //动画类型
                 });
@@ -68,7 +68,7 @@ function insertCart(url){
             }
             console.log(result);
             layer.alert('已添加入购物车', {
-                skin: 'layui-layer-lan'
+                skin: 'layui-layer-cheng'
                 ,closeBtn: 0
                 ,anim: 4 //动画类型
             });

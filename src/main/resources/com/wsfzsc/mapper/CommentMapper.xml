@@ -245,7 +245,7 @@
         and b.commodity_id=#{commodityId}
       </if>
       <if test="commodityName!=null">
-        and b.commodity_name='%${commodityName}%'
+        and b.commodity_name like "%"#{commodityName,jdbcType=VARCHAR}"%"
       </if>
     </where>
   </select>

@@ -73,7 +73,7 @@ public class FrontController {
         float total=0;
         for(int i=0;i<ids_list.length;i++){
             float money=commodityService.getAccountByCId(Integer.parseInt(ids_list[i]));
-            total+=money*Integer.parseInt(ids_list[i]);
+            total+=money*Integer.parseInt(nums_list[i]);
         }
         Integer indent_id= indentService.saveIndent(uid,total);
         for(int i=0;i<ids_list.length;i++){
@@ -173,7 +173,7 @@ public class FrontController {
         float total=0;
         for(int i=0;i<ids_list.length;i++){
             float money=commodityService.getAccountByCId(Integer.parseInt(ids_list[i]));
-            total+=money*Integer.parseInt(ids_list[i]);
+            total+=money*Integer.parseInt(nums_list[i]);
         }
         Integer indent_id= indentService.saveIndent(uid,total);
         for(int i=0;i<ids_list.length;i++){

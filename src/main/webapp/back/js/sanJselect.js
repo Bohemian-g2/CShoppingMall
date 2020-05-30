@@ -63,8 +63,8 @@ function showAddress(url) {
                     data[i]["addressCity"]+
                     data[i]["addressDistrict"]+"  "+
                     "<div id='fin'>"+
-                    "<a id='opt' href='/CShoppingMall_war_exploded/address/JumpAndSaveAddress?addressId="+data[i]['addressId']+"'>opt</a>"+
-                "|"+"<a id='del' href='/CShoppingMall_war_exploded/address/DeleteAddress?addressId="+data[i]['addressId']+"'>del</a>"
+                    "<a id='opt' href='/CShoppingMall/address/JumpAndSaveAddress?addressId="+data[i]['addressId']+"'>opt</a>"+
+                "|"+"<a id='del' href='/CShoppingMall/address/DeleteAddress?addressId="+data[i]['addressId']+"'>del</a>"
                     +"</div>"
                     + "</div>"
                 )

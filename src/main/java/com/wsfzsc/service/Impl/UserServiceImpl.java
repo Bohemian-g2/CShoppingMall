@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService {
     public String saveUser(UserInf user) {
         /*自动生成账号*/
         user.setUserId(guid.createUserID());
-        user.setLoginName(guid.createUserID().toString());
+        user.setLoginName(user.getUserId().toString());
         /*加密密码*/
         user.setPassword(Encryption.Encrypt(user.getPassword()));
         user.setUserTitle("UserTitle.jpg");

@@ -45,7 +45,6 @@ public class CartController {
     public String insertOneCurrent(Integer commodityId, HttpServletRequest request){
         UserInf user = (UserInf)request.getSession().getAttribute("user");
         String result = cDetailService.insertOne(commodityId,user.getUserId());
-        //String result = cDetailService.insertOne(commodityId,1);
         return "forward:/Cart/selectAll";
     }
 

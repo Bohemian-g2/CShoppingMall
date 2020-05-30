@@ -98,7 +98,7 @@
                 </div>
             </div>
             <div class="am-form-group">
-                <div class="zuo" style="float: left;width: 19%;margin-top: 5px;">用户账号：</div>
+                <div class="zuo" style="float: left;width: 19%;">用户账号：</div>
                 <div class="you">
                     <input type="text" class="am-input-sm" id="upateUserLoginName" placeholder="请输入用户账号"readonly/>
                 </div>

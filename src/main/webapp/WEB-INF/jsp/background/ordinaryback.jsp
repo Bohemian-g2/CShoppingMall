@@ -155,6 +155,9 @@
     <script src="${pageContext.request.contextPath}/back/js/amazeui.min.js"></script>
 </div>
 <script>
+    $(function () {
+        loadPage('${pageContext.request.contextPath}/background/UserList','UserList');
+    });
     $(".sideMenu li a").click(function () {
         var url;
         var title=$(this).text();

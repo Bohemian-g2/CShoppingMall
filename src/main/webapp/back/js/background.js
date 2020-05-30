@@ -42,7 +42,7 @@ function updateSuperInfo(url) {
 	}
 	if(superadminPassword.length>0){//当修改密码时做出判断
 		if(!passwRegex.test(superadminPassword)){
-			layer.tips('密码格式不正确，密码只能为数字字母，长度6-18位！', '#superadminPassword', {
+			layer.tips('密码长度为6-18位！', '#superadminPassword', {
 				tips: [2, '#FF3030'],
 				time: 2000
 			});
@@ -114,7 +114,7 @@ function updateAdminInfo(url) {
 	}
 	if(adminPassword.length>0){//当密码不为空时做出判断
 		if(!passwRegex.test(adminPassword)){
-			layer.tips('密码格式不正确，密码只能为数字字母，长度6-18位！', '#adminPassword', {
+			layer.tips('密码长度为6-18位！', '#adminPassword', {
 				tips: [2, '#FF3030'],
 				time: 2000
 			});
@@ -144,7 +144,7 @@ function updateAdminInfo(url) {
 		}
 	});
 	if (datas == "passwError") {                 //密码格式不正确
-		layer.tips('密码格式不正确，密码只能为数字字母，长度6-18位！', '#adminPassword', {
+		layer.tips('密码长度为6-18位！', '#adminPassword', {
 			tips: [2, '#FF3030'],
 			time: 2000
 		});
@@ -307,7 +307,7 @@ function getUserList(userpage) {
 	}
 	var userId=$("#SecUserId").val();
 	var userLoginname=$("#SecUserLoginName").val();
-	var userName=$("#SecUsrName").val();
+	var userName=$("#SecUserName").val();
 	var userIdType=$("#SecUserIdType").val();
 	var userIdNumber=$("#SecUserIdNumber").val();
 	var userPhone=$("#SecUserPhone").val();
@@ -414,9 +414,17 @@ function updateUser(url){
 	var userPhone=$("#updateUserPhone").val();
 	var userSex=$("input[name='updateUserSex']:checked").val();
 	var id=$("#upateUserId").val();
+	var emailRegex=/^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
 	var phoneRegex=/^1[3578][0-9]{9}$/;
 	if(userName.length<0||userName.length>20){
 		layer.tips('昵称过长！', '#upateUserName', {
+			tips: [2, '#FF3030'],
+			time: 2000
+		});
+		return false;
+	}
+	if(!emailRegex.test(userEmail)){
+		layer.tips('邮箱不存在！', '#updateUserEmail', {
 			tips: [2, '#FF3030'],
 			time: 2000
 		});
@@ -679,7 +687,7 @@ function saveAdmin(url){
 		return false;
 	}
 	if(!passwRegex.test(adminPassword)){
-		layer.tips('密码格式不正确，密码只能为数字字母，长度6-18位！', '#regAdminPassword', {
+		layer.tips('密码长度为6-18位！', '#regAdminPassword', {
 			tips: [2, '#FF3030'],
 			time: 2000
 		});
