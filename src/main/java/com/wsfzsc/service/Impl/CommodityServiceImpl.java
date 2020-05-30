@@ -48,7 +48,7 @@ public class CommodityServiceImpl implements CommodityService {
     @Override
     public String updatePhoto(MultipartFile file, Integer upd_id) {
         //获取到路径
-        String oldPath = "D:"+commodityDao.selectByPrimaryKey(upd_id).getCommodityPicture();
+        String oldPath = "D:\\test"+commodityDao.selectByPrimaryKey(upd_id).getCommodityPicture();
         File oldFile = new File(oldPath);
         if(oldFile.exists()){
             oldFile.delete();
@@ -152,7 +152,7 @@ public class CommodityServiceImpl implements CommodityService {
     @Override
     public String insertPhoto(MultipartFile file) {
         //声明存放文件的路径
-        String filepath = "D:\\photoUpLoad";
+        String filepath = "D:\\test\\photoUpLoad";
         //获取到文件的名字
         String filename = file.getOriginalFilename();
         final String replace = UUID.randomUUID().toString().substring(0,5);

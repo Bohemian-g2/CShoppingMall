@@ -192,7 +192,6 @@ $(function(){
                 "indentId":indentId,
             },
             type : "POST",
-            datatype: "application/json; charset=utf-8",
             success : function(result){
                 console.log(result);
                 $("#logistics_address").val(result);

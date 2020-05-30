@@ -34,7 +34,7 @@ $(function(){
                 console.log("error");
             }
         });
-    };
+    }
 
     //商品类别显示
     function build_kind_information(result) {
@@ -185,7 +185,6 @@ $(function(){
     }
     //商品类别确认更新
     $("#update_kind_btn").click(function(){
-       alert($("#upd_kind_modal form").serialize());
        if($("#update_kind_btn").attr("checkResult") == "error"){
            return false;
        }
@@ -194,7 +193,6 @@ $(function(){
            data : $("#upd_kind_modal form").serialize(),
            type : "POST",
            success : function(result){
-               alert(result);
                $("#upd_kind_modal").modal('close');
                //跳转回原来页
                 to_page(cur_page,null,"show");
@@ -258,13 +256,10 @@ $(function(){
         });
         //去除最后的 -
         var deleteBatchIds = deleteBatchId.substring(0,deleteBatchId.length-1);
-        alert(deleteBatchIds);
         $.ajax({
             url : "../kindBase/deleteBatch",
             data : "deleteBatchIds="+deleteBatchIds,
             success : function (result) {
-                alert(cur_page+"-----");
-                alert(total_page+"******")
                 if(cur_page >= total_page){
                     to_page(total_page,null,"show");
                 }else{
@@ -275,4 +270,4 @@ $(function(){
     });
     /* ======================删除商品类别结束 ============================================*/
 
-})
+});

@@ -15,7 +15,7 @@ public class LogisticsController {
     @Autowired
     private LogisticService logisticService;
 
-    @RequestMapping(value="/selectOne", produces = "application/json; charset=utf-8")
+    @RequestMapping(value="/selectOne",produces="text/html;charset=UTF-8")
     public @ResponseBody String selectOne(@RequestParam("indentId") Integer indentId, Model model){
         String address = logisticService.selectOne(indentId);
         return address;

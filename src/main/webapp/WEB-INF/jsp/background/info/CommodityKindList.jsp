@@ -33,7 +33,7 @@
             <div class="am-form-group am-cf">
                 <div class="you" >
                     <p>
-                        <button type="submit" class="am-btn am-btn-success am-radius" id="insert_kind_btn">提交</button>
+                        <button type="button" class="am-btn am-btn-success am-radius" id="insert_kind_btn">提交</button>
                     </p>
                 </div>
             </div>

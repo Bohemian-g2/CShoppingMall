@@ -202,7 +202,7 @@ $(function(){
     });
     $("#insert_money").change(function(){
         $("#check_money").empty();
-        var reg = /^([0-9]{1,5})|(([0-9]{1,5})\.[0-9]{1,2})$/
+        var reg = /^([0-9]{1,5})|(([0-9]{1,5})\.[0-9]{1,2})$/;
         var money = $(this).val();
         if(!reg.test(money)){
             $(this).val("");
@@ -213,7 +213,7 @@ $(function(){
     });
     $("#insert_stock").change(function(){
         $("#check_stock").empty();
-        var reg = /^([0-9]{1,5})$/
+        var reg = /^([0-9]{1,5})$/;
         var stock = $(this).val();
         if(!reg.test(stock)){
             $(this).val("");
@@ -253,7 +253,7 @@ $(function(){
             $(id).focus();
             return false;
         }
-    };
+    }
     $("#insert_picture").change(function() {
         change_status("#insert_picture", "#check_picture");
     });
@@ -274,7 +274,6 @@ $(function(){
     $("#insert_btn").click(function(){
         //提交前的判断
         change_status("#insert_name", "#check_name");
-        change_status("#insert_picture", "#check_picture");
         change_status("#insert_money", "#check_money");
         change_status("#insert_stock", "#check_stock");
         change_status("#insert_size", "#check_size");
@@ -317,18 +316,18 @@ $(function(){
             size = $("#insert_size").val();
         }
         //添加到formdata
-        formdata.append("commodityKind",$("#insert_kind option:selected").val())
-        formdata.append("commodityName",$("#insert_name").val())
-        formdata.append("commodityStatus",$("#insert_status option:selected").val())
-        formdata.append("commodityMoney",$("#insert_money").val())
-        formdata.append("commodityStock",$("#insert_stock").val())
-        formdata.append("commoditySize",size)
-        formdata.append("commoditySex",$("#insert_sex option:selected").val())
-        formdata.append("commodityPicture",filepath)
-        formdata.append("commodityDescript",$("#insert_descript").val())
-        formdata.append("commodityColor",$("#insert_color").val())
-        formdata.append("commodityStyle",$("#insert_style").val())
-        formdata.append("commoditySource",$("#insert_source").val())
+        formdata.append("commodityKind",$("#insert_kind option:selected").val());
+        formdata.append("commodityName",$("#insert_name").val());
+        formdata.append("commodityStatus",$("#insert_status option:selected").val());
+        formdata.append("commodityMoney",$("#insert_money").val());
+        formdata.append("commodityStock",$("#insert_stock").val());
+        formdata.append("commoditySize",size);
+        formdata.append("commoditySex",$("#insert_sex option:selected").val());
+        formdata.append("commodityPicture",filepath);
+        formdata.append("commodityDescript",$("#insert_descript").val());
+        formdata.append("commodityColor",$("#insert_color").val());
+        formdata.append("commodityStyle",$("#insert_style").val());
+        formdata.append("commoditySource",$("#insert_source").val());
         formdata.append("commodityDate",$("#insert_date").val());
         $.ajax({
             url : "../commodity/insertCommodity",
@@ -338,7 +337,6 @@ $(function(){
             processData: false,//用于对data参数进行序列化处理 这里必须false
             contentType: false, //必须
             success : function(result){
-                alert(result);
                 $("#insert_commodity_modal").modal('close');
                 $("#insert_name").val("");
                 $("#insert_money").val("");
@@ -496,7 +494,7 @@ $(function(){
     });
     $("#update_money").change(function(){
         $("#check_update_money").empty();
-        var reg = /^([0-9]{1,5})|(([0-9]{1,5})\.[0-9]{1,2})$/
+        var reg = /^([0-9]{1,5})|(([0-9]{1,5})\.[0-9]{1,2})$/;
         var money = $(this).val();
         if(!reg.test(money)){
             $(this).val("");
@@ -507,7 +505,7 @@ $(function(){
     });
     $("#update_stock").change(function(){
         $("#check_update_stock").empty();
-        var reg = /^([0-9]{1,5})$/
+        var reg = /^([0-9]{1,5})$/;
         var stock = $(this).val();
         if(!reg.test(stock)){
             $(this).val("");
@@ -559,7 +557,6 @@ $(function(){
     $("#update_btn").click(function(){
         //提交前的判断
         change_status("#update_name", "#check_update_name");
-        change_status("#update_picture", "#check_update_picture");
         change_status("#update_money", "#check_update_money");
         change_status("#update_stock", "#check_update_stock");
         change_status("#update_size", "#check_update_size");
@@ -568,21 +565,68 @@ $(function(){
         change_status("#update_source", "#check_update_source");
         change_status("#update_descript", "#check_update_descript");
         change_status("#update_date", "#check_update_date");
+        if($("#update_picture").get(0).files[0]){
+            var formdata = new FormData();
+            formdata.append("file",$("#update_picture")[0].files[0]);
+            formdata.append("upd_id",$(this).attr("upd_id"));
+            $.ajax({
+                url : "../commodity/updatePhoto",
+                data : formdata,
+                type : "POST",
+                cache: false,//上传文件无需缓存
+                processData: false,//用于对data参数进行序列化处理 这里必须false
+                contentType: false, //必须
+                success : function(result){
+                    update_commodity(result);
+                },
+                error : function(){
+                    console.log("insert error");
+                }
+            });
+        }
         var formdata = new FormData();
-        formdata.append("file",$("#update_picture")[0].files[0]);
-        formdata.append("upd_id",$(this).attr("upd_id"));
+        var size = "";
+        if($("#update_select").get(0).selectedIndex == 0){
+            size = $("#update_size").val()+"码";
+        }else{
+            size = $("#update_size").val();
+        }
+        //添加到formdata
+        formdata.append("commodityId",$("#update_btn").attr("upd_id"));
+        formdata.append("commodityKind",$("#update_kind option:selected").val());
+        formdata.append("commodityName",$("#update_name").val());
+        formdata.append("commodityMoney",$("#update_money").val());
+        formdata.append("commodityStock",$("#update_stock").val());
+        formdata.append("commoditySize",size);
+        formdata.append("commoditySex",$("#update_sex option:selected").val());
+        formdata.append("commodityDescript",$("#update_descript").val());
+        formdata.append("commodityColor",$("#update_color").val());
+        formdata.append("commodityStyle",$("#update_style").val());
+        formdata.append("commoditySource",$("#update_source").val());
+        formdata.append("commodityDate",$("#update_date").val());
         $.ajax({
-            url : "../commodity/updatePhoto",
+            url : "../commodity/updateCommodity",
             data : formdata,
             type : "POST",
             cache: false,//上传文件无需缓存
             processData: false,//用于对data参数进行序列化处理 这里必须false
             contentType: false, //必须
             success : function(result){
-                update_commodity(result);
+                $("#update_commodity_modal").modal('close');
+                $("#check_name").val("");
+                $("#check_money").val("");
+                $("#check_picture").val("");
+                $("#check_stock").val("");
+                $("#check_size").val("");
+                $("#check_descript").val("");
+                $("#check_color").val("");
+                $("#check_style").val("");
+                $("#check_source").val("");
+                $("#check_date").val("");
+                to_page(cur_page,null,"showAll");
             },
             error : function(){
-                console.log("insert error");
+                console.log("update error");
             }
         });
     });
@@ -596,17 +640,17 @@ $(function(){
         }
         //添加到formdata
         formdata.append("commodityId",$("#update_btn").attr("upd_id"));
-        formdata.append("commodityKind",$("#update_kind option:selected").val())
-        formdata.append("commodityName",$("#update_name").val())
-        formdata.append("commodityMoney",$("#update_money").val())
-        formdata.append("commodityStock",$("#update_stock").val())
-        formdata.append("commoditySize",size)
-        formdata.append("commoditySex",$("#update_sex option:selected").val())
-        formdata.append("commodityPicture",filepath)
-        formdata.append("commodityDescript",$("#update_descript").val())
-        formdata.append("commodityColor",$("#update_color").val())
-        formdata.append("commodityStyle",$("#update_style").val())
-        formdata.append("commoditySource",$("#update_source").val())
+        formdata.append("commodityKind",$("#update_kind option:selected").val());
+        formdata.append("commodityName",$("#update_name").val());
+        formdata.append("commodityMoney",$("#update_money").val());
+        formdata.append("commodityStock",$("#update_stock").val());
+        formdata.append("commoditySize",size);
+        formdata.append("commoditySex",$("#update_sex option:selected").val());
+        formdata.append("commodityPicture",filepath);
+        formdata.append("commodityDescript",$("#update_descript").val());
+        formdata.append("commodityColor",$("#update_color").val());
+        formdata.append("commodityStyle",$("#update_style").val());
+        formdata.append("commoditySource",$("#update_source").val());
         formdata.append("commodityDate",$("#update_date").val());
         $.ajax({
             url : "../commodity/updateCommodity",
@@ -659,7 +703,6 @@ $(function(){
             del_id += $(item).parents("tr").find("td:eq(1)").text()+"-";
         });
         var del_ids = del_id.split(0,del_id.length-1);
-        alert(del_ids);
         if(del_ids != ""){
             $.ajax({
                 url : "../commodity/deleteBatchCommodity",
