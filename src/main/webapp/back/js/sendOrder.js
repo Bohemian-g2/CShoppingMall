@@ -35,7 +35,7 @@ $(function(){
             var tr = $("<tr></tr>");
             var selector = $("<td></td>").append("<input type='checkbox' class='check_one'/>");
             var id = $("<td></td>").append(item.indentId);
-            var name = $("<td></td>").append(item.userInf.loginName);
+            var name = $("<td></td>").append(item.userInf.userName);
             var address = $("<td></td>").append(item.address.addressCity);
             var rec_name = $("<td></td>").append(item.address.addressName);
             var date = new Date(item.indentPaidTime);
@@ -53,9 +53,9 @@ $(function(){
             var total = $("<td></td>").append(item.indentTotal);
             var carriage = $("<td></td>").append(item.indentCarriage);
             //两个按钮
-            var detail_btn = $("<button type='button' class='indent_detail_btn am-btn am-btn-default am-btn-xs am-text-success am-round' title='订单详情'></button>").
+            var detail_btn = $("<button type='button' class='indent_detail_btn am-btn am-btn-default am-btn-xs am-text-success am-round' title='订单详情' data-am-modal={target:'#send_detail_modal'}></button>").
             attr("com_id",item.indentId).append("<span class='am-icon-search'></span>");
-            var upd_btn = $("<button type='button' class='upd_btn am-btn am-btn-default am-btn-xs am-text-secondary am-round' title='物流修改'></button>").
+            var upd_btn = $("<button type='button' class='upd_btn am-btn am-btn-default am-btn-xs am-text-secondary am-round' title='物流修改' data-am-modal={target:'#logistic_modal'}></button>").
             attr("com_id",item.indentId).append("<span class='am-icon-pencil-square-o'></span>");
             var btn = $("<td></td>").append(detail_btn).append(upd_btn);
             tr.append(selector).append(id).append(name).append(address).append(rec_name).append(createTime).append(paidTime).append(DrawbackMoneyTime).append(way).append(total).append(carriage).append(btn).appendTo("#send_list tbody");
@@ -108,19 +108,19 @@ $(function(){
         page_area.append(next_page);
     }
     //显示订单内商品详情
-    $(document).on('click',".indent_detail_btn",function(){
-        $("#send_detail_modal").modal();
+    $(document).on("click",".indent_detail_btn",function(){
+        //$("#send_detail_modal").modal();
         $.ajax({
             url : "../indentDetail/showById",
             data : "indentId="+$(this).attr("com_id"),
             type : "POST",
             success : function(result){
-                console.log(result);
                 init_indent_detail_table(result);
             }
         });
     });
     function init_indent_detail_table(result){
+        $("#detail_table tbody").empty();
         $.each(result,function(index,item){
             var tr = $("<tr></tr>");
             var commodityName = $("<td></td>").append(item.commodity.commodityName);
@@ -183,7 +183,7 @@ $(function(){
      * 超级玄学 中文从后台拿到就跳error
      */
     $(document).on("click",".upd_btn",function(){
-        $("#logistic_modal").modal();
+        //$("#logistic_modal").modal();
         $("#logistic").attr("com_id",$(this).attr("com_id"));
         var indentId = $(this).attr("com_id");
         $.ajax({

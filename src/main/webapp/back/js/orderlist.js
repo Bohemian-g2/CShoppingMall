@@ -39,7 +39,7 @@ $(function(){
             var total = $("<td></td>").append(item.indentTotal);
             var carriage = $("<td></td>").append(item.indentCarriage);
             //两个按钮
-            var detail_btn = $("<button type='button' class='indent_detail_btn am-btn am-btn-default am-btn-xs am-text-success am-round' title='订单详情'></button>").
+            var detail_btn = $("<button type='button' class='indent_detail_btn am-btn am-btn-default am-btn-xs am-text-success am-round' title='订单详情' data-am-modal={target:'#show_detail_modal'}></button>").
             attr("com_id",item.indentId).append("<span class='am-icon-search'></span>");
             var btn = $("<td></td>").append("<div class='am-btn-toolbar'></div>").append("<div class='am-btn-group am-btn-group-xs'>").
             append(detail_btn);
@@ -93,8 +93,8 @@ $(function(){
         page_area.append(next_page);
     }
     //显示订单内商品详情
-    $(document).on('click',".indent_detail_btn",function(){
-       $("#show_detail_modal").modal();
+    $(document).on("click",".indent_detail_btn",function(){
+       //$("#show_detail_modal").modal();
        $.ajax({
            url : "../indentDetail/showById",
            data : "indentId="+$(this).attr("com_id"),
@@ -106,6 +106,7 @@ $(function(){
        });
     });
     function init_indent_detail_table(result){
+        $("#detail_table tbody").empty();
         $.each(result,function(index,item){
             var tr = $("<tr></tr>");
             var commodityName = $("<td></td>").append(item.commodity.commodityName);
@@ -116,7 +117,7 @@ $(function(){
             var commodityStyle = $("<td></td>").append(item.commodity.commodityStyle);
             var indentGoodsNum = $("<td></td>").append(item.indentGoodsNum);
             tr.append(commodityName).append(commoditySex).append(commodityColor).append(commoditySize)
-                .append(commodityDescript).append(commodityStyle).append(indentGoodsNum).appendTo($("#detail_table tbody"));
+                .append(commodityDescript).append(commodityStyle).append(indentGoodsNum).appendTo($("#orderList_detail_table tbody"));
         });
     }
 });

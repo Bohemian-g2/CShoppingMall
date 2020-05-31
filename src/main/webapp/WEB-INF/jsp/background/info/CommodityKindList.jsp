@@ -122,7 +122,7 @@
         </table>
 
         <!-- 分页标签 -->
-        <ul class="am-pagination am-fr" id="c">
+        <ul class="am-pagination am-fr" id="page_info_area">
             <%--<li class="am-disabled"><a href="#">«</a></li>
             <li class="am-active"><a href="#">1</a></li>
             <li><a href="#">2</a></li>

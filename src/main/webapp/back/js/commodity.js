@@ -40,9 +40,9 @@ $(function(){
             var money = $("<td></td>").append(item.commodityMoney);
             var status = $("<td></td>").addClass("am-hide-sm-only").append(item.commodityStatus == 1?"<i class='am-icon-check am-text-warning'></i>":"<i class='am-icon-close am-text-primary'></i>");
             //三个按钮
-            var detail_btn = $("<button type='button' class='commodity_detail_btn am-btn am-btn-default am-btn-xs am-text-success am-round' title='详情' ></button>").
+            var detail_btn = $("<button type='button' class='commodity_detail_btn am-btn am-btn-default am-btn-xs am-text-success am-round'  title='详情' data-am-modal={target:'#show_commodity'}></button>").
             attr("com_id",item.commodityId).append("<span class='am-icon-search'></span>");
-            var upd_btn = $("<button type='button' class='upd_btn am-btn am-btn-default am-btn-xs am-text-secondary am-round' title='修改'></button>").
+            var upd_btn = $("<button type='button' class='upd_btn am-btn am-btn-default am-btn-xs am-text-secondary am-round' title='修改' data-am-modal={target:'#update_commodity_modal'}></button>").
             attr("com_id",item.commodityId).append("<span class='am-icon-pencil-square-o'></span>");
             var delete_btn = $("<button type='button' class='del_btn am-btn am-btn-default am-btn-xs am-text-danger am-round' title='删除'></button>").
             attr("com_id",item.commodityId).append("<span class='am-icon-trash-o'></span>");
@@ -100,7 +100,7 @@ $(function(){
 
     //显示具体数据
     $(document).on("click",".commodity_detail_btn",function(){
-        $("#show_commodity").modal();
+        //$("#show_commodity").modal();
         $.ajax({
             url : "../commodity/selectOne",
             data : "selectId="+$(this).attr("com_id"),
@@ -172,7 +172,7 @@ $(function(){
         $("#insert_date").val($(this).data('date'));
     });
     /**
-     *  增添页面的信息校验
+     *  增添页面的信息校验05
      */
     $("#insert_name").change(function(){
         $("#check_name").empty();
@@ -253,6 +253,7 @@ $(function(){
             $(id).focus();
             return false;
         }
+        return true;
     }
     $("#insert_picture").change(function() {
         change_status("#insert_picture", "#check_picture");
@@ -409,11 +410,12 @@ $(function(){
     }
     //触发修改商品模态框
     $(document).on("click",".upd_btn",function(){
-        $("#update_commodity_modal").modal();
+        //$("#update_commodity_modal").modal();
         $("#check_update_name").val("");
         $("#check_update_money").val("");
         $("#check_update_picture").val("");
         $("#check_update_stock").val("");
+        $("#update_kind").empty();
         $("#check_update_size").val("");
         $("#check_update_descript").val("");
         $("#check_update_color").val("");
@@ -434,14 +436,20 @@ $(function(){
                 $("#update_sex").val(result.commoditySex);
                 $("#update_money").val(result.commodityMoney);
                 $("#update_stock").val(result.commodityStock);
-                $("#update_size").val(result.commoditySize);
+
+                var reg = /^[a-z0-9]{0,5}$/;
+                if(!reg.test(result.commoditySize)){
+                    $("#update_size").val(result.commoditySize.substring(0,result.commoditySize.length-1));
+                }else{
+                    $("#update_size").val(result.commoditySize);
+                }
                 $("#update_size").attr("readonly","readonly");
                 $("#update_color").val(result.commodityColor);
                 $("#update_style").val(result.commodityStyle);
                 $("#update_source").val(result.commoditySource);
                 $("#update_descript").val(result.commodityDescript);
                 var data = new Date(result.commodityDate);
-                $("#update_date").val(data.getFullYear()+'/'+(data.getMonth()+1)+'/'+data.getDate());
+                $("#update_date").val(data.getFullYear()+'-'+(data.getMonth()+1)+'-'+data.getDate());
             },
             error : function(){
                 console.log("修改模态框打开失败");
@@ -556,129 +564,128 @@ $(function(){
     //向后台修改商品信息
     $("#update_btn").click(function(){
         //提交前的判断
-        change_status("#update_name", "#check_update_name");
-        change_status("#update_money", "#check_update_money");
-        change_status("#update_stock", "#check_update_stock");
-        change_status("#update_size", "#check_update_size");
-        change_status("#update_color", "#check_update_color");
-        change_status("#update_style", "#check_update_style");
-        change_status("#update_source", "#check_update_source");
-        change_status("#update_descript", "#check_update_descript");
-        change_status("#update_date", "#check_update_date");
-        if($("#update_picture").get(0).files[0]){
+        if(change_status("#update_name", "#check_update_name") && change_status("#update_money", "#check_update_money")
+            && change_status("#update_stock", "#check_update_stock") && change_status("#update_size", "#check_update_size")
+            && change_status("#update_color", "#check_update_color") && change_status("#update_style", "#check_update_style")
+            && change_status("#update_style", "#check_update_style") && change_status("#update_source", "#check_update_source")
+            && change_status("#update_descript", "#check_update_descript") && change_status("#update_date", "#check_update_date")){
+            if($("#update_picture").get(0).files[0]){
+                var formdata = new FormData();
+                formdata.append("file",$("#update_picture")[0].files[0]);
+                formdata.append("upd_id",$(this).attr("upd_id"));
+                $.ajax({
+                    url : "../commodity/updatePhoto",
+                    data : formdata,
+                    type : "POST",
+                    cache: false,//上传文件无需缓存
+                    processData: false,//用于对data参数进行序列化处理 这里必须false
+                    contentType: false, //必须
+                    success : function(result){
+                        update_commodity(result);
+                    },
+                    error : function(){
+                        console.log("insert error");
+                    }
+                });
+            }
             var formdata = new FormData();
-            formdata.append("file",$("#update_picture")[0].files[0]);
-            formdata.append("upd_id",$(this).attr("upd_id"));
+            var size = "";
+            if($("#update_select").get(0).selectedIndex == 0){
+                size = $("#update_size").val()+"码";
+            }else{
+                size = $("#update_size").val();
+            }
+            //添加到formdata
+            formdata.append("commodityId",$("#update_btn").attr("upd_id"));
+            formdata.append("commodityKind",$("#update_kind option:selected").val());
+            formdata.append("commodityName",$("#update_name").val());
+            formdata.append("commodityMoney",$("#update_money").val());
+            formdata.append("commodityStock",$("#update_stock").val());
+            formdata.append("commoditySize",size);
+            formdata.append("commoditySex",$("#update_sex option:selected").val());
+            formdata.append("commodityDescript",$("#update_descript").val());
+            formdata.append("commodityColor",$("#update_color").val());
+            formdata.append("commodityStyle",$("#update_style").val());
+            formdata.append("commoditySource",$("#update_source").val());
+            formdata.append("commodityDate",$("#update_date").val());
             $.ajax({
-                url : "../commodity/updatePhoto",
+                url : "../commodity/updateCommodity",
                 data : formdata,
                 type : "POST",
                 cache: false,//上传文件无需缓存
                 processData: false,//用于对data参数进行序列化处理 这里必须false
                 contentType: false, //必须
                 success : function(result){
-                    update_commodity(result);
+                    $("#update_commodity_modal").modal('close');
+                    $("#check_name").val("");
+                    $("#check_money").val("");
+                    $("#check_picture").val("");
+                    $("#check_stock").val("");
+                    $("#check_size").val("");
+                    $("#check_descript").val("");
+                    $("#check_color").val("");
+                    $("#check_style").val("");
+                    $("#check_source").val("");
+                    $("#check_date").val("");
+                    to_page(cur_page,null,"showAll");
                 },
                 error : function(){
-                    console.log("insert error");
+                    console.log("update error");
                 }
             });
-        }
-        var formdata = new FormData();
-        var size = "";
-        if($("#update_select").get(0).selectedIndex == 0){
-            size = $("#update_size").val()+"码";
-        }else{
-            size = $("#update_size").val();
-        }
-        //添加到formdata
-        formdata.append("commodityId",$("#update_btn").attr("upd_id"));
-        formdata.append("commodityKind",$("#update_kind option:selected").val());
-        formdata.append("commodityName",$("#update_name").val());
-        formdata.append("commodityMoney",$("#update_money").val());
-        formdata.append("commodityStock",$("#update_stock").val());
-        formdata.append("commoditySize",size);
-        formdata.append("commoditySex",$("#update_sex option:selected").val());
-        formdata.append("commodityDescript",$("#update_descript").val());
-        formdata.append("commodityColor",$("#update_color").val());
-        formdata.append("commodityStyle",$("#update_style").val());
-        formdata.append("commoditySource",$("#update_source").val());
-        formdata.append("commodityDate",$("#update_date").val());
-        $.ajax({
-            url : "../commodity/updateCommodity",
-            data : formdata,
-            type : "POST",
-            cache: false,//上传文件无需缓存
-            processData: false,//用于对data参数进行序列化处理 这里必须false
-            contentType: false, //必须
-            success : function(result){
-                $("#update_commodity_modal").modal('close');
-                $("#check_name").val("");
-                $("#check_money").val("");
-                $("#check_picture").val("");
-                $("#check_stock").val("");
-                $("#check_size").val("");
-                $("#check_descript").val("");
-                $("#check_color").val("");
-                $("#check_style").val("");
-                $("#check_source").val("");
-                $("#check_date").val("");
-                to_page(cur_page,null,"showAll");
-            },
-            error : function(){
-                console.log("update error");
+            function update_commodity(filepath) {
+                var formdata = new FormData();
+                var size = "";
+                if ($("#update_select").get(0).selectedIndex == 0) {
+                    size = $("#update_size").val() + "码";
+                } else {
+                    size = $("#update_size").val();
+                }
+                //添加到formdata
+                formdata.append("commodityId", $("#update_btn").attr("upd_id"));
+                formdata.append("commodityKind", $("#update_kind option:selected").val());
+                formdata.append("commodityName", $("#update_name").val());
+                formdata.append("commodityMoney", $("#update_money").val());
+                formdata.append("commodityStock", $("#update_stock").val());
+                formdata.append("commoditySize", size);
+                formdata.append("commoditySex", $("#update_sex option:selected").val());
+                formdata.append("commodityPicture", filepath);
+                formdata.append("commodityDescript", $("#update_descript").val());
+                formdata.append("commodityColor", $("#update_color").val());
+                formdata.append("commodityStyle", $("#update_style").val());
+                formdata.append("commoditySource", $("#update_source").val());
+                formdata.append("commodityDate", $("#update_date").val());
+                $.ajax({
+                    url: "../commodity/updateCommodity",
+                    data: formdata,
+                    type: "POST",
+                    cache: false,//上传文件无需缓存
+                    processData: false,//用于对data参数进行序列化处理 这里必须false
+                    contentType: false, //必须
+                    success: function (result) {
+                        $("#update_commodity_modal").modal('close');
+                        $("#update_picture").val("");
+                        $("#check_name").val("");
+                        $("#check_money").val("");
+                        $("#check_picture").val("");
+                        $("#check_stock").val("");
+                        $("#check_size").val("");
+                        $("#check_descript").val("");
+                        $("#check_color").val("");
+                        $("#check_style").val("");
+                        $("#check_source").val("");
+                        $("#check_date").val("");
+                        to_page(cur_page, null, "showAll");
+                    },
+                    error: function () {
+                        console.log("update error");
+                    }
+                });
             }
-        });
-    });
-    function update_commodity(filepath){
-        var formdata = new FormData();
-        var size = "";
-        if($("#update_select").get(0).selectedIndex == 0){
-            size = $("#update_size").val()+"码";
         }else{
-            size = $("#update_size").val();
+            return false;
         }
-        //添加到formdata
-        formdata.append("commodityId",$("#update_btn").attr("upd_id"));
-        formdata.append("commodityKind",$("#update_kind option:selected").val());
-        formdata.append("commodityName",$("#update_name").val());
-        formdata.append("commodityMoney",$("#update_money").val());
-        formdata.append("commodityStock",$("#update_stock").val());
-        formdata.append("commoditySize",size);
-        formdata.append("commoditySex",$("#update_sex option:selected").val());
-        formdata.append("commodityPicture",filepath);
-        formdata.append("commodityDescript",$("#update_descript").val());
-        formdata.append("commodityColor",$("#update_color").val());
-        formdata.append("commodityStyle",$("#update_style").val());
-        formdata.append("commoditySource",$("#update_source").val());
-        formdata.append("commodityDate",$("#update_date").val());
-        $.ajax({
-            url : "../commodity/updateCommodity",
-            data : formdata,
-            type : "POST",
-            cache: false,//上传文件无需缓存
-            processData: false,//用于对data参数进行序列化处理 这里必须false
-            contentType: false, //必须
-            success : function(result){
-                $("#update_commodity_modal").modal('close');
-                $("#update_picture").val("");
-                $("#check_name").val("");
-                $("#check_money").val("");
-                $("#check_picture").val("");
-                $("#check_stock").val("");
-                $("#check_size").val("");
-                $("#check_descript").val("");
-                $("#check_color").val("");
-                $("#check_style").val("");
-                $("#check_source").val("");
-                $("#check_date").val("");
-                to_page(cur_page,null,"showAll");
-            },
-            error : function(){
-                console.log("update error");
-            }
-        });
-    }
+});
     /* ============================ 修改商品信息结束 ======================= */
 
     /* ============================ 删除商品信息 =========================== */

@@ -44,7 +44,7 @@ $(function(){
             var end = new Date(item.indentEndTime);
             var endTime = $("<td></td>").append(end.getFullYear()+'/'+(end.getMonth()+1)+'/'+end.getDate());
             //详情按钮
-            var detail_btn = $("<button type='button' class='indent_detail_btn am-btn am-btn-default am-btn-xs am-text-success am-round' title='订单详情'></button>").
+            var detail_btn = $("<button type='button' class='indent_detail_btn am-btn am-btn-default am-btn-xs am-text-success am-round' title='订单详情' data-am-modal={target:'#return_detail_modal'}></button>").
             attr("com_id",item.indentId).append("<span class='am-icon-search'></span>");
             var btn = $("<td></td>").append(detail_btn);
             tr.append(id).append(name).append(address).append(rec_name).append(createTime).append(way).append(total).append(carriage).append(endTime).append(btn).appendTo("#end_list tbody");
@@ -98,7 +98,7 @@ $(function(){
     }
     //显示订单内商品详情
     $(document).on('click',".indent_detail_btn",function(){
-        $("#return_detail_modal").modal();
+        //$("#return_detail_modal").modal();
         $.ajax({
             url : "../indentDetail/showById",
             data : "indentId="+$(this).attr("com_id"),
@@ -110,6 +110,7 @@ $(function(){
         });
     });
     function init_indent_detail_table(result){
+        $("#detail_table tbody").empty();
         $.each(result,function(index,item){
             var tr = $("<tr></tr>");
             var commodityName = $("<td></td>").append(item.commodity.commodityName);

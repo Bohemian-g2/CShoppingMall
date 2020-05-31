@@ -46,7 +46,7 @@ $(function(){
             var kind_id = $("<td></td>").addClass("am-text-center").append(item.kindId);
             var kind_name = $("<td></td>").addClass("am-text-center").append(item.kindName);
             //操作栏
-            var update_btn = $("<button type='button' class='update_btn' title='修改'></button>").attr("update_id",item.kindId).
+            var update_btn = $("<button type='button' class='update_btn' title='修改' data-am-modal={target:'#upd_kind_modal'}></button>").attr("update_id",item.kindId).
                 addClass("am-btn am-btn-default am-btn-xs am-text-secondary am-round").append("<span></span>").addClass("am-icon-pencil-square-o");
             var delete_btn = $("<button type='button' class='delete_btn' title='删除'></button>").attr("delete_id",item.kindId).addClass("am-btn am-btn-default am-btn-xs am-text-danger am-round").
                 append("<span></span>").addClass("am-icon-trash-o");
@@ -135,7 +135,7 @@ $(function(){
     //开启模态框+初始化修改商品类别
     $(document).on("click",".update_btn",function(){
         var upd_id = $(this).attr("update_id");
-        $("#upd_kind_modal").modal();
+        //$("#upd_kind_modal").modal();
         $("#upd_info").text("");
         $("#update_kind_btn").attr("upd_id",upd_id);
         $("#upd_kind_id").val(upd_id);
