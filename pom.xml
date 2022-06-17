@@ -174,7 +174,7 @@
     <dependency>
       <groupId>com.alibaba</groupId>
       <artifactId>fastjson</artifactId>
-      <version>1.2.3</version>
+      <version>1.2.83</version>
     </dependency>
     <!-- springmvc框架整合AJAX使用@ResponseBody需要此包 -->
     <dependency>
